@@ -1,0 +1,29 @@
+html {
+    font-family: Lora, Georgia, serif; 
+    margin: 2em;
+    font-size: 170%;
+    line-height: 1.5;
+    background-color: #dcdcd1;
+}
+
+.bodyText:hover, .pageTitle:hover, .contact:hover {
+    background-color: black;
+    color: white;
+}
+
+.navbar {
+    background-color: blueviolet;
+}
+
+@keyframes faceAnimation {
+    0% {background-color: red;}
+    50% {background-color: yellow;}
+    100% {background-color: red;}
+}
+
+.face {
+    border-radius: 20px;
+    animation-name: faceAnimation;
+    animation-duration: 4s;
+    animation-iteration-count: infinite;
+}

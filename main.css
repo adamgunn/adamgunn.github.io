@@ -9,6 +9,7 @@ html {
 .bodyText:hover, .pageTitle:hover, .contact:hover {
     background-color: black;
     color: white;
+    border-radius: 10px;
 }
 
 .navbar {
@@ -27,6 +28,7 @@ html {
 }
 
 .face {
+    box-shadow: 5px 5px 5px #222222;
     float: left;
     margin: 10px;
     border-radius: 20px;

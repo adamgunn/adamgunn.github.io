@@ -3,16 +3,16 @@ html {
     margin: 2em;
     font-size: 170%;
     line-height: 1.5;
-    background-color: #dcdcd1;
+    background-color: #18683c;
 }
 
-.bodyText:hover, .pageTitle:hover, .contact:hover {
+.bodyText:hover, .pageTitle:hover, .footnote:hover {
     background-color: black;
     color: white;
     border-radius: 10px;
 }
 
-.navbar a:link, .navbar a:visited {
+.navbar a:link, .navbar a:visited, .contact a:link, .contact a:visited {
     color: white;
     text-decoration: none;
 }
@@ -21,13 +21,15 @@ html {
     clear: both;
 }
 
+.pageTitle, .bodyText, .footnote {
+    color: #89a194;
+}
+
 .navbar {
     /* background-color: blueviolet; */
     float: left;
     /* padding-right: 10px; */
-    list-style-type: none;
     padding-left: 10px;
-    border-radius: 10px;
     /* padding-top: 10px; */
     /* padding-bottom: 10px; */
     margin-right: 10px;
@@ -39,6 +41,22 @@ html {
 ul.navbar li {
     display: inline-block;
     background-color: rgb(71, 71, 199);
+    border-radius: 20px;
+    padding: 10px;
+    box-shadow: 5px 5px 5px #222222;
+}
+
+.navbar, .contact {
+    list-style-type: none;
+}
+
+.contact {
+    margin-left: -40px;
+}
+
+ul.contact li {
+    display: inline-block;
+    background-color: rgb(27, 27, 27);
     border-radius: 20px;
     padding: 10px;
     box-shadow: 5px 5px 5px #222222;

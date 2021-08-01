@@ -11,11 +11,18 @@
     </head>
     <body>
         <header>
-            <a href=../home><img src=../my_face.png class="face" width="100" height="100" alt="Adam's face" /></a>
-            <ul class="navbar">
-                <li><a href=../home>Home</a></li>
-                <li><a href=../about>About</a></li>
-                <li><a href=../portfolio>Portfolio</a></li>
+            <ul class="headbar">
+                <li>
+                    <a href=../home><img src=../my_face.png class="face" width="100" height="100" alt="Adam's face" /></a>
+                </li>
+                <li>
+                    <a href=../home class="adamGunn">Adam Gunn</a>
+                    <ul class="navbar">
+                        <li><a href=../home>Home</a></li>
+                        <li><a href=../about>About</a></li>
+                        <li><a href=../portfolio>Portfolio</a></li>
+                    </ul>
+                </li>
             </ul>
         </header>
         <h1 class="pageTitle">
@@ -28,11 +35,31 @@
         <p class="bodyText">
             Links:
         </p>
-        <ul class="contact">
-            <li><a href="mailto:asgunn@umich.edu">E-mail</a></li>
-            <li><a href="https://github.com/adamgunn">Github</a></li>
-            <li><a href="https://www.instagram.com/admgnn/">Instagram</a></li>
-            <li><a href="https://open.spotify.com/user/adamsgunnn">Spotify</a></li>
+        <ul class="contact_box">
+            <li><a href="mailto:asgunn@umich.edu">
+                <ul class="contact_item">
+                    <li><img src=../mail-icon.svg class="icon" width="32" height="32" alt="Envelope icon"></li>
+                    <li class="contact_text"> E-mail</li>
+                </ul></a>
+            </li>
+            <li><a href="https://github.com/adamgunn">
+                <ul class="contact_item">
+                    <li><img src=../github-icon.svg class="icon" width="32" height="32" alt="Github icon"></li>
+                    <li class="contact_text"> Github</li>
+                </ul></a>
+            </li>
+            <li><a href="https://www.instagram.com/admgnn/">
+                <ul class="contact_item">
+                    <li><img src=../instagram-icon.svg class="icon" width="32" height="32" alt="Instagram icon"></li>
+                    <li class="contact_text"> Instagram</li>
+                </ul></a>
+            </li>
+            <li><a href="https://open.spotify.com/user/adamsgunnn">
+                <ul class="contact_item">
+                    <li><img src=../spotify-icon.svg class="icon" width="32" height="32" alt="Spotify icon"></li>
+                    <li class="contact_text"> Spotify</li>
+                </ul></a>
+            </li>
         </ul>
     </body>
 </html>

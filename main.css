@@ -1,7 +1,7 @@
 html {
-    font-family: Lora, Georgia, serif; 
+    font-family: Andale Mono, monospace; 
     margin: 2em;
-    font-size: 170%;
+    font-size: 130%;
     line-height: 1.5;
     background-color: #18683c;
 }
@@ -12,7 +12,7 @@ html {
     border-radius: 10px;
 }
 
-.navbar a:link, .navbar a:visited, .contact a:link, .contact a:visited {
+.navbar a:link, .navbar a:visited, .contact_box a:link, .contact_box a:visited {
     color: white;
     text-decoration: none;
 }
@@ -25,17 +25,33 @@ html {
     color: #89a194;
 }
 
+.pageTitle, .contact_text, .navbar {
+    text-transform: uppercase;
+}
+
 .navbar {
     /* background-color: blueviolet; */
-    float: left;
     /* padding-right: 10px; */
     padding-left: 10px;
     /* padding-top: 10px; */
     /* padding-bottom: 10px; */
     margin-right: 10px;
-    animation-name: navbarAnimation;
+    /* animation-name: navbarAnimation;
     animation-duration: 2s;
-    animation-iteration-count: 1;
+    animation-iteration-count: 1; */
+}
+
+.icon {
+    margin-bottom: -9px;
+}
+
+a.adamGunn:link, a.adamGunn:visited {
+    text-decoration:none;
+    color: #89a194;
+    font-size: 70px;
+    padding-left: 10px;
+    font-family: 'Arial Black', sans-serif;
+    text-transform: uppercase;
 }
 
 ul.navbar li {
@@ -46,25 +62,47 @@ ul.navbar li {
     box-shadow: 5px 5px 5px #222222;
 }
 
-.navbar, .contact {
+.navbar, .contact_box, .contact_item, .headbar {
     list-style-type: none;
 }
 
-.contact {
+.contact_box {
     margin-left: -40px;
 }
 
-ul.contact li {
+ul.contact_box li {
     display: inline-block;
     background-color: rgb(27, 27, 27);
     border-radius: 20px;
-    padding: 10px;
+    padding: 20px;
     box-shadow: 5px 5px 5px #222222;
+    padding-left: -40px;
 }
 
-header {
-    margin: auto;
-    width: 50%;
+ul.contact_box li:hover, ul.navbar li:hover {
+    box-shadow: none;
+}
+
+ul.contact_box li ul.contact_item li {
+    display: inline-block;
+    border-radius: 0px;
+    padding: 0px;
+    box-shadow: none;
+}
+
+ul.contact_box li ul.contact_item {
+    display: inline-block;
+    margin-left: -40px;
+}
+
+.headbar {
+    margin-left: -40px;
+}
+
+.headbar li {
+    display: inline-block;
+    vertical-align: bottom;
+
 }
 
 @keyframes navbarAnimation {
@@ -76,17 +114,20 @@ header {
 }
 
 @keyframes faceAnimation {
-    0% {background-color: rgb(187, 61, 61); transform: rotate(5deg);}
-    50% {background-color: rgb(211, 211, 117); transform: rotate(-5deg);}
-    100% {background-color: rgb(187, 61, 61); transform: rotate(5deg);}
+    0% {background-color: rgb(211, 211, 117); transform: rotate(5deg);}
+    50% {background-color: rgb(187, 61, 61); transform: rotate(-5deg);}
+    100% {background-color: rgb(211, 211, 117); transform: rotate(5deg);}
 }
 
 .face {
     box-shadow: 5px 5px 5px #222222;
-    float: left;
     margin: 10px;
     border-radius: 20px;
+    background-color: rgb(211, 211, 117);
+}
+
+.face:hover {
     animation-name: faceAnimation;
-    animation-duration: 2s;
+    animation-duration: 1s;
     animation-iteration-count: infinite;
 }

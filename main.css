@@ -3,9 +3,9 @@ html {
     margin: 2em;
     font-size: 130%;
     line-height: 1.5;
-    background-color: #18683c;
+    background-color: #A0A083;
 }
-
+ 
 .bodyText:hover, .pageTitle:hover, .footnote:hover {
     background-color: black;
     color: white;
@@ -22,7 +22,7 @@ html {
 }
 
 .pageTitle, .bodyText, .footnote {
-    color: #89a194;
+    color: #EAE0CC;
 }
 
 .pageTitle, .contact_text, .navbar {
@@ -47,7 +47,7 @@ html {
 
 a.adamGunn:link, a.adamGunn:visited {
     text-decoration:none;
-    color: #89a194;
+    color: #EAE0CC;
     font-size: 70px;
     padding-left: 10px;
     font-family: 'Arial Black', sans-serif;
@@ -56,7 +56,7 @@ a.adamGunn:link, a.adamGunn:visited {
 
 ul.navbar li {
     display: inline-block;
-    background-color: rgb(71, 71, 199);
+    background-color: #798478;
     border-radius: 20px;
     padding: 10px;
     box-shadow: 5px 5px 5px #222222;
@@ -72,7 +72,7 @@ ul.navbar li {
 
 ul.contact_box li {
     display: inline-block;
-    background-color: rgb(27, 27, 27);
+    background-color: #4D6A6D;
     border-radius: 20px;
     padding: 20px;
     box-shadow: 5px 5px 5px #222222;
@@ -114,16 +114,16 @@ ul.contact_box li ul.contact_item {
 }
 
 @keyframes faceAnimation {
-    0% {background-color: rgb(211, 211, 117); transform: rotate(5deg);}
-    50% {background-color: rgb(187, 61, 61); transform: rotate(-5deg);}
-    100% {background-color: rgb(211, 211, 117); transform: rotate(5deg);}
+    0% {background-color: #798478; transform: rotate(5deg);}
+    50% {background-color: #C9ADA1; transform: rotate(-5deg);}
+    100% {background-color: #798478; transform: rotate(5deg);}
 }
 
 .face {
     box-shadow: 5px 5px 5px #222222;
     margin: 10px;
     border-radius: 20px;
-    background-color: rgb(211, 211, 117);
+    background-color: #798478;
 }
 
 .face:hover {

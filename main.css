@@ -1,18 +1,18 @@
 html {
     font-family: Andale Mono, monospace; 
-    margin: 2em;
+    margin:0;
+    padding:0;
     font-size: 130%;
-    line-height: 1.5;
     background-color: #A0A083;
 }
  
-.bodyText:hover, .pageTitle:hover, .footnote:hover {
+/* .bodyText:hover, .pageTitle:hover, .footnote:hover {
     background-color: black;
     color: white;
     border-radius: 10px;
-}
+} */
 
-.navbar a:link, .navbar a:visited, .contact_box a:link, .contact_box a:visited {
+.navbar a:link, .navbar a:visited, .icon_button_set a:link, .icon_button_set a:visited {
     color: white;
     text-decoration: none;
 }
@@ -23,38 +23,38 @@ html {
 
 .pageTitle, .bodyText, .footnote {
     color: #EAE0CC;
+    margin: 30px;
 }
 
-.pageTitle, .contact_text, .navbar {
+.footnote {
+    clear: both;
+}
+
+.pageTitle, .icon_button_text, .navbar {
     text-transform: uppercase;
 }
 
 .navbar {
-    /* background-color: blueviolet; */
-    /* padding-right: 10px; */
-    padding-left: 10px;
-    /* padding-top: 10px; */
-    /* padding-bottom: 10px; */
-    margin-right: 10px;
-    /* animation-name: navbarAnimation;
-    animation-duration: 2s;
-    animation-iteration-count: 1; */
+    text-align: center;
+    display: block flex;
 }
 
-.icon {
-    margin-bottom: -9px;
+.navbar, .icon_button_set {
+    padding: 20px;
+    padding-top: 10px;
 }
+
 
 a.adamGunn:link, a.adamGunn:visited {
     text-decoration:none;
     color: #EAE0CC;
     font-size: 70px;
-    padding-left: 10px;
+    /* padding-left: 10px; */
     font-family: 'Arial Black', sans-serif;
     text-transform: uppercase;
 }
 
-ul.navbar li {
+.navbar li {
     display: inline-block;
     background-color: #798478;
     border-radius: 20px;
@@ -62,48 +62,71 @@ ul.navbar li {
     box-shadow: 5px 5px 5px #222222;
 }
 
-.navbar, .contact_box, .contact_item, .headbar {
+.navbar, .icon_button_set, .icon_button, .headbar {
     list-style-type: none;
+    vertical-align: center;
 }
 
-.contact_box {
-    margin-left: -40px;
+ul, body {
+    margin: 0;
+    padding: 0;
 }
 
-ul.contact_box li {
+.icon_button_set li {
     display: inline-block;
     background-color: #4D6A6D;
     border-radius: 20px;
-    padding: 20px;
     box-shadow: 5px 5px 5px #222222;
-    padding-left: -40px;
 }
 
-ul.contact_box li:hover, ul.navbar li:hover {
+.icon_button_set li:hover, .navbar li:hover {
     box-shadow: none;
 }
 
-ul.contact_box li ul.contact_item li {
+.icon_button_set li .icon_button li {
     display: inline-block;
-    border-radius: 0px;
-    padding: 0px;
+    border-radius: 20px;
     box-shadow: none;
 }
 
-ul.contact_box li ul.contact_item {
+.icon_button_set li .icon_button li img {
+    margin-bottom: -5px;
+}
+
+.icon_button_set li .icon_button {
+    padding: 10px;
     display: inline-block;
-    margin-left: -40px;
 }
 
 .headbar {
-    margin-left: -40px;
+    top: 0;
+    background-color: #A0A083;
+    text-align: center;
+    padding: 10px;
+    padding-bottom: 0px;
 }
 
-.headbar li {
+.headbar li , .icon_button li {
     display: inline-block;
-    vertical-align: bottom;
-
+    vertical-align: middle;
 }
+
+img#umbrella_pic {
+    float: left;
+    margin: 30px;
+}
+
+.sticky {
+    position: fixed;
+    top: 0;
+    width: 100%;
+    display: block flex;
+    text-align: center;
+    background-color: #A0A083;
+    box-shadow: 0px 5px 5px #222222;
+    padding-top: 20px;
+    padding-inline: 0;
+  }
 
 @keyframes navbarAnimation {
     /* 0% {padding-inline: 5px;}

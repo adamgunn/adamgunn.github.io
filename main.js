@@ -18,21 +18,27 @@ const heading = `
     <header
 ` ;
 
+var heading_loaded = false;
+var header; 
+var sticky; 
+
 window.addEventListener('DOMContentLoaded', () => {
     let page_header = document.querySelector('heading');
     page_header.innerHTML = heading;
+    heading_loaded = true;
 });
 
 window.onscroll = function() {stickyHeader()};
-            
-var header = document.getElementById("navbar_links");
-var sticky = header.offsetTop;
-            
+                        
 function stickyHeader() {
-    if (window.pageYOffset > sticky) {
-        header.classList.add("sticky");
-    }
-    else {
-        header.classList.remove("sticky");
+    if (heading_loaded) {
+        header = document.getElementById("navbar_links");
+        sticky = header.offsetTop;
+        if (window.pageYOffset > sticky) {
+            header.classList.add("sticky");
+        }
+        else {
+            header.classList.remove("sticky");
+        }
     }
 }

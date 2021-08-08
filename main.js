@@ -20,7 +20,7 @@ const heading = `
 ` ;
 
 var heading_loaded = false;
-var fonts = ['blenny', 'Palette Mosaic', 'rig-solid-light-halftone', 'blackcurrant-squash', 'variex', 'hobeau-rococeaux-background', 'whomp', 'joschmi', 'xants', 'alfarn'];
+var fonts = ['blenny', 'Palette Mosaic', 'rig-solid-light-halftone', 'blackcurrant-squash', 'variex', 'hobeaux-rococeaux-background', 'whomp', 'joschmi', 'xants', 'alfarn'];
 var chosen_font = fonts[Math.floor(Math.random() * fonts.length)];
 
 window.addEventListener('DOMContentLoaded', () => {

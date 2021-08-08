@@ -5,6 +5,11 @@ html {
     font-size: 130%;
     background-color: #A0A083;
 }
+
+@font-face {
+    font-family: Palette Mosaic;
+    src: url("fonts/palette-mosaic-regular.ttf");
+}
  
 /* .bodyText:hover, .pageTitle:hover, .footnote:hover {
     background-color: black;
@@ -19,6 +24,9 @@ html {
 
 .pageTitle {
     clear: both;
+    font-family: futura-pt, sans-serif;
+    font-weight: 700;
+    font-style: normal;
 }
 
 .pageTitle, .bodyText, .footnote {
@@ -44,21 +52,32 @@ html {
     padding-top: 10px;
 }
 
+.navbar_text {
+    display: inline-block;
+}
 
-a.adamGunn:link, a.adamGunn:visited {
-    text-decoration:none;
+.navbar_text, .navbar_text, .icon_button_text {
+    font-family: futura-pt, sans-serif;
+    font-weight: 700;
+    font-style: normal;
+}
+
+
+a#adamGunn:link, a#adamGunn:visited {
+    text-decoration: none;
     color: #EAE0CC;
-    font-size: 70px;
+    font-size: 85px;
     /* padding-left: 10px; */
-    font-family: 'Arial Black', sans-serif;
-    text-transform: uppercase;
+    font-family: Palette Mosaic, 'Arial Black', sans-serif;
+    /* letter-spacing: -5px;
+    word-spacing: -45px; */
 }
 
 .navbar li {
     display: inline-block;
     background-color: #798478;
     border-radius: 20px;
-    padding: 10px;
+    padding: 8px;
     box-shadow: 5px 5px 5px #222222;
 }
 

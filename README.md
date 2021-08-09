@@ -1,2 +1,2 @@
 # adamgunn.github.io
-The source code for my new website. :flushed:
+This is the source code for my personal website.

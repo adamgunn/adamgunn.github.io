@@ -14,7 +14,17 @@ const heading = `
             <li><a href=../about class="navbar_text">About</a></li>
             <li><a href=../portfolio class="navbar_text">Portfolio</a></li>
             <li><a href=../resume class="navbar_text">Resum&eacute;</a></li>
-            <li><a href=../signup class="navbar_text">Sign up</a></li>
+            <li><a href=../signup class="navbar_text">Sign up</a></li>\
+            <li id="select_theme_navbar">
+                <div class="color_scheme_select">
+                    <a href="#" class="navbar_text" id="select_theme_text">Select Theme</a>
+                    <div class="color_scheme_options">
+                        <a href="#">Option 1</a>
+                        <a href="#">Option 2</a>
+                        <a href="#">Option 3</a>
+                    </div>
+                </div>
+            </li>
         </ul>
     <header
 ` ;
@@ -47,3 +57,6 @@ function stickyHeader() {
         }
     }
 }
+
+// Switch themes
+

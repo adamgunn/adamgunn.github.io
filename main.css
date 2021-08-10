@@ -1,9 +1,30 @@
+:root {
+    --bg-color: #A0A083;
+    --text-color: #EAE0CC;
+    --button-color-noicon: #798478;
+    --button-color-icon: #4D6A6D;
+    --face-animation-color: #C9ADA1;
+    --shadow-color: #222222;
+    --button-text-color: white;
+}
+
+[data-theme="option2"] {
+    --bg-color: #d6d633;
+    --text-color: #1d1c19;
+    --button-color-noicon: #000000;
+    --button-color-icon: #0d4950;
+    --face-animation-color: #ff4d00;
+    --shadow-color: #ccbfbf;
+    --button-text-color: rgb(255, 0, 0);
+}
+
 html {
     font-family: sans-serif;
     margin:0;
     padding:0;
     font-size: 130%;
-    background-color: #A0A083;
+    background-color: var(--bg-color);
+    
 }
 
 @font-face {
@@ -18,7 +39,7 @@ html {
 } */
 
 .navbar a:link, .navbar a:visited, .icon_button_set a:link, .icon_button_set a:visited {
-    color: white;
+    color: var(--button-text-color);
     text-decoration: none;
 }
 
@@ -30,7 +51,7 @@ html {
 }
 
 .pageTitle, .bodyText, .footnote {
-    color: #EAE0CC;
+    color: var(--text-color);
     margin: 30px;
 }
 
@@ -65,7 +86,7 @@ html {
 
 a#adamGunn:link, a#adamGunn:visited {
     text-decoration: none;
-    color: #EAE0CC;
+    color: var(--text-color);
     font-size: 85px;
     /* padding-left: 10px; */
     font-family: Palette Mosaic, 'Arial Black', sans-serif;
@@ -73,12 +94,12 @@ a#adamGunn:link, a#adamGunn:visited {
     word-spacing: -45px; */
 }
 
-.navbar li {
+.navbar li , #select_theme_text {
     display: inline-block;
-    background-color: #798478;
+    background-color: var(--button-color-noicon);
     border-radius: 20px;
     padding: 8px;
-    box-shadow: 5px 5px 5px #222222;
+    box-shadow: 5px 5px 5px var(--shadow-color);
 }
 
 .navbar, .icon_button_set, .icon_button, .headbar {
@@ -93,12 +114,12 @@ ul, body {
 
 .icon_button_set li {
     display: inline-block;
-    background-color: #4D6A6D;
+    background-color: var(--button-color-icon);
     border-radius: 20px;
-    box-shadow: 5px 5px 5px #222222;
+    box-shadow: 5px 5px 5px var(--shadow-color);
 }
 
-.icon_button_set li:hover, .navbar li:hover {
+.icon_button_set li:hover, .navbar li:hover, #select_theme_text:hover {
     box-shadow: none;
 }
 
@@ -119,7 +140,7 @@ ul, body {
 
 .headbar {
     top: 0;
-    background-color: #A0A083;
+    background-color: var(--bg-color);
     text-align: center;
     padding: 10px;
     padding-bottom: 0px;
@@ -146,8 +167,8 @@ img#jacket_pic {
     width: 100%;
     display: block flex;
     text-align: center;
-    background-color: #A0A083;
-    box-shadow: 0px 5px 5px #222222;
+    background-color: var(--bg-color);
+    box-shadow: 0px 5px 5px var(--shadow-color);
     padding-top: 20px;
     padding-inline: 0;
   }
@@ -161,20 +182,59 @@ img#jacket_pic {
 }
 
 @keyframes faceAnimation {
-    0% {background-color: #798478; transform: rotate(5deg);}
-    50% {background-color: #C9ADA1; transform: rotate(-5deg);}
-    100% {background-color: #798478; transform: rotate(5deg);}
+    0% {background-color: var(--button-color-noicon); transform: rotate(5deg);}
+    50% {background-color: var(--face-animation-color); transform: rotate(-5deg);}
+    100% {background-color: var(--button-color-noicon); transform: rotate(5deg);}
 }
 
 .face {
-    box-shadow: 5px 5px 5px #222222;
+    box-shadow: 5px 5px 5px var(--shadow-color);
     margin: 10px;
     border-radius: 20px;
-    background-color: #798478;
+    background-color: var(--button-color-noicon);
 }
 
 .face:hover {
+    box-shadow: none;
     animation-name: faceAnimation;
     animation-duration: 1s;
     animation-iteration-count: infinite;
+}
+
+.color_scheme_select {
+    position: relative;
+    display: inline-block;
+}
+
+.color_scheme_options {
+    display: none;
+    position: absolute;
+    background-color: rgba(0,0,0,0);
+    min-width: 160px;
+    z-index: 1;
+}
+
+.color_scheme_options a {
+    color: var(--button-text-color);
+    padding: 8px;
+    border-radius: 20px;
+    text-decoration: none;
+    display: block;
+    font-family: futura-pt, sans-serif;
+    font-weight: 700;
+    font-style: normal;
+    font-size: 130%;
+}
+
+.color_scheme_options a:hover {
+    background-color: var(--button-color-icon);
+}
+
+.color_scheme_select:hover .color_scheme_options {
+    display: block;
+}
+
+#select_theme_navbar {
+    padding: 0;
+    box-shadow: none;
 }

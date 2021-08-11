@@ -1,4 +1,15 @@
-:root {
+:root
+{
+    --bg-color: #A0A083;
+    --text-color: #EAE0CC;
+    --button-color-noicon: #798478;
+    --button-color-icon: #4D6A6D;
+    --face-animation-color: #C9ADA1;
+    --shadow-color: #222222;
+    --button-text-color: white;
+}
+
+[data-theme="option1"] {
     --bg-color: #A0A083;
     --text-color: #EAE0CC;
     --button-color-noicon: #798478;
@@ -18,13 +29,27 @@
     --button-text-color: rgb(255, 0, 0);
 }
 
+[data-theme="option3"] {
+    --bg-color: #0e2a79;
+    --text-color: #e7e7e7;
+    --button-color-noicon: #f10497;
+    --button-color-icon: #0adaf1;
+    --face-animation-color: #bb8e7a;
+    --shadow-color: #076e18;
+    --button-text-color: rgb(139, 52, 52);
+}
+
 html {
     font-family: sans-serif;
-    margin:0;
-    padding:0;
+    margin: 0;
+    padding: 0;
     font-size: 130%;
     background-color: var(--bg-color);
-    
+    box-sizing: border-box;
+}
+
+*, *:before, *:after {
+    box-sizing: inherit;
 }
 
 @font-face {
@@ -65,12 +90,16 @@ html {
 
 .navbar {
     text-align: center;
-    display: block flex;
+    display: block;
 }
 
 .navbar, .icon_button_set {
     padding: 20px;
     padding-top: 10px;
+}
+
+.icon_button_set {
+    margin-left: 10px;
 }
 
 .navbar_text {
@@ -88,10 +117,7 @@ a#adamGunn:link, a#adamGunn:visited {
     text-decoration: none;
     color: var(--text-color);
     font-size: 85px;
-    /* padding-left: 10px; */
     font-family: Palette Mosaic, 'Arial Black', sans-serif;
-    /* letter-spacing: -5px;
-    word-spacing: -45px; */
 }
 
 .navbar li , #select_theme_text {
@@ -173,14 +199,6 @@ img#jacket_pic {
     padding-inline: 0;
   }
 
-@keyframes navbarAnimation {
-    /* 0% {padding-inline: 5px;}
-    50% {padding-inline: 10px;}
-    100% {padding-inline: 5px;} */
-    0% {padding-left: 100px;}
-    100% {padding-left: 10px;}
-}
-
 @keyframes faceAnimation {
     0% {background-color: var(--button-color-noicon); transform: rotate(5deg);}
     50% {background-color: var(--face-animation-color); transform: rotate(-5deg);}
@@ -210,24 +228,27 @@ img#jacket_pic {
     display: none;
     position: absolute;
     background-color: rgba(0,0,0,0);
-    min-width: 160px;
     z-index: 1;
 }
 
 .color_scheme_options a {
     color: var(--button-text-color);
-    padding: 8px;
+    background-color: var(--button-color-icon);
     border-radius: 20px;
+    padding: 5px;
+    line-height: 45px;
     text-decoration: none;
-    display: block;
     font-family: futura-pt, sans-serif;
     font-weight: 700;
     font-style: normal;
-    font-size: 130%;
+    font-size: 100%;
+    box-shadow: 5px 5px 5px var(--shadow-color);
 }
 
 .color_scheme_options a:hover {
     background-color: var(--button-color-icon);
+    box-shadow: none;
+    cursor: pointer;
 }
 
 .color_scheme_select:hover .color_scheme_options {

@@ -16,7 +16,7 @@
         <h1 class="pageTitle">
             Sign up
         </h1>
-        <form action="../forms/form-handling.php" method="POST">
+        <form action="../forms/form-handling.php" method="POST" id="signup_form">
             <ul>
                 <li>
                     <label for="first_name_input" class="bodyText">First name:</label>
@@ -36,10 +36,10 @@
                 <li>
                     <label for="msg_input" class="bodyText">Message:</label>
                     <br>
-                    <textarea type="msg" id="msg_input" placeholder="Your message here (optional)"></textarea>
+                    <textarea id="msg_input" name="message" form_id="signup_form" required="" placeholder="Your message here (optional)"></textarea>
                 </li>
             </ul>
-            <button class="submit_button" type="submit">Submit</button>
+            <button class="submit_button" type="submit">Sign up for E-mail list</button>
         </form>
     </body>
 </html>

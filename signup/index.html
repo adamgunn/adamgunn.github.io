@@ -16,6 +16,30 @@
         <h1 class="pageTitle">
             Sign up
         </h1>
-        <button class="noIconButton">Sign up for my email list</button>
+        <form action="../forms/form-handling.php" method="POST">
+            <ul>
+                <li>
+                    <label for="first_name_input" class="bodyText">First name:</label>
+                    <br>
+                    <input type="text" name="given-name" id="first_name_input" required="required"  placeholder="Adam"/>
+                </li>
+                <li>
+                    <label for="last_name_input" class="bodyText">Last name:</label>
+                    <br>
+                    <input type="text" name="family-name" id="last_name_input" required="required" placeholder="Gunn"/>
+                </li>
+                <li>
+                    <label for="email_input" class="bodyText">E-mail:</label>
+                    <br>
+                    <input type="email" name="email" id="email_input" required="required" placeholder="name@example.com"/>
+                </li>
+                <li>
+                    <label for="msg_input" class="bodyText">Message:</label>
+                    <br>
+                    <textarea type="msg" id="msg_input" placeholder="Your message here (optional)"></textarea>
+                </li>
+            </ul>
+            <button class="submit_button" type="submit">Submit</button>
+        </form>
     </body>
 </html>

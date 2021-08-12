@@ -1,5 +1,4 @@
-:root
-{
+:root {
     --bg-color: #A0A083;
     --text-color: #EAE0CC;
     --button-color-noicon: #798478;
@@ -50,11 +49,34 @@ html {
     margin: 30px;
 }
 
+input {
+    margin: 10px 0px 10px 30px;
+    height: 40px;
+    width: 200px;
+    font-size: 25px;
+    padding-left: 5px;
+}
+
+textarea#msg_input {
+    margin: 10px 0px 10px 30px;
+    font-family: sans-serif;
+    height: 200px;
+    width: 400px;
+    overflow: scroll;
+    font-size: 15px;
+    border: none;
+    padding-left: 5px;
+}
+
+input#email_input {
+    width: 400px;
+}
+
 .footnote {
     clear: both;
 }
 
-.pageTitle, .icon_button_text, .navbar {
+.pageTitle, .icon_button_text, .navbar, .submit_button {
     text-transform: uppercase;
 }
 
@@ -76,12 +98,23 @@ html {
     display: inline-block;
 }
 
-.navbar_text, .navbar_text, .icon_button_text {
+.navbar_text, .icon_button_text, .submit_button {
     font-family: futura-pt, sans-serif;
     font-weight: 700;
     font-style: normal;
 }
 
+.submit_button {
+    font-size: 110%;
+    margin: 0px 0px 30px 30px;
+    background-color: var(--button-color-noicon);
+    border-radius: 20px;
+    padding: 8px;
+    box-shadow: 5px 5px 5px var(--shadow-color);
+    color: var(--button-text-color);
+    cursor: pointer;
+    border: none;
+}
 
 a#adamGunn {
     text-decoration: none;
@@ -130,7 +163,7 @@ ul, body {
     box-shadow: 5px 5px 5px var(--shadow-color);
 }
 
-.icon_button_set li:hover, .navbar li:hover, #select_theme_text:hover {
+.icon_button_set li:hover, .navbar li:hover, #select_theme_text:hover, .submit_button:hover {
     box-shadow: none;
 }
 
@@ -186,7 +219,7 @@ img#jacket_pic {
     box-shadow: 0px 5px 5px var(--shadow-color);
     padding-top: 20px;
     padding-inline: 0;
-  }
+}
 
 @keyframes faceAnimation {
     0% {background-color: var(--button-color-noicon); transform: rotate(5deg);}

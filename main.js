@@ -54,6 +54,14 @@ if (saved_colors[0]) {
     }
 }
 const saved_font = localStorage.getItem('name_font') ? localStorage.getItem('name_font') : null;
+function getRandomColor() {
+    var letters = '0123456789abcdef';
+    var color = '#';
+    for (var i = 0; i < 6; i++) {
+        color += letters[Math.floor(Math.random() * 16)];
+    }
+    return color;
+}
 
 window.addEventListener('DOMContentLoaded', () => {
     let page_header = document.querySelector('heading');
@@ -98,7 +106,7 @@ window.addEventListener('DOMContentLoaded', () => {
             let root = document.documentElement;
             var random_colors = [];
             for (var i = 0; i < color_var_names.length; i++) {
-                random_colors.push("#" + Math.floor(Math.random() * 16777215).toString(16));
+                random_colors.push(getRandomColor());
                 root.style.setProperty(color_var_names[i], random_colors[i]);
                 localStorage.setItem(color_var_names_local_storage[i], random_colors[i]);
             }

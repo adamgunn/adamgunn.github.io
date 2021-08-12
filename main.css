@@ -144,6 +144,10 @@ ul, body {
     margin-bottom: -5px;
 }
 
+.icon_button_set li .icon_button li img {
+    fill: var(--button-text-color);
+}
+
 .icon_button_set li .icon_button {
     padding: 10px;
     display: inline-block;

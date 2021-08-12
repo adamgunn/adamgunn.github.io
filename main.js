@@ -6,7 +6,7 @@ const heading = `
                 <a href=../home><img src=../images/my_face.png class="face" width="100" height="100" alt="Adam's face" /></a>
             </li>
             <li>
-                <a id="adamGunn">Adam&nbsp;Gunn</a>
+                <a id="adamGunn" title="CLICK ME FOR A GOOD TIME">Adam&nbsp;Gunn</a>
             </li>
         </ul>
         <ul class="navbar" id="navbar_links">

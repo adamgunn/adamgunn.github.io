@@ -9,36 +9,6 @@
     --button-text-color: white;
 }
 
-[data-theme="option1"] {
-    --bg-color: #A0A083;
-    --text-color: #EAE0CC;
-    --button-color-noicon: #798478;
-    --button-color-icon: #4D6A6D;
-    --face-animation-color: #C9ADA1;
-    --shadow-color: #222222;
-    --button-text-color: white;
-}
-
-[data-theme="option2"] {
-    --bg-color: #d6d633;
-    --text-color: #1d1c19;
-    --button-color-noicon: #000000;
-    --button-color-icon: #0d4950;
-    --face-animation-color: #ff4d00;
-    --shadow-color: #ccbfbf;
-    --button-text-color: rgb(255, 0, 0);
-}
-
-[data-theme="option3"] {
-    --bg-color: #0e2a79;
-    --text-color: #e7e7e7;
-    --button-color-noicon: #f10497;
-    --button-color-icon: #0adaf1;
-    --face-animation-color: #bb8e7a;
-    --shadow-color: #076e18;
-    --button-text-color: rgb(139, 52, 52);
-}
-
 html {
     font-family: sans-serif;
     margin: 0;
@@ -126,6 +96,8 @@ a#adamGunn:link, a#adamGunn:visited {
     border-radius: 20px;
     padding: 8px;
     box-shadow: 5px 5px 5px var(--shadow-color);
+    color: var(--button-text-color);
+    cursor: pointer;
 }
 
 .navbar, .icon_button_set, .icon_button, .headbar {

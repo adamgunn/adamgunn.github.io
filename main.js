@@ -17,7 +17,7 @@ const heading = `
             <li><a href=../signup class="navbar_text">Sign up</a></li>\
             <li id="select_theme_navbar">
                 <div class="color_scheme_select">
-                    <a href="#" class="navbar_text" id="select_theme_text">Choose Theme</a>
+                    <a class="navbar_text" id="select_theme_text">Choose Theme</a>
                     <div class="color_scheme_options">
                         <a class="option_button">Option 1</a>
                         <a class="option_button">Option 2</a>

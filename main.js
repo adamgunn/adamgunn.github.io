@@ -6,7 +6,7 @@ const heading = `
                 <a href=../home><img src=../images/my_face.png class="face" width="100" height="100" alt="Adam's face" /></a>
             </li>
             <li>
-                <a href=../home id="adamGunn">Adam&nbsp;Gunn</a>
+                <a id="adamGunn">Adam&nbsp;Gunn</a>
             </li>
         </ul>
         <ul class="navbar" id="navbar_links">
@@ -33,7 +33,6 @@ const heading = `
 var heading_loaded = false;
 
 var fonts = ['blenny', 'Palette Mosaic', 'rig-solid-light-halftone', 'blackcurrant-squash', 'variex', 'hobeaux-rococeaux-background', 'whomp', 'joschmi', 'xants', 'alfarn'];
-var chosen_font = fonts[Math.floor(Math.random() * fonts.length)];
 var color_var_names = ['--bg-color', '--text-color', '--button-color-noicon', '--button-color-icon', '--face-animation-color', '--shadow-color', '--button-text-color'];
 var option1_colors = ["#A0A083", "#EAE0CC", "#798478", "#4D6A6D", "#C9ADA1", "#222222", "white"];
 var option2_colors = ["#d6d633", "1d1c19", "#000000", "#0d4950", "#ff4d00", "#ccbfbf", "rgb(255, 0, 0)"];
@@ -54,12 +53,12 @@ if (saved_colors[0]) {
         root.style.setProperty(color_var_names[i], saved_colors[i]);
     }
 }
+const saved_font = localStorage.getItem('name_font') ? localStorage.getItem('name_font') : null;
 
 window.addEventListener('DOMContentLoaded', () => {
     let page_header = document.querySelector('heading');
     page_header.innerHTML = heading;
     heading_loaded = true;
-    document.getElementById('adamGunn').style.fontFamily = chosen_font;
     theme_options[0].addEventListener("click",
         function (event) {
             event.preventDefault();
@@ -103,6 +102,23 @@ window.addEventListener('DOMContentLoaded', () => {
                 root.style.setProperty(color_var_names[i], random_colors[i]);
                 localStorage.setItem(color_var_names_local_storage[i], random_colors[i]);
             }
+        }
+    , false);
+    var my_name = document.getElementById("adamGunn");
+    if (saved_font) {
+        my_name.style.fontFamily = saved_font;
+    }
+    else {
+        chosen_font = fonts[Math.floor(Math.random() * fonts.length)];
+        my_name.style.fontFamily = chosen_font;
+        localStorage.setItem('name_font', chosen_font);
+    }
+    my_name.addEventListener("click",
+        function (event) {
+            event.preventDefault();
+            chosen_font = fonts[Math.floor(Math.random() * fonts.length)];
+            my_name.style.fontFamily = chosen_font;
+            localStorage.setItem('name_font', chosen_font);
         }
     , false);
 });

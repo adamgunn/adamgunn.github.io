@@ -83,11 +83,15 @@ html {
 }
 
 
-a#adamGunn:link, a#adamGunn:visited {
+a#adamGunn {
     text-decoration: none;
     color: var(--text-color);
     font-size: 85px;
     font-family: Palette Mosaic, 'Arial Black', sans-serif;
+}
+
+a#adamGunn:hover {
+    cursor: pointer;
 }
 
 .navbar li , #select_theme_text {
@@ -98,6 +102,15 @@ a#adamGunn:link, a#adamGunn:visited {
     box-shadow: 5px 5px 5px var(--shadow-color);
     color: var(--button-text-color);
     cursor: pointer;
+}
+
+.color_scheme_select, #adamGunn {
+    -webkit-touch-callout: none;
+    -webkit-user-select: none;
+    -khtml-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
 }
 
 .navbar, .icon_button_set, .icon_button, .headbar {

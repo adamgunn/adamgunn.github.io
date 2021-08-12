@@ -17,7 +17,7 @@ const heading = `
             <li><a href=../signup class="navbar_text">Sign up</a></li>\
             <li id="select_theme_navbar">
                 <div class="color_scheme_select">
-                    <a href="#" class="navbar_text" id="select_theme_text">Select Theme</a>
+                    <a href="#" class="navbar_text" id="select_theme_text">Choose Theme</a>
                     <div class="color_scheme_options">
                         <a class="option_button">Option 1</a>
                         <a class="option_button">Option 2</a>
@@ -34,6 +34,26 @@ var heading_loaded = false;
 
 var fonts = ['blenny', 'Palette Mosaic', 'rig-solid-light-halftone', 'blackcurrant-squash', 'variex', 'hobeaux-rococeaux-background', 'whomp', 'joschmi', 'xants', 'alfarn'];
 var chosen_font = fonts[Math.floor(Math.random() * fonts.length)];
+var color_var_names = ['--bg-color', '--text-color', '--button-color-noicon', '--button-color-icon', '--face-animation-color', '--shadow-color', '--button-text-color'];
+var option1_colors = ["#A0A083", "#EAE0CC", "#798478", "#4D6A6D", "#C9ADA1", "#222222", "white"];
+var option2_colors = ["#d6d633", "1d1c19", "#000000", "#0d4950", "#ff4d00", "#ccbfbf", "rgb(255, 0, 0)"];
+var option3_colors = ["#0e2a79", "#e7e7e7", "#f10497", "#0adaf1", "#bb8e7a", "#076e18", "rgb(139, 52, 52)"]
+var color_var_names_local_storage = [];
+for (var i = 0; i < color_var_names.length; i++) {
+    var current_string = color_var_names[i];
+    current_string.slice(2);
+    color_var_names_local_storage.push(current_string);
+}
+const saved_colors = [];
+for (var i = 0; i < color_var_names_local_storage.length; i++) {
+    saved_colors[i] = localStorage.getItem(color_var_names_local_storage[i]) ? localStorage.getItem(color_var_names_local_storage[i]) : null;
+}
+if (saved_colors[0]) {
+    let root = document.documentElement;
+    for (var i = 0; i < saved_colors.length; i++) {
+        root.style.setProperty(color_var_names[i], saved_colors[i]);
+    }
+}
 
 window.addEventListener('DOMContentLoaded', () => {
     let page_header = document.querySelector('heading');
@@ -45,20 +65,10 @@ window.addEventListener('DOMContentLoaded', () => {
             event.preventDefault();
             // document.documentElement.setAttribute('data-theme', 'option1');
             let root = document.documentElement;
-            root.style.setProperty('--bg-color', "#A0A083");
-            root.style.setProperty('--text-color', "#EAE0CC");
-            root.style.setProperty('--button-color-noicon', "#798478");
-            root.style.setProperty('--button-color-icon', "#4D6A6D");
-            root.style.setProperty('--face-animation-color', "#C9ADA1");
-            root.style.setProperty('--shadow-color', "#222222");
-            root.style.setProperty('--button-text-color', "white");
-            localStorage.setItem('bg-color', "#A0A083");
-            localStorage.setItem('text-color', "#EAE0CC");
-            localStorage.setItem('button-color-noicon', "#798478");
-            localStorage.setItem('button-color-icon', "#4D6A6D");
-            localStorage.setItem('face-animation-color', "#C9ADA1");
-            localStorage.setItem('shadow-color', "#222222");
-            localStorage.setItem('button-text-color', "white");
+            for (var i = 0; i < color_var_names.length; i++) {
+                root.style.setProperty(color_var_names[i], option1_colors[i]);
+                localStorage.setItem(color_var_names_local_storage[i], option1_colors[i]);
+            }
         }
     , false);
     theme_options[1].addEventListener("click",
@@ -66,20 +76,10 @@ window.addEventListener('DOMContentLoaded', () => {
             event.preventDefault();
             // document.documentElement.setAttribute('data-theme', 'option2');
             let root = document.documentElement;
-            root.style.setProperty('--bg-color', "#d6d633");
-            root.style.setProperty('--text-color', "1d1c19");
-            root.style.setProperty('--button-color-noicon', "#000000");
-            root.style.setProperty('--button-color-icon', "#0d4950");
-            root.style.setProperty('--face-animation-color', "#ff4d00");
-            root.style.setProperty('--shadow-color', "#ccbfbf");
-            root.style.setProperty('--button-text-color', "rgb(255, 0, 0)");
-            localStorage.setItem('bg-color', "#d6d633");
-            localStorage.setItem('text-color', "1d1c19");
-            localStorage.setItem('button-color-noicon', "#000000");
-            localStorage.setItem('button-color-icon', "#0d4950");
-            localStorage.setItem('face-animation-color', "#ff4d00");
-            localStorage.setItem('shadow-color', "#ccbfbf");
-            localStorage.setItem('button-text-color', "rgb(255, 0, 0)");
+            for (var i = 0; i < color_var_names.length; i++) {
+                root.style.setProperty(color_var_names[i], option2_colors[i]);
+                localStorage.setItem(color_var_names_local_storage[i], option2_colors[i]);
+            }
         }
     , false);
     theme_options[2].addEventListener("click",
@@ -87,34 +87,22 @@ window.addEventListener('DOMContentLoaded', () => {
             event.preventDefault();
             // document.documentElement.setAttribute('data-theme', 'option3');
             let root = document.documentElement;
-            root.style.setProperty('--bg-color', "#0e2a79");
-            root.style.setProperty('--text-color', "#e7e7e7");
-            root.style.setProperty('--button-color-noicon', "#f10497");
-            root.style.setProperty('--button-color-icon', "#0adaf1");
-            root.style.setProperty('--face-animation-color', "#bb8e7a");
-            root.style.setProperty('--shadow-color', "#076e18");
-            root.style.setProperty('--button-text-color', "rgb(139, 52, 52)");
-            
+            for (var i = 0; i < color_var_names.length; i++) {
+                root.style.setProperty(color_var_names[i], option3_colors[i]);
+                localStorage.setItem(color_var_names_local_storage[i], option3_colors[i]);
+            }
         }
     , false);
     theme_options[3].addEventListener("click",
         function (event) {
             event.preventDefault();
             let root = document.documentElement;
-            var random_bg_color = "#" + Math.floor(Math.random() * 16777215).toString(16);
-            var random_text_color = "#" + Math.floor(Math.random() * 16777215).toString(16);
-            var random_button_color_noicon = "#" + Math.floor(Math.random() * 16777215).toString(16);
-            var random_button_color_icon = "#" + Math.floor(Math.random() * 16777215).toString(16);
-            var random_face_animation_color = "#" + Math.floor(Math.random() * 16777215).toString(16);
-            var random_shadow_color = "#" + Math.floor(Math.random() * 16777215).toString(16);
-            var random_button_text_color = "#" + Math.floor(Math.random() * 16777215).toString(16);
-            root.style.setProperty('--bg-color', random_bg_color);
-            root.style.setProperty('--text-color', random_text_color);
-            root.style.setProperty('--button-color-noicon', random_button_color_noicon);
-            root.style.setProperty('--button-color-icon', random_button_color_icon);
-            root.style.setProperty('--face-animation-color', random_face_animation_color);
-            root.style.setProperty('--shadow-color', random_shadow_color);
-            root.style.setProperty('--button-text-color', random_button_text_color);
+            var random_colors = [];
+            for (var i = 0; i < color_var_names.length; i++) {
+                random_colors.push("#" + Math.floor(Math.random() * 16777215).toString(16));
+                root.style.setProperty(color_var_names[i], random_colors[i]);
+                localStorage.setItem(color_var_names_local_storage[i], random_colors[i]);
+            }
         }
     , false);
 });

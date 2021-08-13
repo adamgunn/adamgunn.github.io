@@ -26,4 +26,24 @@
         fwrite($fp, "\n" . "\n");
         fclose($fp);
     }
+
+    function alertSubmit() {
+        echo "
+            <script>
+                alert('Submitted successfully! :D');
+            </script>
+        ";
+    }
+
+    if (isset($_REQUEST["destination"])) {
+        header("Location: {$_REQUEST["destination"]}");
+        alertSubmit();
+    }
+    else if (isset($_SERVER["HTTP_REFERER"])) {
+        header("Location: {$_SERVER["HTTP_REFERER"]}");
+        alertSubmit();
+    }
+    else {
+        header("Location: http://adamgunn.net/sign-up");
+    }
 ?>

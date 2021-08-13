@@ -17,6 +17,7 @@
             Sign up
         </h1>
         <form action="../forms/form-handling.php" method="POST" id="signup_form">
+            <input type="hidden" name="destination" value="<?php echo $_SERVER[&quot;REQUEST_URI&quot;]; ?>" />
             <ul>
                 <li>
                     <label for="first_name_input" class="bodyText">First name:</label>
@@ -36,7 +37,7 @@
                 <li>
                     <label for="msg_input" class="bodyText">Message:</label>
                     <br>
-                    <textarea id="msg_input" name="message" form_id="signup_form" required="" placeholder="Your message here (optional)"></textarea>
+                    <textarea id="msg_input" name="message" form_id="signup_form" placeholder="Your message here (optional)"></textarea>
                 </li>
             </ul>
             <button class="submit_button" type="submit">Sign up for E-mail list</button>

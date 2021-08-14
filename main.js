@@ -3,7 +3,7 @@ const heading = `
     <header>
         <ul class="headbar">
             <li>
-                <a href=../home><img src=../images/my_face.png class="face" width="100" height="100" alt="Adam's face" /></a>
+                <a href=../home><img src=../images/my_face.png class="face" width="100" height="100" alt=" face" /></a>
             </li>
             <li>
                 <a id="adamGunn" title="CLICK ME FOR A GOOD TIME">Adam&nbsp;Gunn</a>
@@ -14,14 +14,23 @@ const heading = `
             <li><a href=../about class="navbar_text">About</a></li>
             <li><a href=../portfolio class="navbar_text">Portfolio</a></li>
             <li><a href=../resume class="navbar_text">Resum&eacute;</a></li>
-            <li><a href=../sign-up class="navbar_text">Sign up</a></li>\
+            <li><a href=../sign-up class="navbar_text">Sign up</a></li>
+            <li id="select_games_navbar">
+                <div class="games_select">
+                    <a href="../games" class="navbar_text" id="select_game_text">Games</a>
+                    <div class="game_options">
+                        <a href="../games/mad-libs.html" class="game_button">Mad&nbsp;Libs</a>
+                        <a href="../games/pong.html" class="game_button">Pong</a>
+                    </div>
+                </div>
+            </li>
             <li id="select_theme_navbar">
                 <div class="color_scheme_select">
                     <a class="navbar_text" id="select_theme_text">Choose Theme</a>
                     <div class="color_scheme_options">
-                        <a class="option_button">Option 1</a>
-                        <a class="option_button">Option 2</a>
-                        <a class="option_button">Option 3</a>
+                        <a class="option_button">Default</a><br>
+                        <a class="option_button">Edgy</a><br>
+                        <a class="option_button">Neat</a><br>
                         <a class="option_button">Random</a>
                     </div>
                 </div>
@@ -35,7 +44,7 @@ var heading_loaded = false;
 var fonts = ['blenny', 'Palette Mosaic', 'rig-solid-light-halftone', 'blackcurrant-squash', 'variex', 'hobeaux-rococeaux-background', 'whomp', 'joschmi', 'xants', 'alfarn'];
 var color_var_names = ['--bg-color', '--text-color', '--button-color-noicon', '--button-color-icon', '--face-animation-color', '--shadow-color', '--button-text-color'];
 var option1_colors = ["#A0A083", "#EAE0CC", "#798478", "#4D6A6D", "#C9ADA1", "#222222", "white"];
-var option2_colors = ["#d6d633", "1d1c19", "#000000", "#0d4950", "#ff4d00", "#ccbfbf", "rgb(255, 0, 0)"];
+var option2_colors = ["#d6d633", "#1d1c19", "#000000", "#0d4950", "#ff4d00", "#ccbfbf", "rgb(255, 0, 0)"];
 var option3_colors = ["#0e2a79", "#e7e7e7", "#f10497", "#0adaf1", "#bb8e7a", "#076e18", "rgb(139, 52, 52)"]
 var color_var_names_local_storage = [];
 for (var i = 0; i < color_var_names.length; i++) {

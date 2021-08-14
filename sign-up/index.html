@@ -3,7 +3,7 @@
     <head>
         <meta charset="UTF-8" />
         <title>Sign Up | Adam Gunn</title>
-        <meta name="description" content="Download Adam Gunn's resum&eacute;." />
+        <meta name="description" content="Sign up for Adam Gunn's e-mail list." />
         <link rel="icon" type="image/png" href="../images/favicon_16x16.png" sizes="16x16" />
         <link rel="icon" type="image/png" href="../images/favicon_32x32.png" sizes="32x32" />
         <link rel="icon" type="image/png" href="../images/favicon_96x96.png" sizes="96x96" />
@@ -16,31 +16,31 @@
         <h1 class="pageTitle">
             Sign up
         </h1>
-        <form action="../forms/form-handling.php" method="POST" id="signup_form">
+        <form action="../forms/signup-handling.php" method="POST" id="signup_form">
             <!-- <input type="hidden" name="destination" value="<?php echo $_SERVER[\"REQUEST_URI\"]; ?>"/> -->
             <ul>
                 <li>
-                    <label for="first_name_input" class="bodyText">First name:</label>
+                    <label for="first_name_input" class="subtitle">First name</label>
                     <br>
                     <input type="text" name="given-name" id="first_name_input" required="required"  placeholder="Adam"/>
                 </li>
                 <li>
-                    <label for="last_name_input" class="bodyText">Last name:</label>
+                    <label for="last_name_input" class="subtitle">Last name</label>
                     <br>
                     <input type="text" name="family-name" id="last_name_input" required="required" placeholder="Gunn"/>
                 </li>
                 <li>
-                    <label for="email_input" class="bodyText">E-mail:</label>
+                    <label for="email_input" class="subtitle">E-mail</label>
                     <br>
                     <input type="email" name="email" id="email_input" required="required" placeholder="name@example.com"/>
                 </li>
                 <li>
-                    <label for="msg_input" class="bodyText">Message:</label>
+                    <label for="msg_input" class="subtitle">Message</label>
                     <br>
                     <textarea id="msg_input" name="message" form_id="signup_form" placeholder="Your message here (optional)"></textarea>
                 </li>
             </ul>
-            <button class="submit_button" type="submit">Sign up for E-mail list</button>
+            <button class="submit_button" type="submit">Submit</button>
         </form>
     </body>
 </html>

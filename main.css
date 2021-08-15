@@ -64,7 +64,7 @@ html {
 input {
     margin: 10px 0px 10px 30px;
     height: 40px;
-    width: 200px;
+    width: 400px;
     font-size: 25px;
     padding-left: 5px;
     border: none;
@@ -83,9 +83,6 @@ textarea#msg_input {
     border-radius: 5px;
 }
 
-input#email_input {
-    width: 400px;
-}
 
 .footnote {
     clear: both;

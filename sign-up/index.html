@@ -10,6 +10,7 @@
         <link href="../main.css" rel="stylesheet" />
         <link rel="stylesheet" href="https://use.typekit.net/uvg2mwq.css">
         <script src="../main.js"></script>
+        <script src="../forms/verify-signup.js"></script>
     </head>
     <body>
         <heading></heading>
@@ -22,12 +23,12 @@
                 <li>
                     <label for="first_name_input" class="subtitle">First name</label>
                     <br>
-                    <input type="text" name="given-name" id="first_name_input" required="required"  placeholder="Adam"/>
+                    <input type="text" name="given-name" id="first_name_input" required="required"  placeholder="Joe"/>
                 </li>
                 <li>
                     <label for="last_name_input" class="subtitle">Last name</label>
                     <br>
-                    <input type="text" name="family-name" id="last_name_input" required="required" placeholder="Gunn"/>
+                    <input type="text" name="family-name" id="last_name_input" required="required" placeholder="Schmoe"/>
                 </li>
                 <li>
                     <label for="email_input" class="subtitle">E-mail</label>
@@ -35,12 +36,26 @@
                     <input type="email" name="email" id="email_input" required="required" placeholder="name@example.com"/>
                 </li>
                 <li>
+                    <label for="password_input" class="subtitle">Password (8-16 characters, don't reuse please)</label>
+                    <br>
+                    <input type="password" name="password" id="password_input" minlength="8" maxlength="16" required="required"/>
+                </li>
+                <li>
+                    <label for="password_input_confirm" class="subtitle">Confirm Password</label>
+                    <br>
+                    <input type="password" name="password" id="password_input_confirm" minlength="8" maxlength="16" required="required"/>
+                </li>
+                <!-- <li>
                     <label for="msg_input" class="subtitle">Message</label>
                     <br>
                     <textarea id="msg_input" name="message" form_id="signup_form" placeholder="Your message here (optional)"></textarea>
-                </li>
+                </li> -->
             </ul>
-            <button class="submit_button" type="submit">Submit</button>
+            <submit_signup_form>
+                <p class="bodyText">
+                    Waiting for you to type in a valid password...
+                </p>
+            </submit_signup_form>
         </form>
     </body>
 </html>

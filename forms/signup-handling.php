@@ -6,7 +6,7 @@
 
     $conn = new mysqli($servername, $db_username, $db_password, $dbname);
     if ($conn->connect_error) {
-        header('Location: error.html'); 
+        die($conn->connect_error);
         exit(1);
     }
     $given_name = "";

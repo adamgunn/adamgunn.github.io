@@ -1,5 +1,5 @@
 <?php
-    $servername = "chi100";
+    $servername = "localhost:3306";
     $db_username = "adamgunn_database_user";
     $db_password = "!\$yZ+7TJd+cf";
     $dbname = "adamgunn_users_database";
@@ -14,7 +14,7 @@
     $email = "";
     $password = "";
 
-    $prepared = $conn->prepare("INSERT INTO users (first_name, last_name, email, password) VALUES (:first_name, :last_name, :email, :password)");
+    $prepared = $conn->prepare("INSERT INTO `users` (`first_name`, `last_name`, `email`, `password`) VALUES (:first_name, :last_name, :email, :password)");
     $prepared->bind_param(':first_name', $given_name);
     $prepared->bind_param(':last_name', $family_name);
     $prepared->bind_param(':email', $email);

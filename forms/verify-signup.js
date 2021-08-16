@@ -8,9 +8,9 @@ document.addEventListener('keyup', () => {
     }
     else {
         document.querySelector('submit_signup_form').innerHTML = `
-        <p class="bodyText">
-            Waiting for you to type in a valid password...
-        </p>
+        <button class="submit_button" id="signup-submit" type="submit" disabled>
+            Submit
+        </button>
         ` ;
     }
 });

@@ -133,6 +133,13 @@ header {
     border: none;
 }
 
+.submit_button:disabled, .submit_button[disabled],  .submit_button:disabled:hover , .submit_button[disabled][hover] {
+    background-color: #6b6b6b;
+    color: #222222;
+    box-shadow: none;
+    cursor: default;
+}
+
 a#adamGunn {
     text-decoration: none;
     color: var(--button-text-color);

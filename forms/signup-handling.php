@@ -1,5 +1,5 @@
 <?php
-    $servername = "localhost";
+    $servername = "localhost:3306";
     $db_username = "adamgunn_database_user";
     $db_password = "!\$yZ+7TJd+cf";
     $dbname = "adamgunn_users_database";
@@ -14,11 +14,8 @@
     $email = "";
     $password = "";
 
-    $prepared = $conn->prepare("INSERT INTO `users` (`first_name`, `last_name`, `email`, `password`) VALUES (:first_name, :last_name, :email, :password)");
-    $prepared->bind_param(':first_name', $given_name);
-    $prepared->bind_param(':last_name', $family_name);
-    $prepared->bind_param(':email', $email);
-    $prepared->bind_param(':password', $password);
+    $prepared = $conn->prepare("INSERT INTO users (first_name, last_name, email, password) VALUES (?, ?, ?, ?)");
+    $prepared->bind_param("ssss", $given_name, $family_name, $email, $password);
 
     function valid_signup() {
         if (isset($_POST['given-name'])) {
@@ -36,4 +33,6 @@
     if (valid_signup()) {
         header('Location: ../sign-up/success.html'); 
     }
+
+    $conn->close();
 ?>

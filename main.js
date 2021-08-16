@@ -15,6 +15,7 @@ const heading = `
             <li><a href=../portfolio class="navbar_text">Portfolio</a></li>
             <li><a href=../resume class="navbar_text">Resum&eacute;</a></li>
             <li><a href=../sign-up class="navbar_text">Sign up</a></li>
+            <li><a href=../log-in class="navbar_text">Log in</a></li>
             <li id="select_games_navbar">
                 <div class="games_select">
                     <a href="../games" class="navbar_text" id="select_game_text">Games</a>

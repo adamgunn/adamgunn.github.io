@@ -15,7 +15,7 @@
     $password = "";
 
     $prepared_fle = $conn->prepare("INSERT INTO users_firstlastemail (first_name, last_name, email) VALUES (?, ?, ?)");
-    $prepared_fle->bind_param("ssss", $given_name, $family_name, $email);
+    $prepared_fle->bind_param("sss", $given_name, $family_name, $email);
     $prepared_pwd = $conn->prepare("INSERT INTO users_passwords (password) VALUES (?)");
     $prepared_pwd->bind_param("s", $password);
 

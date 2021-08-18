@@ -10,44 +10,44 @@
         exit(1);
     }
     
-    $email = "";
+    $username = "";
     $entered_password = "";
     $matched_id = 0;
     $stored_password = "";
 
-    $prepared_fle = $conn->prepare("SELECT id from users_firstlastemail WHERE email=?");
-    $prepared_fle->bind_param("s", $email);
+    $prepared_info = $conn->prepare("SELECT id from users_info WHERE username=?");
+    $prepared_info->bind_param("s", $username);
     $prepared_pwd = $conn->prepare("SELECT password from users_passwords WHERE id=?");
     $prepared_pwd->bind_param("i", $matched_id);
 
     function verify_login() {
         if(isset($_POST['email'])) {
-            global $email, $entered_password, $matched_id, $stored_password, $prepared_fle, $prepared_pwd;
-            $email = $_POST['email'];
+            global $username, $entered_password, $matched_id, $stored_password, $prepared_info, $prepared_pwd;
+            $username = $_POST['username'];
             $entered_password = $_POST['password'];
-            $prepared_fle->execute();
-            $result = $prepared_fle->get_result();
+            $prepared_info->execute();
+            $result = $prepared_info->get_result();
             if ($result->num_rows < 1) {
-                return 'no account';
+                return 'There isn\'t an account associated with that username.';
             } else {
                 $field = $result->fetch_object();
                 $matched_id = $field->id;
                 $prepared_pwd->execute();
                 $result = $prepared_pwd->get_result();
                 if ($result->num_rows < 1) {
-                    return 'database fail';
+                    return 'There was an error with the database..';
                 } else {
                     $field = $result->fetch_object();
                     $stored_password = $field->password;
                     if (password_verify($entered_password, $stored_password)) {
-                        return 'login success';
+                        return 'Your login was a success.';
                     } else {
-                        return 'login fail';
+                        return 'Incorrect password.';
                     }
                 }
             }
         }
-        return 'form fail';
+        return 'The form didn\'t submit correctly.';
     }
 
     $result = verify_login();

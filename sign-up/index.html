@@ -17,33 +17,43 @@
         <h1 class="pageTitle">
             Sign up
         </h1>
-        <form action="../forms/signup-handling.php" method="POST" id="signup_form">
+        <form action="../forms/signup-handling.php" method="POST" id="signup_form" name="signup_form">
             <!-- <input type="hidden" name="destination" value="<?php echo $_SERVER[\"REQUEST_URI\"]; ?>"/> -->
             <ul>
                 <li>
                     <label for="first_name_input" class="subtitle">First name</label>
                     <br>
-                    <input type="text" name="given-name" id="first_name_input" required="required"  placeholder="Joe"/>
+                    <input type="text" name="given-name" id="first_name_input" required="required" onchange="validateForm()" placeholder="Joe"/>
                 </li>
                 <li>
                     <label for="last_name_input" class="subtitle">Last name</label>
                     <br>
-                    <input type="text" name="family-name" id="last_name_input" required="required" placeholder="Schmoe"/>
+                    <input type="text" name="family-name" id="last_name_input" required="required" onchange="validateForm()" placeholder="Schmoe"/>
                 </li>
                 <li>
                     <label for="email_input" class="subtitle">E-mail</label>
                     <br>
-                    <input type="email" name="email" id="email_input" required="required" placeholder="name@example.com"/>
+                    <input type="email" name="email" id="email_input" required="required" onchange="validateForm()" placeholder="name@example.com"/>
                 </li>
                 <li>
-                    <label for="password_input" class="subtitle">Password (8-16 characters, don't reuse please)</label>
+                    <label for="username_input" class="subtitle">Username</label>
                     <br>
-                    <input type="password" name="password" id="password_input" minlength="8" maxlength="16" required="required"/>
+                    <input type="text" name="username" id="username_input" required="required" onchange="validateForm()" placeholder="jschmoe123" />
                 </li>
                 <li>
-                    <label for="password_input_confirm" class="subtitle">Confirm Password</label>
+                    <label for="password_input" class="subtitle">Password</label>
                     <br>
-                    <input type="password" name="password" id="password_input_confirm" minlength="8" maxlength="16" required="required"/>
+                    <input type="password" name="password" id="password_input" minlength="8" maxlength="16" required="required" onchange="validateForm()"/>
+                </li>
+                <li>
+                    <label for="password_input_confirm" class="subtitle">Confirm password</label>
+                    <br>
+                    <input type="password" name="password" id="password_input_confirm" minlength="8" maxlength="16" required="required" onchange="validateForm()"/>
+                </li>
+                <li>
+                    <label for="pfp_upload" class="subtitle">Upload profile picture (optional)</label>
+                    <br>
+                    <input type="file" accept="image/*" name="pfp" id="pfp_upload" onchange="uploadCheck()"/>
                 </li>
                 <!-- <li>
                     <label for="msg_input" class="subtitle">Message</label>
@@ -56,6 +66,7 @@
                     Submit
                 </button>
             </submit_signup_form>
+            <form_issues></form_issues>
         </form>
     </body>
 </html>

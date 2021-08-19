@@ -49,7 +49,7 @@
 
     $result = verify_login();
     if ($result == 'Your login was a success.') {
-        header('Location: ../sign-up/success.html');
+        header('Location: ../log-in/success.html');
     }
     else {
         header('Location: error.php?type=login&error='.urlencode($result));

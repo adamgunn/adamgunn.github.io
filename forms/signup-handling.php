@@ -49,7 +49,9 @@
             $ext = $info['extension'];
             $newname = "pfp.".$ext;
             $target = 'users/'.$username.'/'.$newname;
-            move_uploaded_file($_FILES['pfp']['tmp_name'], $target);
+            if (!move_uploaded_file($_FILES['pfp']['tmp_name'], $target)) {
+                echo 'Failed to upload pfp';
+            }
 
             $password = $_POST['password'];
             $password = password_hash($password, PASSWORD_BCRYPT);

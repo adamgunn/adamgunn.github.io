@@ -21,7 +21,7 @@
     $prepared_pwd->bind_param("i", $matched_id);
 
     function verify_login() {
-        if(isset($_POST['email'])) {
+        if(isset($_POST['username'])) {
             global $username, $entered_password, $matched_id, $stored_password, $prepared_info, $prepared_pwd;
             $username = $_POST['username'];
             $entered_password = $_POST['password'];
@@ -35,7 +35,7 @@
                 $prepared_pwd->execute();
                 $result = $prepared_pwd->get_result();
                 if ($result->num_rows < 1) {
-                    return 'There was an error with the database..';
+                    return 'There was an error with the database.';
                 } else {
                     $field = $result->fetch_object();
                     $stored_password = $field->password;

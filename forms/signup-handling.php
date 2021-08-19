@@ -52,7 +52,7 @@
             $newname = "pfp.".$ext;
             $target = '../users/'.$username.'/'.$newname;
             if (!move_uploaded_file($_FILES['pfp']['tmp_name'], $target)) {
-                echo 'Failed to upload pfp';
+                echo 'Failed to upload '.$_FILES['pfp']['tmp_name'].' to '.$target;
             }
 
             $password = $_POST['password'];

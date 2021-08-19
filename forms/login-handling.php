@@ -55,6 +55,6 @@
         header('Location: ../sign-up/success.html');
     }
     else {
-        header('Location: error.php?error='.urlencode($result));
+        header('Location: error.php?type=login&error='.urlencode($result));
     }
 ?>

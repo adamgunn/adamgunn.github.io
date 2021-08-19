@@ -1,5 +1,6 @@
 <?php
     $error = $_GET['error'];
+    $type = $_GET['type'];
 ?><!DOCTYPE html>
 <html lang="en-us" dir="ltr">
     <head>
@@ -21,5 +22,20 @@
         <p class="bodyText">
             <?php echo $error; ?>
         </p>
+        <?php
+            if ($type == 'signup') {
+                echo `
+                <a href="../sign-up/index.html" class="game_link"><h2 class="subtitle">
+                    Try again
+                </h2></a>
+                `;
+            } elseif ($type == 'login') {
+                echo `
+                <a href="../log-in/index.html" class="game_link"><h2 class="subtitle">
+                    Try again
+                </h2></a>
+                `;
+            }
+        ?>
     </body>
 </html>

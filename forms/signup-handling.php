@@ -81,7 +81,7 @@
         header('Location: ../sign-up/success.html'); 
     }
     else {
-        header('Location: error.php?error='.urlencode($error)); 
+        header('Location: error.php?type=signup&error='.urlencode($error)); 
     }
 
     $conn->close();

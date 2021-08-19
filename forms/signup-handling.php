@@ -27,6 +27,25 @@
     $prepared_check_username = $conn->prepare("SELECT id from users_info WHERE username=?");
     $prepared_check_username->bind_param("s", $username);
 
+    function uploadImage() {
+        global $username;
+        if (!mkdir('../users/'.$username)) {
+            echo ('Failed to create directory '.'../users/'.$username);
+        }
+        if (!isset($_FILES['pfp'])) {
+            echo 'The file doesn\'t seem to have been uploaded!!!';
+        }
+        else {
+            $info = pathinfo($_FILES['pfp']['name']);
+            $ext = $info['extension'];
+            $newname = "pfp.".$ext;
+            $target = '../users/'.$username.'/'.$newname;
+            if (!move_uploaded_file($_FILES['pfp']['tmp_name'], $target)) {
+                echo 'Failed to upload '.$_FILES['pfp']['tmp_name'].' to '.$target;
+            }
+        }
+    }
+
     function valid_signup() {
         if (isset($_POST['given-name'])) {
             global $prepared_fle, $prepared_pwd, $prepared_check_email, $prepared_check_username, $given_name, $family_name, $email, $username, $password;
@@ -44,17 +63,7 @@
                 return FALSE;
             }
             $username = $_POST['username'];
-            if (!mkdir('../users/'.$username)) {
-                echo ('Failed to create directory '.'../users/'.$username);
-            }
-            $info = pathinfo($_FILES['pfp']['name']);
-            $ext = $info['extension'];
-            $newname = "pfp.".$ext;
-            $target = '../users/'.$username.'/'.$newname;
-            if (!move_uploaded_file($_FILES['pfp']['tmp_name'], $target)) {
-                echo 'Failed to upload '.$_FILES['pfp']['tmp_name'].' to '.$target;
-            }
-
+            uploadImage();
             $password = $_POST['password'];
             $password = password_hash($password, PASSWORD_BCRYPT);
             $prepared_fle->execute();

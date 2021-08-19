@@ -1,8 +1,5 @@
 <?php
-    $servername = "localhost:3306";
-    $db_username = "adamgunn_database_user";
-    $db_password = "!\$yZ+7TJd+cf";
-    $dbname = "adamgunn_users_database";
+    include 'db-credentials.php';
 
     $conn = new mysqli($servername, $db_username, $db_password, $dbname);
     if ($conn->connect_error) {

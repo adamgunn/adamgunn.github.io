@@ -1,6 +1,6 @@
 <?php
-    $error = $_GET['error'];
     $type = $_GET['type'];
+    $error = $_GET['error'];
 ?><!DOCTYPE html>
 <html lang="en-us" dir="ltr">
     <head>

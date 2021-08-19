@@ -24,13 +24,13 @@
         </p>
         <?php
         echo $type;
-            if ($type == 'signup') {
+            if ($type == "signup") {
                 echo `
                 <a href="../sign-up/index.html" class="game_link"><h2 class="subtitle">
                     Try again
                 </h2></a>
                 `;
-            } elseif ($type == 'login') {
+            } elseif ($type == "login") {
                 echo `
                 <a href="../log-in/index.html" class="game_link"><h2 class="subtitle">
                     Try again

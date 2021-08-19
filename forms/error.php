@@ -23,7 +23,7 @@
             <?php echo $error; ?>
         </p>
         <?php
-        echo $error;
+        echo $type;
             if ($type == 'signup') {
                 echo `
                 <a href="../sign-up/index.html" class="game_link"><h2 class="subtitle">

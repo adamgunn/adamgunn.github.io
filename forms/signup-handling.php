@@ -44,11 +44,13 @@
                 return FALSE;
             }
             $username = $_POST['username'];
-            mkdir('users/'.$username);
+            if (!mkdir('../users/'.$username)) {
+                echo ('Failed to create directory '.'../users/'.$username);
+            }
             $info = pathinfo($_FILES['pfp']['name']);
             $ext = $info['extension'];
             $newname = "pfp.".$ext;
-            $target = 'users/'.$username.'/'.$newname;
+            $target = '../users/'.$username.'/'.$newname;
             if (!move_uploaded_file($_FILES['pfp']['tmp_name'], $target)) {
                 echo 'Failed to upload pfp';
             }

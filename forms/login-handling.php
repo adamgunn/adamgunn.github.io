@@ -51,5 +51,10 @@
     }
 
     $result = verify_login();
-    echo $result;
+    if ($result == 'Your login was a success.') {
+        header('Location: ../sign-up/success.html');
+    }
+    else {
+        header('Location: error.php?error='.urlencode($result));
+    }
 ?>

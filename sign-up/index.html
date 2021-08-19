@@ -17,7 +17,7 @@
         <h1 class="pageTitle">
             Sign up
         </h1>
-        <form action="../forms/signup-handling.php" method="POST" id="signup_form" name="signup_form">
+        <form action="../forms/signup-handling.php" method="POST" id="signup_form" name="signup_form" enctype='multipart/form-data'>
             <!-- <input type="hidden" name="destination" value="<?php echo $_SERVER[\"REQUEST_URI\"]; ?>"/> -->
             <ul>
                 <li>
@@ -51,9 +51,9 @@
                     <input type="password" name="password" id="password_input_confirm" minlength="8" maxlength="16" required="required" onchange="validateForm()"/>
                 </li>
                 <li>
-                    <label for="pfp_upload" class="subtitle">Upload profile picture (optional)</label>
+                    <label for="pfp" class="subtitle">Upload profile picture (optional)</label>
                     <br>
-                    <input type="file" accept="image/*" name="pfp" id="pfp_upload" onchange="uploadCheck()"/>
+                    <input type="file" accept="image/*" name="pfp" id="pfp" onchange="uploadCheck()"/>
                 </li>
                 <!-- <li>
                     <label for="msg_input" class="subtitle">Message</label>

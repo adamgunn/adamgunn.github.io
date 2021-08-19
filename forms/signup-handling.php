@@ -32,16 +32,18 @@
         if (!mkdir('../users/'.$username)) {
             echo ('Failed to create directory '.'../users/'.$username);
         }
-        if (!isset($_FILES['pfp'])) {
-            echo 'The file doesn\'t seem to have been uploaded!!!';
-        }
         else {
-            $info = pathinfo($_FILES['pfp']['name']);
-            $ext = $info['extension'];
-            $newname = "pfp.".$ext;
-            $target = '../users/'.$username.'/'.$newname;
-            if (!move_uploaded_file($_FILES['pfp']['tmp_name'], $target)) {
-                echo 'Failed to upload '.$_FILES['pfp']['tmp_name'].' to '.$target;
+            if (!isset($_FILES['pfp'])) {
+                echo 'The file doesn\'t seem to have been uploaded!!!';
+            }
+            else {
+                $info = pathinfo($_FILES['pfp']['name']);
+                $ext = $info['extension'];
+                $newname = "pfp.".$ext;
+                $target = '../users/'.$username.'/'.$newname;
+                if (!move_uploaded_file($_FILES['pfp']['tmp_name'], $target)) {
+                    echo 'Failed to upload '.$_FILES['pfp']['tmp_name'].' to '.$target;
+                }
             }
         }
     }
@@ -57,13 +59,13 @@
             if ($result->num_rows != 0) {
                 return 'An account already exists for that email.';
             }
+            $username = $_POST['username'];
             $prepared_check_username->execute();
             $result = $prepared_check_username->get_result();
             if ($result->num_rows != 0) {
                 return 'An account already exists for that username. Try a different one?';
             }
             else {
-                $username = $_POST['username'];
                 uploadImage();
                 $password = $_POST['password'];
                 $password = password_hash($password, PASSWORD_BCRYPT);

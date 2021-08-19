@@ -55,12 +55,12 @@
             $prepared_check_email->execute();
             $result = $prepared_check_email->get_result();
             if ($result->num_rows != 0) {
-                return FALSE;
+                return 'An account already exists for that email.';
             }
             $prepared_check_username->execute();
             $result = $prepared_check_username->get_result();
             if ($result->num_rows != 0) {
-                return FALSE;
+                return 'An account already exists for that username. Try a different one?';
             }
             $username = $_POST['username'];
             uploadImage();
@@ -68,16 +68,16 @@
             $password = password_hash($password, PASSWORD_BCRYPT);
             $prepared_fle->execute();
             $prepared_pwd->execute();
-            return TRUE;
+            return 'none';
         }
-        return FALSE;
+        return 'The form did not submit correctly.';
     }
-    
-    if (valid_signup()) {
+    $error = valid_signup();
+    if ($error == 'none') {
         header('Location: ../sign-up/success.html'); 
     }
     else {
-        header('Location: error.html'); 
+        header('Location: error.php?error='.urlencode($error)); 
     }
 
     $conn->close();

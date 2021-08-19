@@ -1,4 +1,6 @@
-<!DOCTYPE html>
+<?php
+    $error = $_GET['error'];
+?><!DOCTYPE html>
 <html lang="en-us" dir="ltr">
     <head>
         <meta charset="UTF-8" />
@@ -17,7 +19,7 @@
             Error
         </h1>
         <p class="bodyText">
-            There was an error signing you up.
+            <?php echo $error; ?>
         </p>
     </body>
 </html>

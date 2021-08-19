@@ -62,13 +62,15 @@
             if ($result->num_rows != 0) {
                 return 'An account already exists for that username. Try a different one?';
             }
-            $username = $_POST['username'];
-            uploadImage();
-            $password = $_POST['password'];
-            $password = password_hash($password, PASSWORD_BCRYPT);
-            $prepared_fle->execute();
-            $prepared_pwd->execute();
-            return 'none';
+            else {
+                $username = $_POST['username'];
+                uploadImage();
+                $password = $_POST['password'];
+                $password = password_hash($password, PASSWORD_BCRYPT);
+                $prepared_fle->execute();
+                $prepared_pwd->execute();
+                return 'none';
+            }
         }
         return 'The form did not submit correctly.';
     }

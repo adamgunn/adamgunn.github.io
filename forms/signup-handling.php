@@ -19,7 +19,7 @@
 
     $prepared_fle = $conn->prepare("INSERT INTO users_info (first_name, last_name, email, username) VALUES (?, ?, ?, ?)");
     $prepared_fle->bind_param("ssss", $given_name, $family_name, $email, $username);
-    $prepared_pwd = $conn->prepare("INSERT INTO users_info (password) VALUES (?)");
+    $prepared_pwd = $conn->prepare("INSERT INTO users_passwords (password) VALUES (?)");
     $prepared_pwd->bind_param("s", $password);
 
     $prepared_check_email = $conn->prepare("SELECT id from users_info WHERE email=?");

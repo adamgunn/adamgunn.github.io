@@ -121,6 +121,7 @@ function validChar(char) {
 }
 
 function usernameValid() {
+    document.forms["signup_form"]["username"].value = toLowerCase(document.forms["signup_form"]["username"].value);
     var username = document.forms["signup_form"]["username"].value;
     if (username.length > 30 || username.length < 3) {
         issues['username_length'] = true;

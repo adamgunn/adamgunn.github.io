@@ -26,25 +26,25 @@
         echo $type;
             if ($type == "signup") {
                 echo "the type is signup";
-                echo `
-                <a href="../sign-up/index.html" class="game_link"><h2 class="subtitle">
+                echo "
+                <a href=\"../sign-up/index.html\" class=\"game_link\"><h2 class=\"subtitle\">
                     Try again
                 </h2></a>
-                `;
+                ";
             } elseif ($type == "login") {
                 echo "the type is login";
-                echo `
-                <a href="../log-in/index.html" class="game_link"><h2 class="subtitle">
+                echo "
+                <a href=\"../log-in/index.html\" class=\"game_link\"><h2 class=\"subtitle\">
                     Try again
                 </h2></a>
-                `;
+                ";
             } else {
                 echo "the type is neither (lol)";
-                echo `
-                <h2 class="subtitle">
-                    <a href="../sign-up/index.html" class="game_link">Sign up</a> | <a href="../log-in/index.html" class="game_link">Log in</a>
+                echo "
+                <h2 class=\"subtitle\">
+                    <a href=\"../sign-up/index.html\" class=\"game_link\">Sign up</a> | <a href=\"../log-in/index.html\" class=\"game_link\">Log in</a>
                 </h2>
-                `;
+                ";
             }
         ?>
     </body>

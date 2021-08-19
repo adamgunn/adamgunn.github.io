@@ -30,8 +30,8 @@
             echo ('Failed to create directory '.'../users/'.$username);
         }
         else {
-            if (!isset($_FILES['pfp'])) {
-                echo 'The file doesn\'t seem to have been uploaded!!!';
+            if (!file_exists($_FILES['pfp']['tmp_name']) || !is_uploaded_file($_FILES['php']['tmp_name'])) {
+                return;
             }
             else {
                 $info = pathinfo($_FILES['pfp']['name']);

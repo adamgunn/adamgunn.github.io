@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en-us" dir="ltr">
+    <head>
+        <meta charset="UTF-8" />
+        <title>Hangman | Adam Gunn</title>
+        <meta name="description" content="A version of the popular game hangman." />
+        <link rel="icon" type="image/png" href="../images/favicon_16x16.png" sizes="16x16" />
+        <link rel="icon" type="image/png" href="../images/favicon_32x32.png" sizes="32x32" />
+        <link rel="icon" type="image/png" href="../images/favicon_96x96.png" sizes="96x96" />
+        <link href="../main.css" rel="stylesheet" />
+        <link rel="stylesheet" href="https://use.typekit.net/uvg2mwq.css">
+        <script src="../main.js"></script>
+        <script src="hangman.js"></script>
+    </head>
+    <body>
+        <heading></heading>
+        <h1 class="pageTitle">
+            Hangman
+        </h1>
+        <hangman>
+            <ul>
+                <li>
+                    <label for="num_players" class="subtitle">How many players? (1 or 2)</label>
+                    <br>
+                    <input type="number" id="num_players" name="num_players" required min=1 max=2 value=1 onchange=(checkNumPlayers()) />
+                </li>
+                <li>
+                    <label for="p0_name" class="subtitle">Player 1 Name (Guesses)</label>
+                    <br>
+                    <input type="text" id="p0_name" name="p0_name" required placeholder="Adam G." onchange=(verifyNames()) />
+                </li>
+                <li>
+                    <p1_input></p1_input>
+                </li>
+                <li>
+                    <button class="submit_button" id="submit_players" type="submit" disabled onclick=(playHangman())>Play!</button>
+                </li>
+            </ul>
+        </hangman>
+    </body>
+</html>

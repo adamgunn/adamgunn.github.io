@@ -37,7 +37,7 @@
                     $field = $result->fetch_object();
                     $stored_password = $field->password;
                     if (password_verify($entered_password, $stored_password)) {
-                        return 'Your login was a success.';
+                        return 'success';
                     } else {
                         return 'Incorrect password.';
                     }
@@ -48,7 +48,7 @@
     }
 
     $result = verify_login();
-    if ($result == 'Your login was a success.') {
+    if ($result == 'success') {
         header('Location: ../log-in/success.html');
     }
     else {

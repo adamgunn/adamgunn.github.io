@@ -23,7 +23,8 @@ function unGreySubmit() {
 }
 
 function validateForm() {
-    if (pwdValid() && result && usernameValid()) {
+    username_valid = usernameValid();
+    if (pwdValid() && result && username_valid) {
         unGreySubmit();
     }
     else {
@@ -121,8 +122,9 @@ function validChar(char) {
 }
 
 function usernameValid() {
-    document.forms["signup_form"]["username"].value = toLowerCase(document.forms["signup_form"]["username"].value);
     var username = document.forms["signup_form"]["username"].value;
+    username = username.toLowerCase();
+    document.forms["signup_form"]["username"].value = username;
     if (username.length > 30 || username.length < 3) {
         issues['username_length'] = true;
         return false;
@@ -136,6 +138,10 @@ function usernameValid() {
     }
     issues['username_chars'] = false;
     return true;
+}
+
+function clearFile() {
+    document.forms["signup_form"]["pfp"].value = null;
 }
 
 // function uploadCheck() {

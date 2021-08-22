@@ -1,10 +1,11 @@
-class Hangman {
+class Snowman {
     num_players;
     player0_name;
     player1_name;
     word = "";
     wrong_letters = [];
     displaying_word = [];
+    losing_letters;
     available_letters = {"A": true,
                          "B": true,
                          "C": true,
@@ -39,7 +40,7 @@ class Hangman {
                  "NO IFS, ANDS, OR BUTS",
                  "NO CUTS NO BUTTS NO COCONUTS",
                  "CRISS-CROSS APPLESAUCE",
-                 "I GUESS THEY'LL NEVER KNOW",
+                 "I GUESS WE'LL NEVER KNOW",
                  "DON'T COUNT YOUR CHICKENS BEFORE THEY HATCH",
                  "DON'T GET IT TWISTED",
                  "RISK IT FOR THE BISCUIT",
@@ -66,9 +67,9 @@ class Hangman {
     }
 
     pickWord() {
-        var hangmanHTML = document.querySelector('hangman');
+        var snowmanHTML = document.querySelector('snowman');
         if (this.num_players == 2) {
-            hangmanHTML.innerHTML = `
+            snowmanHTML.innerHTML = `
             <ul>
                 <li>
                     <h2 class="subtitle">${this.player0_name}, avert your eyes!</h2>
@@ -77,7 +78,7 @@ class Hangman {
                     <input type="text" id="pick_word" name="pick_word" required onchange=(verifyWord()) />
                 </li>
                 <li>
-                    <button class="submit_button" id="submit_word" onclick=(beginHangmanGame()) disabled>Submit</button>
+                    <button class="submit_button" id="submit_word" onclick=(beginSnowmanGame()) disabled>Submit</button>
                 </li>
             </ul>
             `
@@ -100,13 +101,13 @@ class Hangman {
     
     printGame() {
         this.game_started = true;
-        var hangmanHTML = document.querySelector('hangman');
+        var snowmanHTML = document.querySelector('snowman');
         var stickman_svg = `
-            <img src="../images/hangman-${this.wrong_letters.length}.svg" width="300" height="500" alt="Hangman game"/>
+            <img src="../images/snowman-${this.wrong_letters.length}.svg" width="600" height="600" id="snowman-game" alt="Snowman game"/>
         `;
-        hangmanHTML.innerHTML = stickman_svg;
-        hangmanHTML.innerHTML += `<pre><p class="bodyText">${this.updateDisplayWord()}</p></pre>`;
-        hangmanHTML.innerHTML += `<pre><p class="bodyText">Wrong letters: ${this.updateUsedLetters()}</p></pre>`;
+        snowmanHTML.innerHTML = stickman_svg;
+        snowmanHTML.innerHTML += `<pre><p class="bodyText">${this.updateDisplayWord()}</p></pre>`;
+        snowmanHTML.innerHTML += `<pre><p class="bodyText">Wrong letters: ${this.updateUsedLetters()}</p></pre>`;
 
     }
 
@@ -139,31 +140,31 @@ class Hangman {
             this.wrong_letters.push(char);
             this.available_letters[char] = false;
         }
-        if (this.wrong_letters.length >= 6) {
-            var hangmanHTML = document.querySelector('hangman');
+        if (this.wrong_letters.length >= this.losing_letters) {
+            var snowmanHTML = document.querySelector('snowman');
             var losing_message;
             if (this.num_players == 2) {
                 losing_message = this.player1_name + " wins!";
             } else {
-                losing_message = "You lost!";
+                losing_message = this.player0_name + ", you lost!";
             }
-            hangmanHTML.innerHTML = `
-            <img src="../images/hangman-6.svg" width="300" height="500" alt="Hangman game"/>
+            snowmanHTML.innerHTML = `
+            <img src="../images/snowman-${this.losing_letters}.svg" width="600" height="600" id="snowman-game" alt="Snowman game"/>
             <h2 class="subtitle">${losing_message}</h2>
             <a href="" class="game_link"><h2 class="subtitle">Click here to play again</h2></a>
             `;
             this.game_started = false;
         }
         else if (this.num_letters_left == 0) {
-            var hangmanHTML = document.querySelector('hangman');
+            var snowmanHTML = document.querySelector('snowman');
             var winning_message;
             if (this.num_players == 2) {
                 winning_message = this.player0_name + " wins!";
             } else {
-                winning_message = "You won!"
+                winning_message = this.player0_name + ", you won!"
             }
-            hangmanHTML.innerHTML = `
-            <img src="../images/hangman-${this.wrong_letters.length}.svg" width="300" height="500" alt="Hangman game"/>
+            snowmanHTML.innerHTML = `
+            <img src="../images/snowman-${this.wrong_letters.length}.svg" width="600" height="600" id="snowman-game" alt="Snowman game"/>
             <h2 class="subtitle">${winning_message}</h2>
             <a href="" class="game_link"><h2 class="subtitle">Click here to play again</h2></a>
             `;
@@ -177,40 +178,15 @@ class Hangman {
 }
 
 document.addEventListener("keyup", function(e) {
-    if (e.code == "KeyA" ||
-        e.code == "KeyB" ||
-        e.code == "KeyC" ||
-        e.code == "KeyD" ||
-        e.code == "KeyE" ||
-        e.code == "KeyF" ||
-        e.code == "KeyG" ||
-        e.code == "KeyH" ||
-        e.code == "KeyI" ||
-        e.code == "KeyJ" ||
-        e.code == "KeyK" ||
-        e.code == "KeyL" ||
-        e.code == "KeyM" ||
-        e.code == "KeyN" ||
-        e.code == "KeyO" ||
-        e.code == "KeyP" ||
-        e.code == "KeyQ" ||
-        e.code == "KeyR" ||
-        e.code == "KeyS" ||
-        e.code == "KeyT" ||
-        e.code == "KeyU" ||
-        e.code == "KeyV" ||
-        e.code == "KeyW" ||
-        e.code == "KeyX" ||
-        e.code == "KeyY" ||
-        e.code == "KeyZ") {
+    if (isALetter(e.code.slice(3))) {
         var char = e.code.slice(3);
-        if (hangman_game.game_started) {
-            hangman_game.playLetter(char);
+        if (snowman_game.game_started) {
+            snowman_game.playLetter(char);
         }
     }
 });
 
-
+// Determines if the given string char is one of the 26 capital letters
 function isALetter(char) {
     var letters = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
     for (var i = 0; i < letters.length; i++) {
@@ -221,14 +197,12 @@ function isALetter(char) {
     return false;
 }
 
+// Disables or enables the submit button depending on whether or not a word is entered
 function verifyWord() {
     var entered_word = document.getElementById('pick_word').value;
     entered_word = entered_word.toUpperCase();
     document.getElementById('pick_word').value = entered_word;
-    var good_word = true;
-    if (entered_word.length == 0) {
-        good_word = false;
-    }
+    var good_word = (entered_word.length != 0);
     if (good_word) {
         document.getElementById('submit_word').disabled = false;
     } else {
@@ -244,7 +218,8 @@ function verifyNames() {
     }
     else if (num_players == 2 &&
              (document.getElementById('p1_name').value == "" || 
-             document.getElementById('p1_name').value == null)) {
+             document.getElementById('p1_name').value == null) ||
+             document.getElementById('p0_name').value == document.getElementById('p1_name').value) {
         document.getElementById('submit_players').disabled = true;
     } else {
         document.getElementById('submit_players').disabled = false;
@@ -266,31 +241,33 @@ function checkNumPlayers() {
     verifyNames();
 }
 
-function beginHangmanGame() {
-    hangman_game.word = document.getElementById('pick_word').value;
-    hangman_game.num_letters_left = 0;
-    for (var i = 0; i < hangman_game.word.length; i++) {
-        if (!isALetter(hangman_game.word[i])) {
-            hangman_game.displaying_word.push(hangman_game.word[i] + " ");
+function beginSnowmanGame() {
+    snowman_game.word = document.getElementById('pick_word').value;
+    snowman_game.num_letters_left = 0;
+    for (var i = 0; i < snowman_game.word.length; i++) {
+        if (!isALetter(snowman_game.word[i])) {
+            snowman_game.displaying_word.push(snowman_game.word[i] + " ");
         }
         else {
-            hangman_game.num_letters_left++;
-            hangman_game.displaying_word.push("_ ");
+            snowman_game.num_letters_left++;
+            snowman_game.displaying_word.push("_ ");
         }
     }
-    hangman_game.printGame();
+    snowman_game.printGame();
 }
-var hangman_game = new Hangman();
-function playHangman() {
+var snowman_game = new Snowman();
+function playSnowman() {
     var num_players = document.getElementById('num_players').value;
     var p0_name = document.getElementById('p0_name').value;
+    var losing_letters = document.getElementById('losing_letters').value;
     if (num_players == 2) {
         var p1_name = document.getElementById('p1_name').value;
     } else {
         var p1_name = null;
     }
-    hangman_game.num_players = num_players;
-    hangman_game.player0_name = p0_name;
-    hangman_game.player1_name = p1_name;
-    hangman_game.pickWord();
+    snowman_game.num_players = num_players;
+    snowman_game.player0_name = p0_name;
+    snowman_game.player1_name = p1_name;
+    snowman_game.losing_letters = losing_letters;
+    snowman_game.pickWord();
 }

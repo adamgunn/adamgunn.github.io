@@ -20,7 +20,7 @@ const heading = `
                 <div class="games_select">
                     <a href="../games" class="navbar_text" id="select_game_text">Games</a>
                     <div class="game_options">
-                        <a href="../games/hangman.html" class="game_button">Hangman</a>
+                        <a href="../games/snowman.html" class="game_button">Snowman</a>
                         <a href="../games/pong.html" class="game_button">Pong</a>
                     </div>
                 </div>

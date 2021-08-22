@@ -1,3 +1,9 @@
+// Created by Adam Gunn (asgunn@umich.edu) for the website adamgunn.net
+// https://github.com/adamgunn
+// 
+// 
+// 
+// Defines the Snowman object, which contains all the data about the game
 class Snowman {
     num_players;
     player0_name;
@@ -48,12 +54,6 @@ class Snowman {
                  "THE DOG ATE MY HOMEWORK",
                  ];
 
-    constructor(num_players, player0_name, player1_name) {
-        this.num_players = num_players;
-        this.player0_name = player0_name;
-        this.player1_name = player1_name;
-    }
-
     get word() {
         return this.word;
     }
@@ -66,6 +66,8 @@ class Snowman {
         this.word = word_input;
     }
 
+    // If there are two players, prints the word picking prompt.
+    // Otherwise, determine the word randomly, then calculate the blanks to display
     pickWord() {
         var snowmanHTML = document.querySelector('snowman');
         if (this.num_players == 2) {
@@ -98,7 +100,8 @@ class Snowman {
             this.printGame();
         }
     }
-    
+
+    // Updates the screen each time a letter is played, as well as at the beginning.
     printGame() {
         this.game_started = true;
         var snowmanHTML = document.querySelector('snowman');
@@ -111,6 +114,7 @@ class Snowman {
 
     }
 
+    // Updates the string of blanks and spaces that is shown on-screen.
     updateDisplayWord() {
         var display_text = "";
         for (var i = 0; i < this.displaying_word.length; i++) {
@@ -119,6 +123,7 @@ class Snowman {
         return display_text;
     }
 
+    // Updates the list of used letters displayed on-screen.
     updateUsedLetters() {
         var display_text = "";
         for (var i = 0; i < this.wrong_letters.length; i++) {
@@ -127,6 +132,8 @@ class Snowman {
         return display_text;
     }
 
+    // When a letter is played, checks if it is in the word as well as if it has already been played.
+    // Also checks if the game is over and updates the screen accordingly.
     playLetter(char) {
         if (this.word.includes(char) && this.available_letters[char] == true) {
             this.available_letters[char] = false;
@@ -141,6 +148,7 @@ class Snowman {
             this.available_letters[char] = false;
         }
         if (this.wrong_letters.length >= this.losing_letters) {
+            this.game_started = false;
             var snowmanHTML = document.querySelector('snowman');
             var losing_message;
             if (this.num_players == 2) {
@@ -153,9 +161,9 @@ class Snowman {
             <h2 class="subtitle">${losing_message}</h2>
             <a href="" class="game_link"><h2 class="subtitle">Click here to play again</h2></a>
             `;
-            this.game_started = false;
         }
         else if (this.num_letters_left == 0) {
+            this.game_started = false;
             var snowmanHTML = document.querySelector('snowman');
             var winning_message;
             if (this.num_players == 2) {
@@ -168,7 +176,6 @@ class Snowman {
             <h2 class="subtitle">${winning_message}</h2>
             <a href="" class="game_link"><h2 class="subtitle">Click here to play again</h2></a>
             `;
-            this.game_started = false;
         }
         else {
             this.printGame();
@@ -177,6 +184,7 @@ class Snowman {
 
 }
 
+// When a letter key is pressed, calls playLetter
 document.addEventListener("keyup", function(e) {
     if (isALetter(e.code.slice(3))) {
         var char = e.code.slice(3);
@@ -210,6 +218,7 @@ function verifyWord() {
     }
 }
 
+// Checks to make sure the names are not left blank as well as to make sure they aren't the same
 function verifyNames() {
     var num_players = document.getElementById('num_players').value;
     if (document.getElementById('p0_name').value == "" || 
@@ -218,14 +227,15 @@ function verifyNames() {
     }
     else if (num_players == 2 &&
              (document.getElementById('p1_name').value == "" || 
-             document.getElementById('p1_name').value == null) ||
-             document.getElementById('p0_name').value == document.getElementById('p1_name').value) {
+             document.getElementById('p1_name').value == null ||
+             document.getElementById('p0_name').value == document.getElementById('p1_name').value)) {
         document.getElementById('submit_players').disabled = true;
     } else {
         document.getElementById('submit_players').disabled = false;
     }
 }
 
+// Adds/removes the player 2 box depending on the number of players input
 function checkNumPlayers() {
     var num_players = document.getElementById('num_players').value;
     var p1_input = document.querySelector('p1_input');
@@ -241,6 +251,7 @@ function checkNumPlayers() {
     verifyNames();
 }
 
+// For 2 players, starts the game with the picked word
 function beginSnowmanGame() {
     snowman_game.word = document.getElementById('pick_word').value;
     snowman_game.num_letters_left = 0;
@@ -255,7 +266,11 @@ function beginSnowmanGame() {
     }
     snowman_game.printGame();
 }
+
+// The snowman_game object used throughout the program
 var snowman_game = new Snowman();
+
+// Collects the information from the first form and adds it to the game object
 function playSnowman() {
     var num_players = document.getElementById('num_players').value;
     var p0_name = document.getElementById('p0_name').value;

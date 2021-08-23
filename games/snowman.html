@@ -2,6 +2,7 @@
 <html lang="en-us" dir="ltr">
     <head>
         <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <title>Snowman | Adam Gunn</title>
         <meta name="description" content="A version of the popular game snowman." />
         <link rel="icon" type="image/png" href="../images/favicon_16x16.png" sizes="16x16" />
@@ -13,11 +14,11 @@
         <script src="snowman.js"></script>
     </head>
     <body>
-        <heading></heading>
+        <div class="header-container"></div>
         <h1 class="pageTitle">
             Snowman
         </h1>
-        <snowman>
+        <div class="snowman">
             <ul>
                 <li>
                     <label for="num_players" class="subtitle">How many players? (1 or 2)</label>
@@ -41,6 +42,7 @@
                     <button class="submit_button" id="submit_players" type="submit" disabled onclick=(playSnowman())>Play!</button>
                 </li>
             </ul>
-        </snowman>
+        </div>
+        <div class="contacts_container"></div>
     </body>
 </html>

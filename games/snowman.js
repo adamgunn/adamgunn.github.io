@@ -69,7 +69,7 @@ class Snowman {
     // If there are two players, prints the word picking prompt.
     // Otherwise, determine the word randomly, then calculate the blanks to display
     pickWord() {
-        var snowmanHTML = document.querySelector('snowman');
+        var snowmanHTML = document.querySelector('div.snowman');
         if (this.num_players == 2) {
             snowmanHTML.innerHTML = `
             <ul>
@@ -104,7 +104,7 @@ class Snowman {
     // Updates the screen each time a letter is played, as well as at the beginning.
     printGame() {
         this.game_started = true;
-        var snowmanHTML = document.querySelector('snowman');
+        var snowmanHTML = document.querySelector('div.snowman');
         var stickman_svg = `
             <img src="../images/snowman-${this.wrong_letters.length}.svg" width="600" height="600" id="snowman-game" alt="Snowman game"/>
         `;
@@ -149,7 +149,7 @@ class Snowman {
         }
         if (this.wrong_letters.length >= this.losing_letters) {
             this.game_started = false;
-            var snowmanHTML = document.querySelector('snowman');
+            var snowmanHTML = document.querySelector('div.snowman');
             var losing_message;
             if (this.num_players == 2) {
                 losing_message = this.player1_name + " wins!";
@@ -159,12 +159,13 @@ class Snowman {
             snowmanHTML.innerHTML = `
             <img src="../images/snowman-${this.losing_letters}.svg" width="600" height="600" id="snowman-game" alt="Snowman game"/>
             <h2 class="subtitle">${losing_message}</h2>
+            <h2 class="subtitle">The correct phrase was: &ldquo;${this.word}&rdquo;</h2>
             <a href="" class="game_link"><h2 class="subtitle">Click here to play again</h2></a>
             `;
         }
         else if (this.num_letters_left == 0) {
             this.game_started = false;
-            var snowmanHTML = document.querySelector('snowman');
+            var snowmanHTML = document.querySelector('div.snowman');
             var winning_message;
             if (this.num_players == 2) {
                 winning_message = this.player0_name + " wins!";
@@ -174,6 +175,7 @@ class Snowman {
             snowmanHTML.innerHTML = `
             <img src="../images/snowman-${this.wrong_letters.length}.svg" width="600" height="600" id="snowman-game" alt="Snowman game"/>
             <h2 class="subtitle">${winning_message}</h2>
+            <h2 class="subtitle">The correct phrase was: &ldquo;${this.word}&rdquo;</h2>
             <a href="" class="game_link"><h2 class="subtitle">Click here to play again</h2></a>
             `;
         }

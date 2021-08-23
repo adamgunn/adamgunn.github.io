@@ -9,7 +9,9 @@
 }
 
 html {
-    font-family: sans-serif;
+    font-family: lust-text, sans-serif;
+    font-weight: 400;
+    font-style: normal;
     margin: 0;
     padding: 0;
     font-size: 130%;
@@ -19,6 +21,20 @@ html {
 
 *, *:before, *:after {
     box-sizing: inherit;
+}
+
+html, body {
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+}
+
+body > * {
+    flex-shrink: 0;
+}
+
+.bodyText {
+    line-height: 1.5;
 }
 
 @font-face {
@@ -39,8 +55,8 @@ html {
 
 .pageTitle, .subtitle {
     clear: both;
-    font-family: futura-pt, sans-serif;
-    font-weight: 700;
+    font-family: franklin-gothic-condensed,sans-serif;
+    font-weight: 600;
     font-style: normal;
 }
 
@@ -63,6 +79,18 @@ html {
 
 #snowman-game {
     margin-left: 30px;
+    border-radius: 20px;
+    box-shadow: 4px 4px var(--shadow-color);
+}
+
+.pong-game {
+    margin-left: 30px;
+    margin-bottom: 30px;
+}
+
+#sign-up-log-in {
+    right: 10px;
+    position: absolute;
 }
 
 input {
@@ -92,9 +120,9 @@ textarea#msg_input {
     clear: both;
 }
 
-.pageTitle, .icon_button_text, .navbar, .submit_button, .subtitle {
+/* .pageTitle, .icon_button_text, .navbar, .submit_button, .subtitle {
     text-transform: uppercase;
-}
+} */
 
 header {
     background-color: var(--text-color);
@@ -120,8 +148,8 @@ header {
 }
 
 .navbar_text, .icon_button_text, .submit_button {
-    font-family: futura-pt, sans-serif;
-    font-weight: 700;
+    font-family: franklin-gothic-condensed,sans-serif;
+    font-weight: 600;
     font-style: normal;
 }
 
@@ -170,6 +198,10 @@ a#adamGunn:hover {
     cursor: pointer;
 }
 
+body :not(.contacts_container) :not(header *) {
+    flex-grow: 1;
+}
+
 .color_scheme_select, #adamGunn, .games_select {
     -webkit-touch-callout: none;
     -webkit-user-select: none;
@@ -206,12 +238,13 @@ ul, body {
     box-shadow: none;
 }
 
-.icon_button_set li .icon_button li img {
+.icon_button_set li .icon_button li svg {
     margin-bottom: -5px;
+    fill: var(--button-text-color);
 }
 
-.icon_button_set li .icon_button li img {
-    fill: var(--button-text-color);
+.icon_button_set li .icon_button li svg#linkedin_icon {
+    padding-bottom: 3px;
 }
 
 .icon_button_set li .icon_button {
@@ -241,6 +274,31 @@ img#jacket_pic {
     margin: 30px;
 }
 
+.contacts_container {
+    position: relative;
+    bottom: 0px;
+    text-align: center;
+    margin-top: auto;
+    padding: 25px 0px;
+    background-color: var(--text-color);
+    border-top: 12px solid var(--button-color-noicon);
+    width: 100%;
+}
+
+.contacts_container .subtitle {
+    margin-bottom: 0px;
+    margin-top: 20px;
+    font-size: 180%;
+    color: var(--button-text-color);
+    text-shadow: 3px 3px 0 var(--button-color-noicon);
+    text-transform: none;
+}
+
+#contacts {
+    margin-bottom: 20px;
+    margin-left: 0;
+}
+
 .sticky {
     position: fixed;
     top: 0;
@@ -251,6 +309,10 @@ img#jacket_pic {
     border-bottom: 12px solid var(--button-color-noicon);
     padding-top: 20px;
     padding-inline: 0;
+}
+
+.navbar_hidden {
+    display: none;
 }
 
 @keyframes faceAnimation {
@@ -293,8 +355,8 @@ img#jacket_pic {
     padding: 5px;
     line-height: 45px;
     text-decoration: none;
-    font-family: futura-pt, sans-serif;
-    font-weight: 700;
+    font-family: franklin-gothic-condensed,sans-serif;
+    font-weight: 600;
     font-style: normal;
     font-size: 100%;
     box-shadow: 4px 4px var(--shadow-color);
@@ -313,4 +375,10 @@ img#jacket_pic {
 #select_theme_navbar, #select_games_navbar {
     padding: 0;
     box-shadow: none;
+}
+
+#select_theme_navbar {
+    position: absolute;
+    margin: 10px;
+    /* text-transform: uppercase; */
 }

@@ -2,6 +2,7 @@
 <html lang="en-us" dir="ltr">
     <head>
         <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <title>Pong | Adam Gunn</title>
         <meta name="description" content="A two player version of Pong." />
         <link rel="icon" type="image/png" href="../images/favicon_16x16.png" sizes="16x16" />
@@ -12,9 +13,16 @@
         <script src="../main.js"></script>
     </head>
     <body>
-        <heading></heading>
+        <div class="header-container"></div>
         <h1 class="pageTitle">
             Pong
         </h1>
+        <div class="pong-container">
+            <canvas class="pong-game" width="800" height="450">
+                <p class="bodyText">Your browser doesn't support canvas :(</p>
+            </canvas>
+        </div>
+        <div class="contacts_container"></div>
+        <script src="pong.js"></script>
     </body>
 </html>

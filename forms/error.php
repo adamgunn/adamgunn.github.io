@@ -5,6 +5,7 @@
 <html lang="en-us" dir="ltr">
     <head>
         <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <title>Error | Adam Gunn</title>
         <meta name="description" content="There was an error signing you up." />
         <link rel="icon" type="image/png" href="../images/favicon_16x16.png" sizes="16x16" />
@@ -15,7 +16,7 @@
         <script src="../main.js"></script>
     </head>
     <body>
-        <heading></heading>
+        <div class="header-container"></div>
         <h1 class="pageTitle">
             Error
         </h1>
@@ -43,5 +44,6 @@
                 ";
             }
         ?>
+        <div class="contacts_container"></div>
     </body>
 </html>

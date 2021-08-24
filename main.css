@@ -65,6 +65,11 @@ body > * {
     margin: 30px;
 }
 
+.pageTitle {
+    font-size: 400%;
+    margin-bottom: 0px;
+}
+
 .subtitle {
     font-size: 120%;
 }
@@ -84,12 +89,11 @@ body > * {
 }
 
 .pong-game {
-    margin-left: 30px;
-    margin-bottom: 30px;
+    margin: 30px;
 }
 
-#sign-up-log-in {
-    right: 10px;
+#sign-up-log-in, #sign-up-log-in-sticky {
+    right: 0px;
     position: absolute;
 }
 
@@ -99,30 +103,33 @@ input {
     width: 400px;
     font-size: 25px;
     padding-left: 5px;
-    border: none;
     border-radius: 5px;
 }
 
-textarea#msg_input {
+input :not(#pfp) {
+    border: 2px solid var(--text-color);
+}
+
+textarea {
     margin: 10px 0px 10px 30px;
     font-family: sans-serif;
     height: 200px;
     width: 400px;
     overflow: auto;
     font-size: 15px;
-    border: none;
+    border: 2px solid var(--text-color);
     padding: 5px;
     border-radius: 5px;
 }
 
-
 .footnote {
     clear: both;
+    font-size: 80%;
 }
 
-/* .pageTitle, .icon_button_text, .navbar, .submit_button, .subtitle {
-    text-transform: uppercase;
-} */
+.pageTitle, .icon_button_text, .navbar, .submit_button, .subtitle, #adamGunn {
+    text-transform: lowercase;
+}
 
 header {
     background-color: var(--text-color);
@@ -182,6 +189,12 @@ a#adamGunn {
                  1px -1px 0 var(--button-color-noicon),
                  -1px -1px 0 var(--button-color-noicon); */
     text-shadow: 5px 5px 0 var(--button-color-noicon);
+}
+
+.switching_font {
+    animation-name: fadein;
+    animation-duration: 0.28s;
+    animation-iteration-count: 1;
 }
 
 a#adamGunn:hover {
@@ -261,7 +274,7 @@ ul, body {
 
 .headbar li , .icon_button li {
     display: inline-block;
-    vertical-align: middle;
+    vertical-align:middle;
 }
 
 img#umbrella_pic {
@@ -291,12 +304,20 @@ img#jacket_pic {
     font-size: 180%;
     color: var(--button-text-color);
     text-shadow: 3px 3px 0 var(--button-color-noicon);
-    text-transform: none;
 }
 
 #contacts {
     margin-bottom: 20px;
     margin-left: 0;
+}
+
+@keyframes fadein {
+    0% {
+        opacity: 0;
+    }
+    100% {
+        opacity: 1;
+    }
 }
 
 .sticky {
@@ -309,6 +330,9 @@ img#jacket_pic {
     border-bottom: 12px solid var(--button-color-noicon);
     padding-top: 20px;
     padding-inline: 0;
+    animation-name: fadein;
+    animation-duration: 0.28s;
+    animation-iteration-count: 1;
 }
 
 .navbar_hidden {
@@ -316,9 +340,18 @@ img#jacket_pic {
 }
 
 @keyframes faceAnimation {
-    0% {background-color: var(--button-color-noicon); transform: rotate(5deg);}
-    50% {background-color: var(--face-animation-color); transform: rotate(-5deg);}
-    100% {background-color: var(--button-color-noicon); transform: rotate(5deg);}
+    0% {
+        background-color: var(--button-color-noicon);
+        transform: rotate(5deg);
+    }
+    50% {
+        background-color: var(--face-animation-color);
+        transform: rotate(-5deg);
+    }
+    100% {
+        background-color: var(--button-color-noicon);
+        transform: rotate(5deg);
+    }
 }
 
 .face {
@@ -380,5 +413,16 @@ img#jacket_pic {
 #select_theme_navbar {
     position: absolute;
     margin: 10px;
-    /* text-transform: uppercase; */
+    text-transform: lowercase;
+}
+
+#sign-up-log-in-sticky {
+    right: 0px;
+    top: 10px;
+    position: absolute;
+}
+
+#select_theme_navbar_sticky {
+    left: 10px;
+    position: absolute;
 }

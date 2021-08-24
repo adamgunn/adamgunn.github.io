@@ -77,7 +77,7 @@ class Snowman {
                     <h2 class="subtitle">${this.player0_name}, avert your eyes!</h2>
                     <label for="pick_word" class="subtitle">${this.player1_name}, pick something for ${this.player0_name} to guess</label>
                     <br>
-                    <input type="text" id="pick_word" name="pick_word" required onchange=(verifyWord()) />
+                    <textarea id="pick_word" name="pick_word" required onchange=(verifyWord())></textarea>
                 </li>
                 <li>
                     <button class="submit_button" id="submit_word" onclick=(beginSnowmanGame()) disabled>Submit</button>
@@ -258,7 +258,10 @@ function beginSnowmanGame() {
     snowman_game.word = document.getElementById('pick_word').value;
     snowman_game.num_letters_left = 0;
     for (var i = 0; i < snowman_game.word.length; i++) {
-        if (!isALetter(snowman_game.word[i])) {
+        if (snowman_game.word[i] == '\n') {
+            snowman_game.displaying_word.push('\n');
+        }
+        else if (!isALetter(snowman_game.word[i])) {
             snowman_game.displaying_word.push(snowman_game.word[i] + " ");
         }
         else {

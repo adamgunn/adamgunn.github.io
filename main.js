@@ -10,18 +10,19 @@ const heading = `
                 <a class="navbar_text" id="select_theme_text">Choose Theme</a>
                 <div class="color_scheme_options">
                     <a class="option_button">Default</a><br>
-                    <a class="option_button">Edgy</a><br>
+                    <a class="option_button">Dramatic</a><br>
                     <a class="option_button">Neat</a><br>
+                    <a class="option_button">Earthy</a><br>
                     <a class="option_button">Random</a>
                 </div>
             </div>
         </div>
         <ul class="headbar">
             <li>
-                <a href=../home><img src=../images/my_face.png class="face" width="100" height="100" alt=" face" /></a>
+                <a href=../home><img src=../images/my_face.png class="face" width="85" height="85" alt=" face" /></a>
             </li>
             <li>
-                <a id="adamGunn" title="CLICK ME FOR A GOOD TIME">Adam&nbsp;Gunn</a>
+                <a id="adamGunn" title="CLICK ME FOR A GOOD TIME">Adam Gunn</a>
             </li>
         </ul>
         <ul class="navbar" id="navbar_links">
@@ -40,6 +41,18 @@ const heading = `
             </li>
         </ul>
         <ul class="navbar navbar_hidden" id="navbar_links_sticky">
+            <div class="navbar_hidden" id="select_theme_navbar_sticky">
+                <div class="color_scheme_select">
+                    <a class="navbar_text" id="select_theme_text">Choose Theme</a>
+                    <div class="color_scheme_options">
+                        <a class="option_button">Default</a><br>
+                        <a class="option_button">Dramatic</a><br>
+                        <a class="option_button">Neat</a><br>
+                        <a class="option_button">Earthy</a><br>
+                        <a class="option_button">Random</a>
+                    </div>
+                </div>
+            </div>
             <li><a href=../home class="navbar_text">Home</a></li>
             <li><a href=../about class="navbar_text">About</a></li>
             <li><a href=../portfolio class="navbar_text">Portfolio</a></li>
@@ -53,6 +66,10 @@ const heading = `
                     </div>
                 </div>
             </li>
+            <ul class="navbar navbar_hidden" id="sign-up-log-in-sticky">
+                <li><a href=../sign-up class="navbar_text">Sign up</a></li>
+                <li><a href=../log-in class="navbar_text">Log in</a></li>
+            </ul>
         </ul>
     </header>
 ` ;
@@ -147,11 +164,12 @@ const contacts = `
 // Switch 'Adam Gunn' font and sticky header at top when scrolling down
 var heading_loaded = false;
 
-var fonts = ['blenny', 'Palette Mosaic', 'rig-solid-light-halftone', 'blackcurrant-squash', 'variex', 'hobeaux-rococeaux-background', 'whomp', 'joschmi', 'xants', 'alfarn'];
+var fonts = ['franklin-gothic-condensed', 'lust-text', 'blenny', 'Palette Mosaic', 'rig-solid-light-halftone', 'blackcurrant-squash', 'variex', 'hobeaux-rococeaux-background', 'whomp', 'joschmi', 'xants', 'alfarn'];
 var color_var_names = ['--bg-color', '--text-color', '--button-color-noicon', '--button-color-icon', '--face-animation-color', '--shadow-color', '--button-text-color'];
-var option1_colors = ["#A0A083", "#EAE0CC", "#798478", "#4D6A6D", "#C9ADA1", "#222222", "white"];
-var option2_colors = ["#d6d633", "#1d1c19", "#000000", "#0d4950", "#ff4d00", "#ccbfbf", "rgb(255, 0, 0)"];
-var option3_colors = ["#0e2a79", "#e7e7e7", "#f10497", "#0adaf1", "#bb8e7a", "#076e18", "rgb(139, 52, 52)"]
+var option1_colors  = ["snow",       "#000000",      "#B22222",               "#800080",             "#FFFFE0",                "#222222",        "#FFFAFA"            ];
+var option2_colors  = ["#d6d633",    "#1d1c19",      "#000000",               "#0d4950",             "#ff4d00",                "#ccbfbf",        "rgb(255, 0, 0)"     ];
+var option3_colors  = ["#0e2a79",    "#e7e7e7",      "#f10497",               "#0adaf1",             "#bb8e7a",                "#076e18",        "rgb(139, 52, 52)"   ];
+var option4_colors  = ["#A0A083",    "#EAE0CC",      "#798478",               "#4D6A6D",             "#C9ADA1",                "#222222",        "#FFFFFF"            ];
 var color_var_names_local_storage = [];
 for (var i = 0; i < color_var_names.length; i++) {
     var current_string = color_var_names[i];
@@ -217,7 +235,17 @@ window.addEventListener('DOMContentLoaded', () => {
             }
         }
     , false);
-    theme_options[3].addEventListener("click",
+    theme_options[3].addEventListener("click", 
+        function (event) {
+            event.preventDefault();
+            let root = document.documentElement;
+            for (var i = 0; i < color_var_names.length; i++) {
+                root.style.setProperty(color_var_names[i], option4_colors[i]);
+                localStorage.setItem(color_var_names_local_storage[i], option4_colors[i]);
+            }
+        }
+    , false);
+    theme_options[4].addEventListener("click",
         function (event) {
             event.preventDefault();
             let root = document.documentElement;
@@ -229,59 +257,82 @@ window.addEventListener('DOMContentLoaded', () => {
             }
         }
     , false);
-    // theme_options[4].addEventListener("click",
-    //     function (event) {
-    //         event.preventDefault();
-    //         // document.documentElement.setAttribute('data-theme', 'option1');
-    //         let root = document.documentElement;
-    //         for (var i = 0; i < color_var_names.length; i++) {
-    //             root.style.setProperty(color_var_names[i], option1_colors[i]);
-    //             localStorage.setItem(color_var_names_local_storage[i], option1_colors[i]);
-    //         }
-    //     }
-    // , false);
-    // theme_options[5].addEventListener("click",
-    //     function (event) {
-    //         event.preventDefault();
-    //         // document.documentElement.setAttribute('data-theme', 'option2');
-    //         let root = document.documentElement;
-    //         for (var i = 0; i < color_var_names.length; i++) {
-    //             root.style.setProperty(color_var_names[i], option2_colors[i]);
-    //             localStorage.setItem(color_var_names_local_storage[i], option2_colors[i]);
-    //         }
-    //     }
-    // , false);
-    // theme_options[6].addEventListener("click",
-    //     function (event) {
-    //         event.preventDefault();
-    //         // document.documentElement.setAttribute('data-theme', 'option3');
-    //         let root = document.documentElement;
-    //         for (var i = 0; i < color_var_names.length; i++) {
-    //             root.style.setProperty(color_var_names[i], option3_colors[i]);
-    //             localStorage.setItem(color_var_names_local_storage[i], option3_colors[i]);
-    //         }
-    //     }
-    // , false);
-    // theme_options[7].addEventListener("click",
-    //     function (event) {
-    //         event.preventDefault();
-    //         let root = document.documentElement;
-    //         var random_colors = [];
-    //         for (var i = 0; i < color_var_names.length; i++) {
-    //             random_colors.push(getRandomColor());
-    //             root.style.setProperty(color_var_names[i], random_colors[i]);
-    //             localStorage.setItem(color_var_names_local_storage[i], random_colors[i]);
-    //         }
-    //     }
-    // , false);
+    theme_options[5].addEventListener("click",
+        function (event) {
+            event.preventDefault();
+            // document.documentElement.setAttribute('data-theme', 'option1');
+            let root = document.documentElement;
+            for (var i = 0; i < color_var_names.length; i++) {
+                root.style.setProperty(color_var_names[i], option1_colors[i]);
+                localStorage.setItem(color_var_names_local_storage[i], option1_colors[i]);
+            }
+        }
+    , false);
+    theme_options[6].addEventListener("click",
+        function (event) {
+            event.preventDefault();
+            // document.documentElement.setAttribute('data-theme', 'option2');
+            let root = document.documentElement;
+            for (var i = 0; i < color_var_names.length; i++) {
+                root.style.setProperty(color_var_names[i], option2_colors[i]);
+                localStorage.setItem(color_var_names_local_storage[i], option2_colors[i]);
+            }
+        }
+    , false);
+    theme_options[7].addEventListener("click",
+        function (event) {
+            event.preventDefault();
+            // document.documentElement.setAttribute('data-theme', 'option3');
+            let root = document.documentElement;
+            for (var i = 0; i < color_var_names.length; i++) {
+                root.style.setProperty(color_var_names[i], option3_colors[i]);
+                localStorage.setItem(color_var_names_local_storage[i], option3_colors[i]);
+            }
+        }
+    , false);
+    theme_options[8].addEventListener("click",
+        function (event) {
+            event.preventDefault();
+            // document.documentElement.setAttribute('data-theme', 'option3');
+            let root = document.documentElement;
+            for (var i = 0; i < color_var_names.length; i++) {
+                root.style.setProperty(color_var_names[i], option4_colors[i]);
+                localStorage.setItem(color_var_names_local_storage[i], option4_colors[i]);
+            }
+        }
+    , false);
+    theme_options[9].addEventListener("click",
+        function (event) {
+            event.preventDefault();
+            let root = document.documentElement;
+            var random_colors = [];
+            for (var i = 0; i < color_var_names.length; i++) {
+                random_colors.push(getRandomColor());
+                root.style.setProperty(color_var_names[i], random_colors[i]);
+                localStorage.setItem(color_var_names_local_storage[i], random_colors[i]);
+            }
+        }
+    , false);
     var my_name = document.getElementById("adamGunn");
     var get_in_touch = document.getElementById("get-in-touch");
     if (saved_font) {
         get_in_touch.style.fontFamily = my_name.style.fontFamily = saved_font;
+        my_name.classList.add('switching_font');
+        get_in_touch.classList.add('switching_font');
+        setTimeout(function() {
+            my_name.classList.remove('switching_font');
+            get_in_touch.classList.remove('switching_font');
+        }, 280);
     }
     else {
         chosen_font = fonts[Math.floor(Math.random() * fonts.length)];
         get_in_touch.style.fontFamily = my_name.style.fontFamily = chosen_font;
+        my_name.classList.add('switching_font');
+        get_in_touch.classList.add('switching_font');
+        setTimeout(function() {
+            my_name.classList.remove('switching_font');
+            get_in_touch.classList.remove('switching_font');
+        }, 280);
         localStorage.setItem('name_font', chosen_font);
     }
     my_name.addEventListener("click",
@@ -289,6 +340,12 @@ window.addEventListener('DOMContentLoaded', () => {
             event.preventDefault();
             chosen_font = fonts[Math.floor(Math.random() * fonts.length)];
             get_in_touch.style.fontFamily = my_name.style.fontFamily = chosen_font;
+            my_name.classList.add('switching_font');
+            get_in_touch.classList.add('switching_font');
+            setTimeout(function() {
+                my_name.classList.remove('switching_font');
+                get_in_touch.classList.remove('switching_font');
+            }, 280);
             localStorage.setItem('name_font', chosen_font);
         }
     , false);
@@ -301,15 +358,21 @@ window.onscroll = function() {stickyHeader()};
 function stickyHeader() {
     if (heading_loaded) {
         header = document.getElementById("navbar_links_sticky");
+        change_theme = document.getElementById("select_theme_navbar_sticky")
+        sign_up_log_in = document.getElementById("sign-up-log-in-sticky");
         sticky = header.offsetTop;
-        sticky += 130;
+        sticky += 200;
         if (window.pageYOffset > (sticky)) {
             header.classList.add("sticky");
             header.classList.remove("navbar_hidden");
+            change_theme.classList.remove("navbar_hidden");
+            sign_up_log_in.classList.remove("navbar_hidden");
         }
         else {
             header.classList.remove("sticky");
             header.classList.add("navbar_hidden");
+            change_theme.classList.add("navbar_hidden");
+            sign_up_log_in.classList.add("navbar_hidden");
         }
     }
 }

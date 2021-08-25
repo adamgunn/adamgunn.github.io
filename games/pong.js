@@ -77,6 +77,7 @@ function printKeysDown() {
 }
 
 window.addEventListener('keydown', function(e) {
+    e.preventDefault();
     switch (e.key) {
         case 'w':
             keysPressed['w'] = true;
@@ -96,6 +97,7 @@ window.addEventListener('keydown', function(e) {
 }, false);
 
 window.addEventListener('keyup', function(e) {
+    e.preventDefault();
     switch (e.key) {
         case 'w':
             keysPressed['w'] = false;

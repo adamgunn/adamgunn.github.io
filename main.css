@@ -1,11 +1,11 @@
 :root {
-    --bg-color: #A0A083;
-    --text-color: #EAE0CC;
-    --button-color-noicon: #798478;
-    --button-color-icon: #4D6A6D;
-    --face-animation-color: #C9ADA1;
+    --bg-color: #FFFAFA;
+    --text-color: #000000;
+    --button-color-noicon: #B22222;
+    --button-color-icon: #800080;
+    --face-animation-color: #FFFFE0;
     --shadow-color: #222222;
-    --button-text-color: white;
+    --button-text-color: #FFFAFA;
 }
 
 html {
@@ -312,10 +312,10 @@ img#jacket_pic {
 }
 
 @keyframes fadein {
-    0% {
+    from {
         opacity: 0;
     }
-    100% {
+    to {
         opacity: 1;
     }
 }

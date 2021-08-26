@@ -4,6 +4,84 @@ var css_width = width;
 const height = canvas.height = width / 16 * 9;
 var css_height = height;
 const ctx = canvas.getContext('2d');
+class Ball {
+    ballWidth = 10;
+    ballSpeed = 10;
+    ballDelta = this.ballSpeed / css_height * height;
+
+    // 1: up-right
+    // 2: down-right
+    // 3: down-left
+    // 4: up-left
+    ballDir = Math.ceil(Math.random() * 4);
+
+    ballCoords = {
+        x: height / 2,
+        y: width / 2
+    }
+
+    bounce() {
+        switch (this.ballDir) {
+            case 1:
+                this.ballDir = 2;
+                break;
+            case 2:
+                this.ballDir = 3;
+                break;
+            case 3:
+                this.ballDir = 4;
+                break;
+            case 4:
+                this.ballDir = 1;
+                break;
+            default:
+                break;
+        }
+    }
+
+    atWall() {
+        console.log(this.ballDir);
+        return (this.ballCoords.y < (this.ballWidth)) ||
+               (this.ballCoords.y > (width - this.ballWidth)) || 
+               (this.ballCoords.x < this.ballWidth) || 
+               (this.ballCoords.x > (height - this.ballWidth));
+    }
+
+    moveBall() {
+        if (this.atWall()) {
+            this.bounce();
+        }
+        switch (this.ballDir) {
+            case 1:
+                this.ballCoords.x += this.ballDelta;
+                this.ballCoords.y -= this.ballDelta;
+                break;
+            case 2:
+                this.ballCoords.x += this.ballDelta;
+                this.ballCoords.y += this.ballDelta;
+                break;
+            case 3:
+                this.ballCoords.x -= this.ballDelta;
+                this.ballCoords.y += this.ballDelta;
+                break;
+            case 4:
+                this.ballCoords.x += this.ballDelta;
+                this.ballCoords.y -= this.ballDelta;
+                break;
+            default:
+                break;
+        }
+    }
+
+    get ballCoords() {
+        return this.ballCoords;
+    }
+
+    get ballWidth() {
+        return this.ballWidth;
+    }
+}
+var pong_ball = new Ball();
 const paddleWidth = 10;
 const paddleHeight = 100;
 const margin = 10;
@@ -38,10 +116,24 @@ function drawPaddles(yL, yR) {
     ctx.fillRect(width - (2 * margin), (yR) - (paddleHeight / 2), paddleWidth, paddleHeight);
 }
 
+function drawBall(x, y, ballWidth) {
+    ctx.fillStyle = 'rgb(255, 255, 255)';
+    var canvas_y = (x - (ballWidth / 2));
+    var canvas_x = (y - (ballWidth / 2));
+    
+    ctx.fillRect(canvas_x, canvas_y, ballWidth, ballWidth);
+}
+
 function drawPong(yL, yR) {
     // console.log('did the window change');
     updateCanvasWidth();
     drawPaddles(yL, yR);
+    var coords = pong_ball.ballCoords;
+    var x = coords.x;
+    var y = coords.y;
+    console.log(x + ', ' + y);
+    var width = pong_ball.ballWidth;
+    drawBall(x, y, width);
 }
 
 // canvas.addEventListener('mousemove', function(e) {
@@ -118,6 +210,7 @@ window.addEventListener('keyup', function(e) {
 
 setInterval(function() {
     updatePaddlePos();
+    pong_ball.moveBall();
 }, 20);
 
 setInterval(function() {

@@ -5,7 +5,7 @@ const height = canvas.height = width / 16 * 9;
 var css_height = height;
 const ctx = canvas.getContext('2d');
 class Ball {
-    ballWidth = 10;
+    ballWidth = 20;
     ballSpeed = 7;
     ballDelta = this.ballSpeed / css_height * height;
 
@@ -92,14 +92,14 @@ class Ball {
             console.log("passed the left");
             rscore++;
             this.waiting = true;
+            currentYL = height/2;
+            currentYR = height/2;
+            this.ballDir = Math.ceil(Math.random() * 4);
+            this.ballCoords = {
+                x: height / 2,
+                y: width / 2
+            };
             setTimeout(function() {
-                currentYL = height/2;
-                currentYR = height/2;
-                this.ballDir = Math.ceil(Math.random() * 4);
-                this.ballCoords = {
-                    x: height / 2,
-                    y: width / 2
-                };
                 console.log("we made it");
                 this.waiting = false;
             }, 5000);
@@ -108,14 +108,14 @@ class Ball {
             console.log("passed the right");
             lscore++;
             this.waiting = true;
+            currentYL = height/2;
+            currentYR = height/2;
+            this.ballDir = Math.ceil(Math.random() * 4);
+            this.ballCoords = {
+                x: height / 2,
+                y: width / 2
+            };
             setTimeout(function() {
-                currentYL = height/2;
-                currentYR = height/2;
-                this.ballDir = Math.ceil(Math.random() * 4);
-                this.ballCoords = {
-                    x: height / 2,
-                    y: width / 2
-                };
                 console.log("we made it");
                 this.waiting = false;
             }, 5000);
@@ -162,8 +162,8 @@ class Ball {
     }
 }
 var pong_ball = new Ball();
-const paddleWidth = 10;
-const paddleHeight = 100;
+const paddleWidth = 20;
+const paddleHeight = 200;
 const margin = 10;
 var currentYL = height/2;
 var currentYR = height/2;
@@ -195,7 +195,7 @@ function drawPaddles(yL, yR) {
     ctx.fillRect(0, 0, width, height);
     ctx.fillStyle = 'rgb(255, 255, 255)';
     ctx.fillRect(margin, (yL) - (paddleHeight / 2), paddleWidth, paddleHeight);
-    ctx.fillRect(width - (2 * margin), (yR) - (paddleHeight / 2), paddleWidth, paddleHeight);
+    ctx.fillRect(width - (margin + paddleWidth), (yR) - (paddleHeight / 2), paddleWidth, paddleHeight);
 }
 
 function drawBall(x, y, ballWidth) {
@@ -204,6 +204,9 @@ function drawBall(x, y, ballWidth) {
     var canvas_y = (y - (ballWidth / 2));
     if (!pong_ball.waiting) {
         ctx.fillRect(canvas_x, canvas_y, ballWidth, ballWidth);
+    }
+    else {
+        console.log("still waiting");
     }
 }
 
@@ -291,12 +294,12 @@ window.addEventListener('keyup', function(e) {
     }
 }, false);
 
-setInterval(function() {
+var updatingPaddles = setInterval(function() {
     updatePaddlePos();
     pong_ball.moveBall();
 }, 20);
 
-setInterval(function() {
+var drawingPong = setInterval(function() {
     drawPong(currentYL, currentYR);
 }, 1000/144);
 

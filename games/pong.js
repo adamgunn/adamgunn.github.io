@@ -6,7 +6,7 @@ var css_height = height;
 const ctx = canvas.getContext('2d');
 class Ball {
     ballWidth = 10;
-    ballSpeed = 10;
+    ballSpeed = 7;
     ballDelta = this.ballSpeed / css_height * height;
 
     // 1: up-right
@@ -14,62 +14,138 @@ class Ball {
     // 3: down-left
     // 4: up-left
     ballDir = Math.ceil(Math.random() * 4);
-
+    waiting = false;
+    // 0: neither
+    // 1: left paddle
+    // 2: right paddle
+    touchingPaddle = 0;
     ballCoords = {
         x: height / 2,
         y: width / 2
-    }
+    };
 
-    bounce() {
-        switch (this.ballDir) {
-            case 1:
-                this.ballDir = 2;
-                break;
-            case 2:
-                this.ballDir = 3;
-                break;
-            case 3:
-                this.ballDir = 4;
-                break;
-            case 4:
-                this.ballDir = 1;
-                break;
-            default:
-                break;
+    checkIfTouching() {
+        if (this.ballCoords.x > width - ((this.ballWidth / 2) + paddleWidth + margin) &&
+            this.ballCoords.y < currentYR + (paddleHeight / 2) &&
+            this.ballCoords.y > currentYR - (paddleHeight / 2)) {
+            console.log("right paddle");
+            switch(this.ballDir) {
+                case 2:
+                    this.ballDir = 3;
+                    break;
+                case 1:
+                    this.ballDir = 4;
+                    break;
+                default:
+                    console.log("somethings wrong");
+                    break;
+            }
+        }
+        else if (this.ballCoords.x < ((this.ballWidth / 2) + paddleWidth + margin) &&
+                 this.ballCoords.y < currentYL + (paddleHeight / 2) &&
+                 this.ballCoords.y > currentYL - (paddleHeight / 2)) {
+            console.log("left paddle");
+            switch(this.ballDir) {
+                case 4:
+                    this.ballDir = 1;
+                    break;
+                case 3:
+                    this.ballDir = 2;
+                    break;
+                default:
+                    console.log("somethings wrong");
+                    break;
+            }       
         }
     }
 
-    atWall() {
-        console.log(this.ballDir);
-        return (this.ballCoords.y < (this.ballWidth)) ||
-               (this.ballCoords.y > (width - this.ballWidth)) || 
-               (this.ballCoords.x < this.ballWidth) || 
-               (this.ballCoords.x > (height - this.ballWidth));
+    checkWall() {
+        if (this.ballCoords.y < (this.ballWidth)) {
+            console.log("top wall");
+            switch (this.ballDir) {
+                case 1:
+                    this.ballDir = 2;
+                    break;
+                case 4:
+                    this.ballDir = 3;
+                    break;
+                default:
+                    console.log("somethings wrong");
+                    break;
+            }
+        }
+        else if (this.ballCoords.y > (height - this.ballWidth)) {
+            console.log("bottom wall");
+            switch(this.ballDir) {
+                case 2:
+                    this.ballDir = 1;
+                    break;
+                case 3:
+                    this.ballDir = 4;
+                    break;
+                default:
+                    console.log("somethings wrong");
+                    break;
+            }
+        }
+        else if (this.ballCoords.x < this.ballWidth) {
+            console.log("passed the left");
+            rscore++;
+            this.waiting = true;
+            setTimeout(function() {
+                currentYL = height/2;
+                currentYR = height/2;
+                this.ballDir = Math.ceil(Math.random() * 4);
+                this.ballCoords = {
+                    x: height / 2,
+                    y: width / 2
+                };
+                console.log("we made it");
+                this.waiting = false;
+            }, 5000);
+        }
+        else if (this.ballCoords.x > (width - this.ballWidth)) {
+            console.log("passed the right");
+            lscore++;
+            this.waiting = true;
+            setTimeout(function() {
+                currentYL = height/2;
+                currentYR = height/2;
+                this.ballDir = Math.ceil(Math.random() * 4);
+                this.ballCoords = {
+                    x: height / 2,
+                    y: width / 2
+                };
+                console.log("we made it");
+                this.waiting = false;
+            }, 5000);
+        }
     }
 
     moveBall() {
-        if (this.atWall()) {
-            this.bounce();
-        }
-        switch (this.ballDir) {
-            case 1:
-                this.ballCoords.x += this.ballDelta;
-                this.ballCoords.y -= this.ballDelta;
-                break;
-            case 2:
-                this.ballCoords.x += this.ballDelta;
-                this.ballCoords.y += this.ballDelta;
-                break;
-            case 3:
-                this.ballCoords.x -= this.ballDelta;
-                this.ballCoords.y += this.ballDelta;
-                break;
-            case 4:
-                this.ballCoords.x += this.ballDelta;
-                this.ballCoords.y -= this.ballDelta;
-                break;
-            default:
-                break;
+        if (!this.waiting) {
+            this.checkIfTouching();
+            this.checkWall();
+            switch (this.ballDir) {
+                case 1:
+                    this.ballCoords.x += this.ballDelta;
+                    this.ballCoords.y -= this.ballDelta;
+                    break;
+                case 2:
+                    this.ballCoords.x += this.ballDelta;
+                    this.ballCoords.y += this.ballDelta;
+                    break;
+                case 3:
+                    this.ballCoords.x -= this.ballDelta;
+                    this.ballCoords.y += this.ballDelta;
+                    break;
+                case 4:
+                    this.ballCoords.x -= this.ballDelta;
+                    this.ballCoords.y -= this.ballDelta;
+                    break;
+                default:
+                    break;
+            }
         }
     }
 
@@ -80,6 +156,10 @@ class Ball {
     get ballWidth() {
         return this.ballWidth;
     }
+
+    get waiting() {
+        return this.waiting;
+    }
 }
 var pong_ball = new Ball();
 const paddleWidth = 10;
@@ -88,6 +168,8 @@ const margin = 10;
 var currentYL = height/2;
 var currentYR = height/2;
 const height_incr = 10;
+var lscore = 0;
+var rscore = 0;
 var keysPressed = {
     'w': false,
     's': false,
@@ -118,10 +200,11 @@ function drawPaddles(yL, yR) {
 
 function drawBall(x, y, ballWidth) {
     ctx.fillStyle = 'rgb(255, 255, 255)';
-    var canvas_y = (x - (ballWidth / 2));
-    var canvas_x = (y - (ballWidth / 2));
-    
-    ctx.fillRect(canvas_x, canvas_y, ballWidth, ballWidth);
+    var canvas_x = (x - (ballWidth / 2));
+    var canvas_y = (y - (ballWidth / 2));
+    if (!pong_ball.waiting) {
+        ctx.fillRect(canvas_x, canvas_y, ballWidth, ballWidth);
+    }
 }
 
 function drawPong(yL, yR) {
@@ -131,7 +214,7 @@ function drawPong(yL, yR) {
     var coords = pong_ball.ballCoords;
     var x = coords.x;
     var y = coords.y;
-    console.log(x + ', ' + y);
+    // console.log(x + ', ' + y);
     var width = pong_ball.ballWidth;
     drawBall(x, y, width);
 }

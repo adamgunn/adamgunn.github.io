@@ -6,146 +6,95 @@ var css_height = height;
 const ctx = canvas.getContext('2d');
 class Ball {
     ballWidth = 20;
-    ballSpeed = 7;
+    ballSpeed = 15;
     ballDelta = this.ballSpeed / css_height * height;
-
-    // 1: up-right
-    // 2: down-right
-    // 3: down-left
-    // 4: up-left
-    ballDir = Math.ceil(Math.random() * 4);
+    speeds = [-1, 1];
+    ballSpeedX = this.ballDelta * this.speeds[(Math.floor(Math.random() * 2))];
+    ballSpeedY = this.ballDelta * this.speeds[(Math.floor(Math.random() * 2))];
     waiting = false;
-    // 0: neither
-    // 1: left paddle
-    // 2: right paddle
-    touchingPaddle = 0;
+    countdown = 3;
     ballCoords = {
-        x: height / 2,
-        y: width / 2
+        x: width / 2,
+        y: height / 2
     };
 
     checkIfTouching() {
         if (this.ballCoords.x > width - ((this.ballWidth / 2) + paddleWidth + margin) &&
-            this.ballCoords.y < currentYR + (paddleHeight / 2) &&
-            this.ballCoords.y > currentYR - (paddleHeight / 2)) {
+            this.ballCoords.y <= currentYR + (paddleHeight / 2) &&
+            this.ballCoords.y >= currentYR - (paddleHeight / 2)) {
             console.log("right paddle");
-            switch(this.ballDir) {
-                case 2:
-                    this.ballDir = 3;
-                    break;
-                case 1:
-                    this.ballDir = 4;
-                    break;
-                default:
-                    console.log("somethings wrong");
-                    break;
-            }
+            this.ballSpeedX *= -1;
+            this.ballSpeedY = ((this.ballCoords.y - currentYR) / (paddleHeight / 2) * this.ballDelta);
         }
         else if (this.ballCoords.x < ((this.ballWidth / 2) + paddleWidth + margin) &&
-                 this.ballCoords.y < currentYL + (paddleHeight / 2) &&
-                 this.ballCoords.y > currentYL - (paddleHeight / 2)) {
+                 this.ballCoords.y <= currentYL + (paddleHeight / 2) &&
+                 this.ballCoords.y >= currentYL - (paddleHeight / 2)) {
             console.log("left paddle");
-            switch(this.ballDir) {
-                case 4:
-                    this.ballDir = 1;
-                    break;
-                case 3:
-                    this.ballDir = 2;
-                    break;
-                default:
-                    console.log("somethings wrong");
-                    break;
-            }       
+            this.ballSpeedX *= -1;
+            this.ballSpeedY = ((this.ballCoords.y - currentYL) / (paddleHeight / 2) * this.ballDelta);
         }
+    }
+
+    countingDown() {
+        this.waiting = true;
+        this.countdown = 3;
+        setTimeout(function() {
+            pong_ball.countdown = 2;
+        }, 1000);
+        setTimeout(function() {
+            pong_ball.countdown = 1;
+        }, 2000);
+        setTimeout(function() {
+            pong_ball.countdown = "Go!";
+        }, 3000);
+        setTimeout(function() {
+            pong_ball.waiting = false;
+        }, 4000);
     }
 
     checkWall() {
         if (this.ballCoords.y < (this.ballWidth)) {
             console.log("top wall");
-            switch (this.ballDir) {
-                case 1:
-                    this.ballDir = 2;
-                    break;
-                case 4:
-                    this.ballDir = 3;
-                    break;
-                default:
-                    console.log("somethings wrong");
-                    break;
-            }
+            this.ballSpeedY *= -1;  
         }
         else if (this.ballCoords.y > (height - this.ballWidth)) {
             console.log("bottom wall");
-            switch(this.ballDir) {
-                case 2:
-                    this.ballDir = 1;
-                    break;
-                case 3:
-                    this.ballDir = 4;
-                    break;
-                default:
-                    console.log("somethings wrong");
-                    break;
-            }
+            this.ballSpeedY *= -1;  
         }
         else if (this.ballCoords.x < this.ballWidth) {
             console.log("passed the left");
             rscore++;
-            this.waiting = true;
             currentYL = height/2;
             currentYR = height/2;
-            this.ballDir = Math.ceil(Math.random() * 4);
+            this.ballSpeedX = this.ballDelta * this.speeds[(Math.floor(Math.random() * 2))];
+            this.ballSpeedY = this.ballDelta * this.speeds[(Math.floor(Math.random() * 2))];
             this.ballCoords = {
-                x: height / 2,
-                y: width / 2
+                x: width / 2,
+                y: height / 2
             };
-            setTimeout(function() {
-                console.log("we made it");
-                this.waiting = false;
-            }, 5000);
+            this.countingDown();
         }
         else if (this.ballCoords.x > (width - this.ballWidth)) {
             console.log("passed the right");
             lscore++;
-            this.waiting = true;
-            currentYL = height/2;
-            currentYR = height/2;
-            this.ballDir = Math.ceil(Math.random() * 4);
+            currentYL = height / 2;
+            currentYR = height / 2;
+            this.ballSpeedX = this.ballDelta * this.speeds[(Math.floor(Math.random() * 2))];
+            this.ballSpeedY = this.ballDelta * this.speeds[(Math.floor(Math.random() * 2))];
             this.ballCoords = {
-                x: height / 2,
-                y: width / 2
+                x: width / 2,
+                y: height / 2
             };
-            setTimeout(function() {
-                console.log("we made it");
-                this.waiting = false;
-            }, 5000);
+            this.countingDown();
         }
     }
 
     moveBall() {
-        if (!this.waiting) {
+        if (!this.waiting && !paused) {
             this.checkIfTouching();
             this.checkWall();
-            switch (this.ballDir) {
-                case 1:
-                    this.ballCoords.x += this.ballDelta;
-                    this.ballCoords.y -= this.ballDelta;
-                    break;
-                case 2:
-                    this.ballCoords.x += this.ballDelta;
-                    this.ballCoords.y += this.ballDelta;
-                    break;
-                case 3:
-                    this.ballCoords.x -= this.ballDelta;
-                    this.ballCoords.y += this.ballDelta;
-                    break;
-                case 4:
-                    this.ballCoords.x -= this.ballDelta;
-                    this.ballCoords.y -= this.ballDelta;
-                    break;
-                default:
-                    break;
-            }
+            this.ballCoords.x += this.ballSpeedX;
+            this.ballCoords.y += this.ballSpeedY;
         }
     }
 
@@ -164,22 +113,42 @@ class Ball {
 var pong_ball = new Ball();
 const paddleWidth = 20;
 const paddleHeight = 200;
-const margin = 10;
+const margin = paddleWidth;
 var currentYL = height/2;
 var currentYR = height/2;
-const height_incr = 10;
+const height_incr = 20;
+const winning_pts = 5;
+var game_started = false;
 var lscore = 0;
 var rscore = 0;
+var paused = false;
 var keysPressed = {
     'w': false,
     's': false,
     'up': false,
     'dn': false
 };
+drawStartScreen();
 
 function getMouseY(e) {
     var rect = canvas.getBoundingClientRect();
     return (e.clientY - rect.top) / css_height * height;
+}
+
+function haveAWinner() {
+    if (lscore >= winning_pts) {
+        drawBlank();
+        game_started = false;
+        drawWinner("l");
+        return true;
+    }
+    else if (rscore >= winning_pts) {
+        drawBlank();
+        game_started = false;
+        drawWinner("r");
+        return true;
+    }
+    return false;
 }
 
 function updateCanvasWidth() {
@@ -190,36 +159,101 @@ function updateCanvasWidth() {
     css_height = (new_width / 16 * 9);
 }
 
-function drawPaddles(yL, yR) {
-    ctx.fillStyle = 'rgb(0,0,0)';
+function drawBlank() {
+    ctx.fillStyle = getComputedStyle(document.documentElement).getPropertyValue('--text-color');
     ctx.fillRect(0, 0, width, height);
-    ctx.fillStyle = 'rgb(255, 255, 255)';
+}
+
+function drawWinner(winner) {
+    switch (winner) {
+        case "l":
+            console.log("p1 won");
+            ctx.fillStyle = getComputedStyle(document.documentElement).getPropertyValue('--button-text-color');
+            ctx.font = "90px monospace";
+            ctx.textAlign = "center";
+            ctx.fillText("PLAYER 1 WINS", width / 2, (height / 2) - 50);
+            ctx.fillText("CLICK TO PLAY AGAIN", width / 2, (height / 2) + 50);
+            game_started = false;
+            break;
+        case "r":
+            console.log("p2 won");
+            ctx.fillStyle = getComputedStyle(document.documentElement).getPropertyValue('--button-text-color');
+            ctx.font = "90px monospace";
+            ctx.textAlign = "center";
+            ctx.fillText("PLAYER 2 WINS", width / 2, (height / 2) - 50);
+            ctx.fillText("CLICK TO PLAY AGAIN", width / 2, (height / 2) + 50);
+            game_started = false;
+            break;
+        default:
+            break;
+    }
+}
+
+function drawPaddles(yL, yR) {
+    drawBlank();
+    ctx.fillStyle = getComputedStyle(document.documentElement).getPropertyValue('--button-text-color');
     ctx.fillRect(margin, (yL) - (paddleHeight / 2), paddleWidth, paddleHeight);
     ctx.fillRect(width - (margin + paddleWidth), (yR) - (paddleHeight / 2), paddleWidth, paddleHeight);
 }
 
 function drawBall(x, y, ballWidth) {
-    ctx.fillStyle = 'rgb(255, 255, 255)';
-    var canvas_x = (x - (ballWidth / 2));
+    ctx.fillStyle = getComputedStyle(document.documentElement).getPropertyValue('--button-text-color');
+    ctx.textAlign = "center";
+    var canvas_x = (x - (ballWidth / 2)); 
     var canvas_y = (y - (ballWidth / 2));
     if (!pong_ball.waiting) {
         ctx.fillRect(canvas_x, canvas_y, ballWidth, ballWidth);
     }
     else {
-        console.log("still waiting");
+        ctx.font = '70px monospace';
+        ctx.fillText(pong_ball.countdown, (width / 2), height / 2);
+    }
+    if (paused) {
+        ctx.textAlign = "start";
+        ctx.font = '30px monospace';
+        ctx.fillText("Paused", 15, 40);
     }
 }
 
-function drawPong(yL, yR) {
+function drawScores() {
+    ctx.font = '30px monospace';
+    ctx.textAlign = "center";
+    ctx.fillText(lscore + " - " + rscore, (width / 2), 40); 
+}
+
+function drawStartScreen() {
+    drawBlank();
+    ctx.fillStyle = getComputedStyle(document.documentElement).getPropertyValue('--button-text-color');
+    ctx.font = "90px monospace";
+    ctx.textAlign = "center";
+    console.log("printing");
+    ctx.fillText("CLICK TO PLAY", width / 2, height / 2);
+}
+
+function drawPong(yL, yR) {  
     // console.log('did the window change');
     updateCanvasWidth();
-    drawPaddles(yL, yR);
-    var coords = pong_ball.ballCoords;
-    var x = coords.x;
-    var y = coords.y;
-    // console.log(x + ', ' + y);
-    var width = pong_ball.ballWidth;
-    drawBall(x, y, width);
+
+    if (game_started) {
+        if (!paused) {
+            canvas.style.cursor = "none";
+        }
+        else {
+            canvas.style.cursor = "default";
+        }
+        if (!haveAWinner()) {
+            drawPaddles(yL, yR);
+            var coords = pong_ball.ballCoords;
+            var x = coords.x;
+            var y = coords.y;
+            // printKeysDown();
+            var width = pong_ball.ballWidth;
+            drawBall(x, y, width);
+            drawScores();
+        }
+    } else {
+        canvas.style.cursor = "default";
+    }
 }
 
 // canvas.addEventListener('mousemove', function(e) {
@@ -232,18 +266,20 @@ function drawPong(yL, yR) {
 
 function updatePaddlePos() {
     var dY = height_incr / css_height * height;
-    if (keysPressed['w'] && !keysPressed['s'] && currentYL > (paddleHeight / 2)) {
-        currentYL -= dY;
-    }
-    else if (keysPressed['s'] && !keysPressed['w'] && currentYL < (height - (paddleHeight / 2))) {
-        currentYL += dY;
-    }
-
-    if (keysPressed['up'] && !keysPressed['dn'] && currentYR > (paddleHeight / 2)) {
-        currentYR -= dY;
-    }
-    else if (keysPressed['dn'] && !keysPressed['up'] && currentYR < (height - (paddleHeight / 2))) {
-        currentYR += dY;
+    if (!pong_ball.waiting && !paused) {
+        if (keysPressed['w'] && !keysPressed['s'] && currentYL > (paddleHeight / 2)) {
+            currentYL -= dY;
+        }
+        else if (keysPressed['s'] && !keysPressed['w'] && currentYL < (height - (paddleHeight / 2))) {
+            currentYL += dY;
+        }
+    
+        if (keysPressed['up'] && !keysPressed['dn'] && currentYR > (paddleHeight / 2)) {
+            currentYR -= dY;
+        }
+        else if (keysPressed['dn'] && !keysPressed['up'] && currentYR < (height - (paddleHeight / 2))) {
+            currentYR += dY;
+        }
     }
 }
 
@@ -268,6 +304,12 @@ window.addEventListener('keydown', function(e) {
             break;
         case 'ArrowDown':
             keysPressed['dn'] = true;
+            break;
+        case ' ':
+        case 'Enter':
+            if (!pong_ball.waiting) {
+                paused = !paused;
+            }
             break;
         default:
             break;
@@ -294,9 +336,35 @@ window.addEventListener('keyup', function(e) {
     }
 }, false);
 
+
+canvas.addEventListener("click", function(e) {
+    e.preventDefault();
+    if (!game_started) {
+        keysPressed = {
+            'w': false,
+            's': false,
+            'up': false,
+            'dn': false
+        };
+        pong_ball.ballCoords = {
+            x: width / 2,
+            y: height / 2
+        };
+        pong_ball.ballSpeedX = pong_ball.ballDelta * pong_ball.speeds[(Math.floor(Math.random() * 2))];
+        pong_ball.ballSpeedY = pong_ball.ballDelta * pong_ball.speeds[(Math.floor(Math.random() * 2))];
+        paused = false;
+        lscore = rscore = 0;
+        currentYL = currentYR = height / 2;
+        game_started = true;
+        pong_ball.countingDown();
+    }
+}, false);
+
 var updatingPaddles = setInterval(function() {
-    updatePaddlePos();
-    pong_ball.moveBall();
+    if (game_started) {
+        updatePaddlePos();
+        pong_ball.moveBall();
+    }
 }, 20);
 
 var drawingPong = setInterval(function() {

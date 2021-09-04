@@ -32,7 +32,7 @@ const heading = `
             <li><a href=../resume class="navbar_text">Resum&eacute;</a></li>
             <li id="select_games_navbar">
                 <div class="games_select">
-                    <a href="../games" class="navbar_text" id="select_game_text">Games</a>
+                    <a class="navbar_text" id="select_game_text">Games</a>
                     <div class="game_options">
                         <a href="../games/snowman.html" class="game_button">Snowman</a>
                         <a href="../games/pong.html" class="game_button">Pong</a>
@@ -59,7 +59,7 @@ const heading = `
             <li><a href=../resume class="navbar_text">Resum&eacute;</a></li>
             <li id="select_games_navbar">
                 <div class="games_select">
-                    <a href="../games" class="navbar_text" id="select_game_text">Games</a>
+                    <a class="navbar_text" id="select_game_text">Games</a>
                     <div class="game_options">
                         <a href="../games/snowman.html" class="game_button">Snowman</a>
                         <a href="../games/pong.html" class="game_button">Pong</a>

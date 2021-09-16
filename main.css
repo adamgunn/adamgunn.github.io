@@ -89,7 +89,7 @@ body > * {
 }
 
 .pong-game {
-    margin: 30px;
+    margin: 0px 30px 30px 30px;
 }
 
 #sign-up-log-in, #sign-up-log-in-sticky {

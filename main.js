@@ -153,18 +153,12 @@ const contacts = `
                 <!-- <li class="icon_button_text"> Linkedin</li> -->
             </ul></a>
         </li>
-        <!-- <li><a href="https://discordapp.com/users/ag!#1000" target="_blank" rel="noopener noreferrer">
-            <ul class="icon_button">
-                <li><img src=../images/discord-icon.svg class="icon" id= "discord_icon" width="32" height="32" alt="Discord icon"></li>
-                <li class="icon_button_text"> Discord</li>
-            </ul></a>
-        </li> -->
     </ul>
 `;
 // Switch 'Adam Gunn' font and sticky header at top when scrolling down
 var heading_loaded = false;
 
-var fonts = ['franklin-gothic-condensed', 'lust-text', 'blenny', 'Palette Mosaic', 'rig-solid-light-halftone', 'blackcurrant-squash', 'variex', 'hobeaux-rococeaux-background', 'whomp', 'joschmi', 'xants', 'alfarn'];
+var fonts = ['franklin-gothic-condensed', 'lust-text', 'Palette Mosaic', 'blackcurrant-squash', 'variex', 'hobeaux-rococeaux-background', 'joschmi', 'xants'];
 var color_var_names = ['--bg-color', '--text-color', '--button-color-noicon', '--button-color-icon', '--face-animation-color', '--shadow-color', '--button-text-color'];
 var option1_colors  = ["#FFFAFA",    "#000000",      "#B22222",               "#800080",             "#FFFFE0",                "#222222",        "#FFFAFA"            ];
 var option2_colors  = ["#d6d633",    "#1d1c19",      "#000000",               "#0d4950",             "#ff4d00",                "#ccbfbf",        "rgb(255, 0, 0)"     ];

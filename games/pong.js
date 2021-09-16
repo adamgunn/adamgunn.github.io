@@ -128,7 +128,12 @@ var keysPressed = {
     'up': false,
     'dn': false
 };
-drawStartScreen();
+const fontname = 'share-tech-mono';
+const sharetechmono = new FontFace(fontname, 'url(../fonts/sharetechmono-regular.ttf)');
+sharetechmono.load().then(function() {
+    document.fonts.add(sharetechmono);
+    drawStartScreen();
+});
 
 function getMouseY(e) {
     var rect = canvas.getBoundingClientRect();
@@ -136,13 +141,13 @@ function getMouseY(e) {
 }
 
 function haveAWinner() {
-    if (lscore >= winning_pts) {
+    if (lscore >= winning_pts && (lscore - rscore >= 2)) {
         drawBlank();
         game_started = false;
         drawWinner("l");
         return true;
     }
-    else if (rscore >= winning_pts) {
+    else if (rscore >= winning_pts && (rscore - lscore >= 2)) {
         drawBlank();
         game_started = false;
         drawWinner("r");
@@ -169,7 +174,7 @@ function drawWinner(winner) {
         case "l":
             console.log("p1 won");
             ctx.fillStyle = getComputedStyle(document.documentElement).getPropertyValue('--button-text-color');
-            ctx.font = "90px monospace";
+            ctx.font = "90px " + fontname;
             ctx.textAlign = "center";
             ctx.fillText("PLAYER 1 WINS", width / 2, (height / 2) - 50);
             ctx.fillText("CLICK TO PLAY AGAIN", width / 2, (height / 2) + 50);
@@ -178,9 +183,10 @@ function drawWinner(winner) {
         case "r":
             console.log("p2 won");
             ctx.fillStyle = getComputedStyle(document.documentElement).getPropertyValue('--button-text-color');
-            ctx.font = "90px monospace";
+            ctx.font = "90px " + fontname;
             ctx.textAlign = "center";
             ctx.fillText("PLAYER 2 WINS", width / 2, (height / 2) - 50);
+            ctx.font = "50px " + fontname;
             ctx.fillText("CLICK TO PLAY AGAIN", width / 2, (height / 2) + 50);
             game_started = false;
             break;
@@ -205,18 +211,18 @@ function drawBall(x, y, ballWidth) {
         ctx.fillRect(canvas_x, canvas_y, ballWidth, ballWidth);
     }
     else {
-        ctx.font = '70px monospace';
+        ctx.font = '70px ' + fontname;
         ctx.fillText(pong_ball.countdown, (width / 2), height / 2);
     }
     if (paused) {
         ctx.textAlign = "start";
-        ctx.font = '30px monospace';
+        ctx.font = '30px ' + fontname;
         ctx.fillText("Paused", 15, 40);
     }
 }
 
 function drawScores() {
-    ctx.font = '30px monospace';
+    ctx.font = '30px ' + fontname;
     ctx.textAlign = "center";
     ctx.fillText(lscore + " - " + rscore, (width / 2), 40); 
 }
@@ -224,7 +230,7 @@ function drawScores() {
 function drawStartScreen() {
     drawBlank();
     ctx.fillStyle = getComputedStyle(document.documentElement).getPropertyValue('--button-text-color');
-    ctx.font = "90px monospace";
+    ctx.font = "90px " + fontname;
     ctx.textAlign = "center";
     console.log("printing");
     ctx.fillText("CLICK TO PLAY", width / 2, height / 2);
@@ -358,6 +364,9 @@ canvas.addEventListener("click", function(e) {
         game_started = true;
         pong_ball.countingDown();
     }
+    else if (!pong_ball.waiting) {
+        paused = !paused;
+    }
 }, false);
 
 var updatingPaddles = setInterval(function() {
@@ -368,6 +377,9 @@ var updatingPaddles = setInterval(function() {
 }, 20);
 
 var drawingPong = setInterval(function() {
+    if (!game_started) {
+        drawStartScreen();
+    }
     drawPong(currentYL, currentYR);
 }, 1000/144);
 

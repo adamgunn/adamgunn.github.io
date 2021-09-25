@@ -19,9 +19,6 @@ const heading = `
         </div>
         <ul class="headbar">
             <li>
-                <a href=../home><img src=../images/my_face.png class="face" width="85" height="85" alt=" face" /></a>
-            </li>
-            <li>
                 <a id="adamGunn" title="CLICK ME FOR A GOOD TIME">Adam Gunn</a>
             </li>
         </ul>
@@ -108,37 +105,6 @@ const contacts = `
                     </svg>
                 </li>
                 <!-- <li class="icon_button_text"> Github</li> -->
-            </ul></a>
-        </li>
-        <li><a href="https://www.instagram.com/admgnn/" target="_blank" rel="noopener noreferrer">
-            <ul class="icon_button">
-                <li>
-                    <svg class="icon" id="instagram_icon" width="32" height="32" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
-                        viewBox="0 0 24 24" style="enable-background:new 0 0 24 24;" xml:space="preserve">
-                        <path class="st0" d="M6.7,0C3,0,0,3,0,6.7v10.7C0,21,3,24,6.7,24h10.7c3.7,0,6.7-3,6.7-6.7V6.7C24,3,21,0,17.3,0H6.7z M6.7,2.7h10.7
-                            c2.2,0,4,1.8,4,4v10.7c0,2.2-1.8,4-4,4H6.7c-2.2,0-4-1.8-4-4V6.7C2.7,4.5,4.5,2.7,6.7,2.7z M18.7,4c-0.7,0-1.3,0.6-1.3,1.3
-                            s0.6,1.3,1.3,1.3c0.7,0,1.3-0.6,1.3-1.3S19.4,4,18.7,4z M12,5.3c-3.7,0-6.7,3-6.7,6.7s3,6.7,6.7,6.7s6.7-3,6.7-6.7S15.7,5.3,12,5.3z
-                            M12,8c2.2,0,4,1.8,4,4s-1.8,4-4,4s-4-1.8-4-4S9.8,8,12,8z"/>
-                    </svg>
-                </li>
-                <!-- <li class="icon_button_text"> Instagram</li> -->
-            </ul></a>
-        </li>
-        <li><a href="https://open.spotify.com/user/adamsgunnn" target="_blank" rel="noopener noreferrer">
-            <ul class="icon_button">
-                <li>
-                    <svg class="icon" id="spotify_icon" width="32" height="32" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
-                        viewBox="0 0 24 24" style="enable-background:new 0 0 24 24;" xml:space="preserve">
-                        <path class="st0" d="M12,0C5.4,0,0,5.4,0,12s5.4,12,12,12s12-5.4,12-12S18.6,0,12,0z M16.9,17.3c-0.2,0-0.3-0.1-0.6-0.2
-                            c-1.7-1-3.8-1.6-6.1-1.6c-1.2,0-2.6,0.2-3.7,0.5C6.3,15.9,6,16,5.9,16c-0.5,0-0.8-0.3-0.8-0.8s0.2-0.8,0.7-0.8
-                            c1.5-0.3,2.9-0.6,4.5-0.6c2.6,0,5,0.7,7,1.8c0.2,0.2,0.5,0.3,0.5,0.8C17.5,17.1,17.2,17.3,16.9,17.3z M18.1,14.1
-                            c-0.2,0-0.5-0.1-0.7-0.2c-1.9-1.2-4.6-1.9-7.6-1.9C8.4,12,7,12.2,6,12.4c-0.2,0.1-0.3,0.1-0.6,0.1c-0.6,0-0.9-0.5-0.9-0.9
-                            c0-0.6,0.2-0.8,0.8-1C6.7,10.3,8.1,10,10,10c3.2,0,6.1,0.8,8.6,2.3c0.3,0.2,0.6,0.6,0.6,0.9C19,13.7,18.7,14.1,18.1,14.1z
-                            M19.6,10.5c-0.2,0-0.3-0.1-0.7-0.2c-2.3-1.2-5.5-2-8.7-2c-1.6,0-3.3,0.2-4.7,0.6c-0.2,0-0.3,0.1-0.7,0.1C4.1,9,3.7,8.5,3.7,7.8
-                            s0.3-1,0.8-1.1C6.3,6.2,8.2,6,10.2,6c3.5,0,7.1,0.8,9.9,2.3c0.3,0.2,0.7,0.6,0.7,1.1C20.7,10.1,20.3,10.5,19.6,10.5z"/>
-                    </svg>
-                </li>
-                <!-- <li class="icon_button_text"> Spotify</li> -->
             </ul></a>
         </li>
         <li><a href="https://www.linkedin.com/in/adam-gunn-332a73200/" target="_blank" rel="noopener noreferrer">

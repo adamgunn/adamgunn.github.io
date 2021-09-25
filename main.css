@@ -274,12 +274,13 @@ ul, body {
 
 .headbar li , .icon_button li {
     display: inline-block;
-    vertical-align:middle;
+    vertical-align: middle;
 }
 
 img#umbrella_pic {
-    float: left;
+    float: right;
     margin: 30px;
+
 }
 
 img#jacket_pic {
@@ -425,4 +426,25 @@ img#jacket_pic {
 #select_theme_navbar_sticky {
     left: 10px;
     position: absolute;
+}
+
+@media screen and (max-width: 480px) {
+    a#adamGunn {
+        font-size: 10vw;
+    }
+    .headbar {
+        padding-top: 12vw;
+    }
+    img#umbrella_pic {
+        display: none;
+    }
+    .navbar li, .sticky, #select_theme_navbar {
+        font-size: 4vw;
+    }
+    #sign-up-log-in-sticky, #select_theme_navbar_sticky {
+        display: none;
+    }
+    input {
+        width: 85vw;
+    }
 }

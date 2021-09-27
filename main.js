@@ -155,7 +155,7 @@ function getRandomColor() {
     }
     return color;
 }
-
+var displaying_portfolio_item = false;
 
 window.addEventListener('DOMContentLoaded', () => {
     let page_header = document.querySelector('div.header-container');
@@ -310,20 +310,30 @@ window.addEventListener('DOMContentLoaded', () => {
             localStorage.setItem('name_font', chosen_font);
         }
     , false);
-    const portfolio_grid_items = document.getElementsByClassName("grid-item");
-    const portfolio_display_container = document.getElementById("portfolio-display-container");
     const portfolio_display = document.getElementById("portfolio-display");
-    for (var i = 0; i < portfolio_grid_items.length; i++) {
-        portfolio_grid_items[i].addEventListener("click", 
+    document.querySelectorAll('.grid-item').forEach(item => {
+        item.addEventListener("click", 
             function(e) {
                 e.preventDefault();
-                image = portfolio_grid_items[i].style.backgroundImage;
-                console.log(image);
+                image = item.style.backgroundImage;
                 portfolio_display.style.backgroundImage = image;
-                portfolio_display_container.style.setProperty("display", "flex");
+                document.querySelector('body').style.setProperty('overflow', 'hidden');
+                document.getElementById("portfolio-display-container").style.setProperty("margin-top", window.scrollY + "px");
+                document.getElementById("portfolio-display-container").style.setProperty("display", "flex");
+                displaying_portfolio_item = true;
             }
         , false);
-    }
+    });
+    document.getElementById('portfolio-display-container').addEventListener('click',
+        function(e) {
+            e.preventDefault();
+            if (displaying_portfolio_item) {
+                displaying_portfolio_item = false;
+                document.getElementById("portfolio-display-container").style.setProperty("display", "none");
+                document.querySelector('body').style.setProperty('overflow', 'auto');
+            }
+        }
+    , false)
 });
 
 var header; 

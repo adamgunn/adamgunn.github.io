@@ -334,9 +334,16 @@ window.addEventListener('DOMContentLoaded', () => {
                 document.querySelector('body').style.setProperty('overflow', 'hidden');
                 document.getElementById("portfolio-display-container").style.setProperty("margin-top", window.scrollY + "px");
                 image.toString();
-                console.log(image);
-                image = image.slice(15, -6);
-                console.log("sliced: "+ image);
+                switch (image[5]) {
+                    case 'h':
+                        image = image.slice(32, -6);
+                        break;
+                    case '.':
+                        image = image.slice(15, -6);
+                        break;
+                    default:
+                        console.log("Something went wrong!!");
+                }
                 document.getElementById("portfolio-display-description").innerHTML = descriptions[image];
                 document.getElementById("portfolio-display-container").style.setProperty("display", "flex");
                 displaying_portfolio_item = true;

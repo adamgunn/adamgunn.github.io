@@ -138,6 +138,8 @@ header {
 
 .navbar {
     text-align: center;
+    text-align: -webkit-center;
+    text-align: -moz-center;
     display: block;
 }
 
@@ -268,6 +270,8 @@ ul, body {
 .headbar {
     top: 0;
     text-align: center;
+    text-align: -webkit-center;
+    text-align: -moz-center;
     padding: 10px;
     padding-bottom: 0px;
 }
@@ -292,6 +296,8 @@ img#jacket_pic {
     position: relative;
     bottom: 0px;
     text-align: center;
+    text-align: -webkit-center;
+    text-align: -moz-center;
     margin-top: auto;
     padding: 25px 0px;
     background-color: var(--text-color);
@@ -327,6 +333,8 @@ img#jacket_pic {
     width: 100%;
     display: block flex;
     text-align: center;
+    text-align: -webkit-center;
+    text-align: -moz-center;
     background-color: var(--text-color);
     border-bottom: 12px solid var(--button-color-noicon);
     padding-top: 20px;
@@ -374,6 +382,8 @@ img#jacket_pic {
     position: relative;
     display: block;
     text-align: left;
+    text-align: -webkit-left;
+    text-align: -moz-left;
 }
 
 .color_scheme_options, .game_options {
@@ -482,6 +492,8 @@ img#jacket_pic {
 #portfolio-display-description {
     color: white;
     text-align: center;
+    text-align: -webkit-center;
+    text-align: -moz-center;
     width: 80vw;
     margin: 30px 0px;
 }
@@ -533,6 +545,8 @@ img#jacket_pic {
     .navbar li, .sticky, #select_theme_navbar {
         font-size: 4vw;
         text-align: center;
+        text-align: -webkit-center;
+        text-align: -moz-center;
     }
     #get-in-touch {
         font-size: 7vw;

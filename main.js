@@ -156,6 +156,7 @@ function getRandomColor() {
     return color;
 }
 
+
 window.addEventListener('DOMContentLoaded', () => {
     let page_header = document.querySelector('div.header-container');
     page_header.innerHTML = heading;
@@ -309,6 +310,20 @@ window.addEventListener('DOMContentLoaded', () => {
             localStorage.setItem('name_font', chosen_font);
         }
     , false);
+    const portfolio_grid_items = document.getElementsByClassName("grid-item");
+    const portfolio_display_container = document.getElementById("portfolio-display-container");
+    const portfolio_display = document.getElementById("portfolio-display");
+    for (var i = 0; i < portfolio_grid_items.length; i++) {
+        portfolio_grid_items[i].addEventListener("click", 
+            function(e) {
+                e.preventDefault();
+                image = portfolio_grid_items[i].style.backgroundImage;
+                console.log(image);
+                portfolio_display.style.backgroundImage = image;
+                portfolio_display_container.style.setProperty("display", "flex");
+            }
+        , false);
+    }
 });
 
 var header; 

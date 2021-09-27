@@ -156,6 +156,20 @@ function getRandomColor() {
     return color;
 }
 var displaying_portfolio_item = false;
+const descriptions = {
+    affirmation: "An affirmation graphic meant to be posted on Instagram. Made in Illustrator.",
+    door_collage: "A sort of collage of pictures I took in Chicago during the summer of 2021. Made in Photoshop.",
+    fruitsurrealism: "Some fruit edited into a scene taken in Garfield Park on the west side of Chicago. Made in Photoshop.",
+    greenhousegas: "A small infographic depicting greenhouse gas emissions of different kinds of protein. Made in Illustrator.",
+    holescover: "A mockup cover for the novel \'Holes\' by Louis Sachar. Made in Illustrator.",
+    infographicfinal_01: "Page 1 of a two-page spread about the dangers of fake news. Made in Illustrator.",
+    infographicfinal_02: "Page 2 of a two-page spread about the dangers of fake news. Made in Illustrator.",
+    postcardfinal: "A postcard for the card game Uno. Made in Photoshop.",
+    posterfinal: "A magazine ad for the card game Uno. Made in Photoshop.",
+    typology: "A typology study of fronts of buildings in the East Ukrainian Village neighborhood of Chicago. Made in Photoshop.",
+    typology2: "An alternative version of the other typology study, just as an experiment messing with the Adjustments tab. Made in Photoshop.",
+    
+}
 
 window.addEventListener('DOMContentLoaded', () => {
     let page_header = document.querySelector('div.header-container');
@@ -319,12 +333,17 @@ window.addEventListener('DOMContentLoaded', () => {
                 portfolio_display.style.backgroundImage = image;
                 document.querySelector('body').style.setProperty('overflow', 'hidden');
                 document.getElementById("portfolio-display-container").style.setProperty("margin-top", window.scrollY + "px");
+                image.toString();
+                console.log(image);
+                image = image.slice(15, -6);
+                console.log("sliced: "+ image);
+                document.getElementById("portfolio-display-description").innerHTML = descriptions[image];
                 document.getElementById("portfolio-display-container").style.setProperty("display", "flex");
                 displaying_portfolio_item = true;
             }
         , false);
     });
-    document.getElementById('portfolio-display-container').addEventListener('click',
+    document.getElementById('x-button').addEventListener('click',
         function(e) {
             e.preventDefault();
             if (displaying_portfolio_item) {

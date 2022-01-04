@@ -6,12 +6,13 @@ var css_height = height;
 const ctx = canvas.getContext('2d');
 class Ball {
     ballWidth = 20;
-    ballSpeed = 15;
+    ballSpeed = 12.5;
     ballDelta = this.ballSpeed / css_height * height;
     speeds = [-1, 1];
     ballSpeedX = this.ballDelta * this.speeds[(Math.floor(Math.random() * 2))];
     ballSpeedY = this.ballDelta * this.speeds[(Math.floor(Math.random() * 2))];
     waiting = false;
+    winscreen = false;
     countdown = 3;
     ballCoords = {
         x: width / 2,
@@ -38,16 +39,16 @@ class Ball {
     countingDown() {
         this.waiting = true;
         this.countdown = 3;
-        setTimeout(function() {
+        setTimeout(() => {
             pong_ball.countdown = 2;
         }, 1000);
-        setTimeout(function() {
+        setTimeout(() => {
             pong_ball.countdown = 1;
         }, 2000);
-        setTimeout(function() {
+        setTimeout(() => {
             pong_ball.countdown = "Go!";
         }, 3000);
-        setTimeout(function() {
+        setTimeout(() => {
             pong_ball.waiting = false;
         }, 4000);
     }
@@ -128,19 +129,18 @@ var keysPressed = {
     'up': false,
     'dn': false
 };
+// const fontname = 'monospace';
 const fontname = 'share-tech-mono';
 const sharetechmono = new FontFace(fontname, 'url(../fonts/sharetechmono-regular.ttf)');
-sharetechmono.load().then(function() {
+sharetechmono.load().then(() => {
     document.fonts.add(sharetechmono);
-    drawStartScreen();
 });
 
-function getMouseY(e) {
+const getMouseY = (e) => {
     var rect = canvas.getBoundingClientRect();
     return (e.clientY - rect.top) / css_height * height;
 }
-
-function haveAWinner() {
+const haveAWinner = () => {
     if (lscore >= winning_pts && (lscore - rscore >= 2)) {
         drawBlank();
         game_started = false;
@@ -156,7 +156,7 @@ function haveAWinner() {
     return false;
 }
 
-function updateCanvasWidth() {
+const updateCanvasWidth = () => {
     var new_width = Math.min((window.innerWidth - 60), 1120);
     canvas.style.width = new_width + 'px';
     css_width = new_width;
@@ -164,46 +164,48 @@ function updateCanvasWidth() {
     css_height = (new_width / 16 * 9);
 }
 
-function drawBlank() {
+const drawBlank = () => {
     ctx.fillStyle = getComputedStyle(document.documentElement).getPropertyValue('--text-color');
     ctx.fillRect(0, 0, width, height);
 }
 
-function drawWinner(winner) {
+const drawWinner = (winner) => {
     switch (winner) {
         case "l":
             console.log("p1 won");
-            ctx.fillStyle = getComputedStyle(document.documentElement).getPropertyValue('--button-text-color');
+            ctx.fillStyle = getComputedStyle(document.documentElement).getPropertyValue('--bg-color');
             ctx.font = "90px " + fontname;
             ctx.textAlign = "center";
             ctx.fillText("PLAYER 1 WINS", width / 2, (height / 2) - 50);
             ctx.fillText("CLICK TO PLAY AGAIN", width / 2, (height / 2) + 50);
             game_started = false;
+            winscreen = true;
             break;
         case "r":
             console.log("p2 won");
-            ctx.fillStyle = getComputedStyle(document.documentElement).getPropertyValue('--button-text-color');
+            ctx.fillStyle = getComputedStyle(document.documentElement).getPropertyValue('--bg-color');
             ctx.font = "90px " + fontname;
             ctx.textAlign = "center";
             ctx.fillText("PLAYER 2 WINS", width / 2, (height / 2) - 50);
             ctx.font = "50px " + fontname;
             ctx.fillText("CLICK TO PLAY AGAIN", width / 2, (height / 2) + 50);
             game_started = false;
+            winscreen = true;
             break;
         default:
             break;
     }
 }
 
-function drawPaddles(yL, yR) {
+const drawPaddles = (yL, yR) => {
     drawBlank();
-    ctx.fillStyle = getComputedStyle(document.documentElement).getPropertyValue('--button-text-color');
+    ctx.fillStyle = getComputedStyle(document.documentElement).getPropertyValue('--bg-color');
     ctx.fillRect(margin, (yL) - (paddleHeight / 2), paddleWidth, paddleHeight);
     ctx.fillRect(width - (margin + paddleWidth), (yR) - (paddleHeight / 2), paddleWidth, paddleHeight);
 }
 
-function drawBall(x, y, ballWidth) {
-    ctx.fillStyle = getComputedStyle(document.documentElement).getPropertyValue('--button-text-color');
+const drawBall = (x, y, ballWidth) => {
+    ctx.fillStyle = getComputedStyle(document.documentElement).getPropertyValue('--bg-color');
     ctx.textAlign = "center";
     var canvas_x = (x - (ballWidth / 2)); 
     var canvas_y = (y - (ballWidth / 2));
@@ -221,22 +223,22 @@ function drawBall(x, y, ballWidth) {
     }
 }
 
-function drawScores() {
+const drawScores = () => {
     ctx.font = '30px ' + fontname;
     ctx.textAlign = "center";
     ctx.fillText(lscore + " - " + rscore, (width / 2), 40); 
 }
 
-function drawStartScreen() {
+const drawStartScreen = () => {
     drawBlank();
-    ctx.fillStyle = getComputedStyle(document.documentElement).getPropertyValue('--button-text-color');
+    ctx.fillStyle = getComputedStyle(document.documentElement).getPropertyValue('--bg-color');
     ctx.font = "90px " + fontname;
     ctx.textAlign = "center";
     console.log("printing");
     ctx.fillText("CLICK TO PLAY", width / 2, height / 2);
 }
 
-function drawPong(yL, yR) {  
+const drawPong = (yL, yR) => {  
     // console.log('did the window change');
     updateCanvasWidth();
 
@@ -262,7 +264,7 @@ function drawPong(yL, yR) {
     }
 }
 
-// canvas.addEventListener('mousemove', function(e) {
+// canvas.addEventListener('mousemove', (e) => {
 //     y = getMouseY(e);
 //     if (y > (paddleHeight / 2) && y < (height - (paddleHeight / 2))) { 
 //         drawPong(y);
@@ -270,7 +272,7 @@ function drawPong(yL, yR) {
 //     }
 // }, false);
 
-function updatePaddlePos() {
+const updatePaddlePos = () => {
     var dY = height_incr / css_height * height;
     if (!pong_ball.waiting && !paused) {
         if (keysPressed['w'] && !keysPressed['s'] && currentYL > (paddleHeight / 2)) {
@@ -289,14 +291,14 @@ function updatePaddlePos() {
     }
 }
 
-function printKeysDown() {
+const printKeysDown = () => {
     console.log('w:    ' + keysPressed['w'] +
               '\ns:    ' + keysPressed['s'] +
               '\nup:   ' + keysPressed['up'] +
               '\ndown: ' + keysPressed['dn']);
 }
 
-window.addEventListener('keydown', function(e) {
+window.addEventListener('keydown', (e) => {
     e.preventDefault();
     switch (e.key) {
         case 'w':
@@ -322,7 +324,7 @@ window.addEventListener('keydown', function(e) {
     }
 }, false);
 
-window.addEventListener('keyup', function(e) {
+window.addEventListener('keyup', (e) => {
     e.preventDefault();
     switch (e.key) {
         case 'w':
@@ -343,7 +345,7 @@ window.addEventListener('keyup', function(e) {
 }, false);
 
 
-canvas.addEventListener("click", function(e) {
+canvas.addEventListener("click", (e) => {
     e.preventDefault();
     if (!game_started) {
         keysPressed = {
@@ -362,6 +364,7 @@ canvas.addEventListener("click", function(e) {
         lscore = rscore = 0;
         currentYL = currentYR = height / 2;
         game_started = true;
+        pong_ball.winscreen = false;
         pong_ball.countingDown();
     }
     else if (!pong_ball.waiting) {
@@ -369,23 +372,25 @@ canvas.addEventListener("click", function(e) {
     }
 }, false);
 
-var updatingPaddles = setInterval(function() {
+var updatingPaddles = setInterval(() => {
     if (game_started) {
         updatePaddlePos();
         pong_ball.moveBall();
     }
 }, 20);
 
-var drawingPong = setInterval(function() {
-    if (!game_started) {
+var drawingPong = setInterval(() => {
+    if (!game_started && !(pong_ball.winscreen)) {
+        console.log(pong_ball.winscreen);
         drawStartScreen();
+    } else if (game_started) {
+        drawPong(currentYL, currentYR);
     }
-    drawPong(currentYL, currentYR);
 }, 1000/144);
 
-window.addEventListener('DOMContentLoaded', function() {
+window.addEventListener('DOMContentLoaded', () => {
     drawPong(currentYL, currentYR);
 }, false);
-window.addEventListener('resize', function() {
+window.addEventListener('resize', () => {
     drawPong(currentYL, currentYR);
 }, false);

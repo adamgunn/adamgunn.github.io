@@ -1,94 +1,54 @@
 <!DOCTYPE html>
 <html lang="en-us" dir="ltr">
-    <head>
-        <meta charset="UTF-8" />
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <title>Portfolio | Adam Gunn</title>
-        <meta name="description" content="Adam Gunn's design portfolio." />
-        <link rel="icon" type="image/png" href="../images/favicon_16x16.png" sizes="16x16" />
-        <link rel="icon" type="image/png" href="../images/favicon_32x32.png" sizes="32x32" />
-        <link rel="icon" type="image/png" href="../images/favicon_96x96.png" sizes="96x96" />
-        <link href="../main.css" rel="stylesheet" />
-        <link rel="stylesheet" href="https://use.typekit.net/uvg2mwq.css">
-        <script src="../main.js"></script>
-    </head>
-    <body>
-        <div class="header-container"></div>
-        <h1 class="pageTitle">
-            Portfolio
-        </h1>
-        <p class="bodyText">
-            Using the power of CSS grid, here's some of my graphic design work done in Adobe Illustrator &amp; Photoshop:
-        </p>
-        <ul class="portfolio-grid">
-            <li 
-                class="grid-item"
-                style="background-image: url('../images/affirmation.jpg')">
-            </li>
-            <li 
-                class="grid-item"
-                style="background-image: url('../images/door_collage.jpg')">
-            </li>
-            <li 
-                class="grid-item"
-                style="background-image: url('../images/fruitsurrealism.jpg')">
-            </li>
-            <li 
-                class="grid-item"
-                style="background-image: url('../images/greenhousegas.jpg')">
-            </li>
-            <li 
-                class="grid-item"
-                style="background-image: url('../images/holescover.jpg')">
-            </li>
-            <li 
-                class="grid-item"
-                style="background-image: url('../images/infographicfinal_01.jpg')">
-            </li>
-            <li 
-                class="grid-item"
-                style="background-image: url('../images/infographicfinal_02.jpg')">
-            </li>
-            <li 
-                class="grid-item"
-                style="background-image: url('../images/postcardfinal.jpg')">
-            </li>
-            <li 
-                class="grid-item"
-                style="background-image: url('../images/posterfinal.jpg')">
-            </li>
-            <li 
-                class="grid-item"
-                style="background-image: url('../images/typology.jpg')">
-            </li>
-            <li 
-                class="grid-item"
-                style="background-image: url('../images/typology2.jpg')">
-            </li>
-        </ul>
-        <div id="portfolio-display-container">
-            <svg id="x-button" width=30 height=30 xmlns="http://www.w3.org/2000/svg" viewBox="0 0 91.61 91.61">
-                <defs>
-                    <style>
-                        .cls-1 {
-                            fill: #fff;
-                            stroke:#fff;
-                            stroke-miterlimit: 10;
-                            stroke-width: 15px;
-                        }
-                    </style>
-                </defs>
-                <line class="cls-1" x1="5.3" y1="5.3" x2="86.3" y2="86.3"/>
-                <line class="cls-1" x1="86.3" y1="5.3" x2="5.3" y2="86.3"/>
-            </svg>
-            <div
-                id="portfolio-display"
-                style="background-image: url('../images/typology.jpg')">
-            </div>
-            <p class="bodyText" id="portfolio-display-description">
-                description
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Portfolio | Adam Gunn</title>
+    <meta name="description" content="Welcome to Adam Gunn's website." />
+    <link rel="icon" type="image/png" href="../images/favicon_16x16.png" sizes="16x16" />
+    <link rel="icon" type="image/png" href="../images/favicon_32x32.png" sizes="32x32" />
+    <link rel="icon" type="image/png" href="../images/favicon_96x96.png" sizes="96x96" />
+    <link rel="stylesheet" href="https://use.typekit.net/uvg2mwq.css">
+    <link href="../home.css" rel="stylesheet" />
+</head>
+
+<body>
+    <header id="header"></header>
+    <main>
+        <div id="portfolio_wrapper">
+            <h1 class="page_title">
+                Portfolio
+            </h1>
+            <p class="page_content caption">
+                Here's some of my graphic design work done in Adobe Illustrator &amp; Photoshop. Enjoy! :)
             </p>
+            <ul id="portfolio_grid"></ul>
+            <div id="portfolio_display_overlay">
+                <svg id="x_button" width=30 height=30 xmlns="http://www.w3.org/2000/svg" viewBox="0 0 91.61 91.61">
+                    <defs>
+                        <style>
+                            .cls-1 {
+                                fill: #fff;
+                                stroke: #fff;
+                                stroke-miterlimit: 10;
+                                stroke-width: 15px;
+                            }
+                        </style>
+                    </defs>
+                    <line class="cls-1" x1="5.3" y1="5.3" x2="86.3" y2="86.3" />
+                    <line class="cls-1" x1="86.3" y1="5.3" x2="5.3" y2="86.3" />
+                </svg>
+                <div id="portfolio_display_wrapper">
+                    <img id="portfolio_display" src="../images/typology.jpg" />
+                </div>
+                <p id="portfolio_display_description">
+                    There was an error loading the descriptiom.
+                </p>
+            </div>
         </div>
-        <div class="contacts_container"></div>
-    </body>
+    </main>
+    <script src="../home.js"></script>
+</body>
+
 </html>

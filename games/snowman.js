@@ -75,7 +75,7 @@ class Snowman {
             <ul>
                 <li>
                     <h2 class="subtitle">${this.player0_name}, avert your eyes!</h2>
-                    <label for="pick_word" class="subtitle">${this.player1_name}, pick something for ${this.player0_name} to guess</label>
+                    <label for="pick_word" class="subtitle">${this.player1_name}, pick something for ${this.player0_name} to guess.</label>
                     <br>
                     <textarea id="pick_word" name="pick_word" required onchange=(verifyWord())></textarea>
                 </li>
@@ -109,8 +109,8 @@ class Snowman {
             <img src="../images/snowman-${this.wrong_letters.length}.svg" width="600" height="600" id="snowman-game" alt="Snowman game"/>
         `;
         snowmanHTML.innerHTML = stickman_svg;
-        snowmanHTML.innerHTML += `<pre><p class="bodyText">${this.updateDisplayWord()}</p></pre>`;
-        snowmanHTML.innerHTML += `<pre><p class="bodyText">Wrong letters: ${this.updateUsedLetters()}</p></pre>`;
+        snowmanHTML.innerHTML += `<pre>${this.updateDisplayWord()}</pre>`;
+        snowmanHTML.innerHTML += `<pre>Wrong letters: ${this.updateUsedLetters()}</pre>`;
 
     }
 
@@ -240,7 +240,7 @@ function verifyNames() {
 // Adds/removes the player 2 box depending on the number of players input
 function checkNumPlayers() {
     var num_players = document.getElementById('num_players').value;
-    var p1_input = document.querySelector('p1_input');
+    var p1_input = document.querySelector('.p1_input');
     if (num_players == 1) {
         p1_input.innerHTML = "";
     } else if (num_players == 2) {

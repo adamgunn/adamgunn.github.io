@@ -198,6 +198,7 @@ main {
     transition: color 0.5s;
     font-size: 1rem;
     font-family: lust-text, sans-serif, color-emoji;
+    text-decoration: none;
 }
 
 #about_wrapper {
@@ -287,7 +288,7 @@ main {
     gap: 4px;
 }
 
-#portfolio_wrapper, #pong_wrapper {
+#portfolio_wrapper, #pong_wrapper, #resume_wrapper {
     margin: 0 3rem 3rem;
 }
 
@@ -317,4 +318,114 @@ main {
 .grid_item:hover {
     cursor: pointer;
     transform: scale(1.1);
+}
+
+.download_btn {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: max-content;
+    text-decoration: none;
+    transition: transform 0.23s;
+}
+
+.download_btn:hover {
+    transform: scale(1.1);
+}
+
+.icon {
+    fill: var(--text-color);
+    transition: fill 0.5s;
+    width: 1.5rem;
+    height: 1.5rem;
+}
+
+.snowman ul {
+    list-style-type: none;
+    padding: 0;
+    margin-top: 1rem;
+}
+
+.subtitle {
+    color: var(--text-color);
+    font-family: lust-text, sans-serif, color-emoji;
+    font-size: 1rem;
+    font-weight: 400;
+    margin: 0.5rem 0;
+}
+
+.game_link {
+    text-decoration: none;
+}
+
+.snowman input, #pick_word {
+    border: 0.1rem solid var(--text-color);
+    transition-property: border, margin, color, background-color;
+    transition-duration: 0.2s, 0.2s, 0.5s, 0.5s;  
+    height: 2rem;
+    font-size: 2rem;
+    margin: 0.5rem 0;
+    padding: 0.5rem;
+    border-radius: 0.5rem;
+    font-family: lust-text, sans-serif, color-emoji;
+    width: fit-content;
+    background-color: var(--bg-color);
+    color: var(--text-color);
+}
+
+#pick_word {
+    width: 30rem;
+    height: 15rem;
+    font-family: 'Courier New', monospace, color-emoji;
+}
+
+.snowman_words {
+    color: var(--text-color);
+    font-size: 2rem;
+    font-family: 'Courier New', monospace, color-emoji;
+    word-wrap: wrap;
+}
+
+.snowman input::placeholder {
+    color: var(--text-color);
+    filter: brightness(50%);
+    -webkit-filter: brightness(50%);
+}
+
+.snowman input:focus, #pick_word:focus {
+    outline: none;
+    border: 0.2rem solid var(--text-color);
+    margin: 0.4rem -0.1rem;
+}
+
+.submit_button {
+    background-color: var(--text-color);
+    border: none;
+    color: var(--bg-color);
+    padding: 0.5rem 1.5rem;
+    border-radius: 9999px;
+    font-family: franklin-gothic-condensed, sans-serif, color-emoji;
+    font-size: 1.5rem;
+    margin-top: 0.5rem;
+    text-transform: lowercase;
+    transition: all 0.5s;
+}
+
+.submit_button:enabled:hover {
+    cursor: pointer;
+}
+
+.submit_button:disabled {
+    filter: brightness(25%);
+    -webkit-filter: brightness(25%);
+}
+
+.submit_button:disabled:hover {
+    cursor:not-allowed;
+}
+
+pre {
+    font-size: 1.5rem;
+    color: var(--text-color);
+    transition: all 0.5s;
 }

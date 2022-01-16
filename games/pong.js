@@ -23,14 +23,14 @@ class Ball {
         if (this.ballCoords.x > width - ((this.ballWidth / 2) + paddleWidth + margin) &&
             this.ballCoords.y <= currentYR + (paddleHeight / 2) &&
             this.ballCoords.y >= currentYR - (paddleHeight / 2)) {
-            console.log("right paddle");
+            // console.log("right paddle");
             this.ballSpeedX *= -1;
             this.ballSpeedY = ((this.ballCoords.y - currentYR) / (paddleHeight / 2) * this.ballDelta);
         }
         else if (this.ballCoords.x < ((this.ballWidth / 2) + paddleWidth + margin) &&
                  this.ballCoords.y <= currentYL + (paddleHeight / 2) &&
                  this.ballCoords.y >= currentYL - (paddleHeight / 2)) {
-            console.log("left paddle");
+            // console.log("left paddle");
             this.ballSpeedX *= -1;
             this.ballSpeedY = ((this.ballCoords.y - currentYL) / (paddleHeight / 2) * this.ballDelta);
         }
@@ -55,15 +55,15 @@ class Ball {
 
     checkWall() {
         if (this.ballCoords.y < (this.ballWidth)) {
-            console.log("top wall");
+            // console.log("top wall");
             this.ballSpeedY *= -1;  
         }
         else if (this.ballCoords.y > (height - this.ballWidth)) {
-            console.log("bottom wall");
+            // console.log("bottom wall");
             this.ballSpeedY *= -1;  
         }
         else if (this.ballCoords.x < this.ballWidth) {
-            console.log("passed the left");
+            // console.log("passed the left");
             rscore++;
             currentYL = height/2;
             currentYR = height/2;
@@ -76,7 +76,7 @@ class Ball {
             this.countingDown();
         }
         else if (this.ballCoords.x > (width - this.ballWidth)) {
-            console.log("passed the right");
+            // console.log("passed the right");
             lscore++;
             currentYL = height / 2;
             currentYR = height / 2;
@@ -109,6 +109,14 @@ class Ball {
 
     get waiting() {
         return this.waiting;
+    }
+
+    get winscreen() {
+        return this.winscreen;
+    }
+
+    set winscreen(val) {
+        this.winscreen = val;
     }
 }
 var pong_ball = new Ball();
@@ -157,7 +165,8 @@ const haveAWinner = () => {
 }
 
 const updateCanvasWidth = () => {
-    var new_width = Math.min((window.innerWidth - 60), 1120);
+    let onerem = parseFloat(getComputedStyle(document.documentElement).fontSize);
+    var new_width = Math.min((window.innerWidth - 6 * onerem), 1120);
     canvas.style.width = new_width + 'px';
     css_width = new_width;
     css_height = canvas.style.height = ((new_width / 16 * 9) + 'px')
@@ -172,17 +181,18 @@ const drawBlank = () => {
 const drawWinner = (winner) => {
     switch (winner) {
         case "l":
-            console.log("p1 won");
+            // console.log("p1 won");
             ctx.fillStyle = getComputedStyle(document.documentElement).getPropertyValue('--bg-color');
             ctx.font = "90px " + fontname;
             ctx.textAlign = "center";
             ctx.fillText("PLAYER 1 WINS", width / 2, (height / 2) - 50);
             ctx.fillText("CLICK TO PLAY AGAIN", width / 2, (height / 2) + 50);
             game_started = false;
-            winscreen = true;
+            // console.log("setting winscreen to true");
+            pong_ball.winscreen = true;
             break;
         case "r":
-            console.log("p2 won");
+            // console.log("p2 won");
             ctx.fillStyle = getComputedStyle(document.documentElement).getPropertyValue('--bg-color');
             ctx.font = "90px " + fontname;
             ctx.textAlign = "center";
@@ -190,7 +200,8 @@ const drawWinner = (winner) => {
             ctx.font = "50px " + fontname;
             ctx.fillText("CLICK TO PLAY AGAIN", width / 2, (height / 2) + 50);
             game_started = false;
-            winscreen = true;
+            // console.log("setting winscreen to true");
+            pong_ball.winscreen = true;
             break;
         default:
             break;
@@ -234,7 +245,6 @@ const drawStartScreen = () => {
     ctx.fillStyle = getComputedStyle(document.documentElement).getPropertyValue('--bg-color');
     ctx.font = "90px " + fontname;
     ctx.textAlign = "center";
-    console.log("printing");
     ctx.fillText("CLICK TO PLAY", width / 2, height / 2);
 }
 
@@ -364,6 +374,7 @@ canvas.addEventListener("click", (e) => {
         lscore = rscore = 0;
         currentYL = currentYR = height / 2;
         game_started = true;
+        // console.log("setting winscreen to false");
         pong_ball.winscreen = false;
         pong_ball.countingDown();
     }
@@ -381,7 +392,6 @@ var updatingPaddles = setInterval(() => {
 
 var drawingPong = setInterval(() => {
     if (!game_started && !(pong_ball.winscreen)) {
-        console.log(pong_ball.winscreen);
         drawStartScreen();
     } else if (game_started) {
         drawPong(currentYL, currentYR);

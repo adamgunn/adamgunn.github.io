@@ -17,8 +17,8 @@
 
 :root {
     font-family: franklin-gothic-condensed, sans-serif, color-emoji;
-    --magazine-letter-width: 150px;
-    --magazine-punc-width: 100px;
+    --magazine-letter-width: clamp(15px, 10vw, 150px);
+    --magazine-punc-width: calc(calc(var(--magazine-letter-width) * 2) / 3);
     --header-height: 3.5rem;
     --bg-color: white;
     --text-color: black;
@@ -203,7 +203,7 @@ main {
 
 #about_wrapper {
     text-align: center;
-    perspective: 320px;
+    perspective: 20rem;
     width: 25rem;
     transform-style: preserve-3d;
 }
@@ -285,7 +285,7 @@ main {
     padding: 0;
     display: grid;
     grid-template-columns: repeat(auto-fill, minmax(var(--grid-item-size), 1fr));
-    gap: 4px;
+    gap: 0.25rem;
 }
 
 #portfolio_wrapper, #pong_wrapper, #resume_wrapper {

@@ -110,7 +110,7 @@ class Ball {
     get waiting() {
         return this.waiting;
     }
-
+    
     get winscreen() {
         return this.winscreen;
     }

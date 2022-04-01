@@ -70,6 +70,72 @@ body {
     text-transform: lowercase;
 }
 
+
+#mobile_header {
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+    width: 100vw;
+    box-sizing: border-box;
+    display: none;
+}
+
+#mobile_header_icon {
+    fill: var(--text-color);
+    width: var(--header-height);
+    height: var(--header-height);
+    margin: 1rem;
+}
+
+#mobile_exit_button, #mobile_back_button {
+    fill: var(--text-color);
+    width: var(--header-height);
+    height: var(--header-height);
+    position: absolute;
+    top: 1rem;
+    right: 1rem;
+    transition: fill 0.5s;
+}
+
+#mobile_back_button {
+    left: 1rem;
+    right: auto;
+    display: none;
+}
+
+.mobile_links_ul {
+    list-style: none;
+    padding: 0;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
+    align-items: center;
+    height: 60vh;
+}
+
+.mobile_links_ul > li {
+    padding: 0;
+    margin: 0;
+    font-size: 3rem;
+    transition: color 0.5s;
+}
+
+#mobile_links_wrapper {
+    z-index: 1;
+    position: absolute;
+    background-color: var(--bg-color);
+    transition: background-color 0.5s;
+    width: 100vw;
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    display: none;
+}
+
+#mobile_games, #mobile_themes {
+    display: none;
+}
 .dropdown_title {
     height: max-content;
 }
@@ -204,7 +270,7 @@ main {
 #about_wrapper {
     text-align: center;
     perspective: 20rem;
-    width: 25rem;
+    max-width: 25rem;
     transform-style: preserve-3d;
 }
 
@@ -290,6 +356,7 @@ main {
 
 #portfolio_wrapper, #pong_wrapper, #resume_wrapper {
     margin: 0 3rem 3rem;
+    box-sizing: border-box;
 }
 
 #x_button {
@@ -430,14 +497,32 @@ pre {
     transition: all 0.5s;
 }
 
-.hello {
-    font-size: 20px;
-    color: red;
-}
-
-.container {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    position: absolute;
+@media screen and (max-width: 40rem) {
+    :root {
+        --magazine-letter-width: 3rem;
+    }
+    #header {
+        display: none;
+    }
+    #mobile_header {
+        display: flex;
+    }
+    .magazine:not(#A1):not(#G):not(#PUNC) {
+        display: none;
+    }
+    #A1 {
+        padding: 0;
+    }
+    #magazine_wrapper br {
+        display: none;
+    }
+    #mobile_links_wrapper {
+        display: none;
+    }
+    .page_title {
+        font-size: 20vw;
+    }
+    #about_wrapper .page_title { 
+        font-size: 25vw;
+    }
 }

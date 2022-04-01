@@ -34,19 +34,19 @@ const HEADER_HTML = `
         <li class="header_item dropdown_title">
             Choose Theme
             <ul class="dropdown_ul">
-                <li class="dropdown_item" id="default">
+                <li class="dropdown_item default">
                     Default
                 </li>
-                <li class="dropdown_item" id="dark">
+                <li class="dropdown_item dark">
                     Dark
                 </li>
-                <li class="dropdown_item" id="darker">
+                <li class="dropdown_item darker">
                     Darker
                 </li>
-                <li class="dropdown_item" id="earthy">
+                <li class="dropdown_item earthy">
                     Earthy
                 </li>
-                <li class="dropdown_item" id="random">
+                <li class="dropdown_item random">
                     Random
                 </li>
             </ul>
@@ -54,7 +54,144 @@ const HEADER_HTML = `
     </ul>
 `;
 
+const MOBILE_HEADER_HTML = `
+    <svg xmlns="http://www.w3.org/2000/svg" id="mobile_header_icon" viewBox="0 0 16 16">
+        <path fill-rule="evenodd" d="M2.5 12a.5.5 0 0 1 .5-.5h10a.5.5 0 0 1 0 1H3a.5.5 0 0 1-.5-.5zm0-4a.5.5 0 0 1 .5-.5h10a.5.5 0 0 1 0 1H3a.5.5 0 0 1-.5-.5zm0-4a.5.5 0 0 1 .5-.5h10a.5.5 0 0 1 0 1H3a.5.5 0 0 1-.5-.5z"/>
+    </svg>
+`;
+
+const MOBILE_LINKS_HTML = `
+    <svg xmlns="http://www.w3.org/2000/svg" id="mobile_exit_button" viewBox="0 0 16 16">
+        <path fill-rule="evenodd" d="M13.854 2.146a.5.5 0 0 1 0 .708l-11 11a.5.5 0 0 1-.708-.708l11-11a.5.5 0 0 1 .708 0Z"/>
+        <path fill-rule="evenodd" d="M2.146 2.146a.5.5 0 0 0 0 .708l11 11a.5.5 0 0 0 .708-.708l-11-11a.5.5 0 0 0-.708 0Z"/>
+    </svg>
+    <svg xmlns="http://www.w3.org/2000/svg" id="mobile_back_button" class="bi bi-arrow-left" viewBox="0 0 16 16">
+        <path fill-rule="evenodd" d="M15 8a.5.5 0 0 0-.5-.5H2.707l3.147-3.146a.5.5 0 1 0-.708-.708l-4 4a.5.5 0 0 0 0 .708l4 4a.5.5 0 0 0 .708-.708L2.707 8.5H14.5A.5.5 0 0 0 15 8z"/>
+        </svg>
+    <ul class="mobile_links_ul" id="mobile_main">
+        <li class="header_item">
+            <a class="header_link" href="../home">Home</a>
+        </li>
+        <li class="header_item">
+            <a class="header_link" href="../about">About</a>
+        </li>
+        <li class="header_item">
+            <a class="header_link" href="../portfolio">Portfolio</a>
+        </li>
+        <li class="header_item">
+            <a class="header_link" href="../resume">Resum&eacute;</a>
+        </li>
+        <li class="header_item dropdown_title" id="games_button">
+            Games
+        </li>
+        <li class="header_item dropdown_title" id="themes_button">
+            Choose Theme
+        </li>
+    </ul>
+    <ul class="mobile_links_ul" id="mobile_games">
+        <li class="header_item">
+            <a class="header_link" href="../games/pong.html">Pong</a>
+        </li>
+        <li class="header_item">
+            <a class="header_link" href="../games/snowman.html">Snowman</a>
+        </li>
+    </ul>
+    <ul class="mobile_links_ul" id="mobile_themes">
+        <li class="header_item header_link default">
+            Default
+        </li>
+        <li class="header_item header_link dark">
+            Dark
+        </li>
+        <li class="header_item header_link darker">
+            Darker
+        </li>
+        <li class="header_item header_link earthy">
+            Earthy
+        </li>
+        <li class="header_item header_link random">
+            Random
+        </li>
+    </ul>
+`
+
 document.getElementById("header").innerHTML = HEADER_HTML;
+document.getElementById("mobile_header").innerHTML = MOBILE_HEADER_HTML;
+document.getElementById("mobile_links_wrapper").innerHTML = MOBILE_LINKS_HTML;
+
+/* 
+============================================================
+Responsive header
+============================================================
+*/
+
+const mobile_header = document.querySelector("#mobile_header");
+const mobile_header_icon = document.querySelector("#mobile_header_icon");
+const mobile_links_wrapper = document.querySelector("#mobile_links_wrapper");
+const mobile_exit_button = document.querySelector("#mobile_exit_button");
+const mobile_back_button = document.querySelector("#mobile_back_button");
+const games_button = document.querySelector("#games_button");
+const themes_button = document.querySelector("#themes_button");
+const mobile_main = document.querySelector("#mobile_main");
+const mobile_games = document.querySelector("#mobile_games");
+const mobile_themes = document.querySelector("#mobile_themes");
+let onerem = parseFloat(getComputedStyle(document.documentElement).fontSize);
+mobile_header_icon.onclick = (e) => {
+    e.preventDefault();
+    mobile_links_wrapper.style.display = "flex";
+    mobile_header.style.display = "none";
+    mobile_main.style.display = null;
+    document.querySelector('body').style.overflow = 'hidden';
+}
+mobile_exit_button.onclick = (e) => {
+    e.preventDefault();
+    mobile_links_wrapper.style.display = "none";
+    mobile_back_button.style.display = "none";
+    mobile_header.style.display = "flex";
+    mobile_games.style.display = null;
+    mobile_themes.style.display = null;
+    document.querySelector('body').style.overflow = 'auto';
+}
+mobile_back_button.onclick = (e) => {
+    e.preventDefault();
+    mobile_back_button.style.display = "none";
+    mobile_main.style.display = null;
+    mobile_games.style.display = null;
+    mobile_themes.style.display = null;
+}
+games_button.onclick = (e) => {
+    e.preventDefault();
+    mobile_main.style.display = "none";
+    mobile_games.style.display = "flex";
+    mobile_back_button.style.display = "initial";
+}
+themes_button.onclick = (e) => {
+    e.preventDefault();
+    mobile_main.style.display = "none";
+    mobile_themes.style.display = "flex";
+    mobile_back_button.style.display = "initial";
+}
+window.onresize = (e) => {
+    if (window.innerWidth > 40 * onerem) {
+        mobile_links_wrapper.style.display = "none";
+        mobile_header.style.display = "none";
+        mobile_games.style.display = "none";
+        mobile_themes.style.display = "none";
+        mobile_back_button.style.display = "none";
+        document.querySelector('body').style.overflow = 'auto';
+    }
+    else {
+        mobile_links_wrapper.style.display = null;
+        mobile_header.style.display = null;
+        mobile_main.style.display = null;
+        mobile_games.style.display = null;
+        mobile_themes.style.display = null;
+        mobile_back_button.style.display = null;
+        document.querySelector('body').style.overflow = 'hidden';
+    }
+}
+
+
 
 /* 
 ============================================================
@@ -211,8 +348,13 @@ if (/home/.test(window.location.pathname)) {
 About page rotation
 ============================================================
 */
+function isTouchDevice() {
+    return (('ontouchstart' in window) ||
+        (navigator.maxTouchPoints > 0) ||
+        (navigator.msMaxTouchPoints > 0));
+}
 
-if (/about/.test(window.location.pathname)) {
+if (/about/.test(window.location.pathname) && !isTouchDevice()) {
 
     const title = document.querySelector(".page_title");
     const NUM_COPIES = 8;
@@ -263,13 +405,16 @@ if (saved_colors[0]) {
 
 
 options.forEach((option) => {
-    document.getElementById(option).onclick = (e) => {
-        e.preventDefault();
-        color_var_names.forEach((var_name, index) => {
-            root.style.setProperty(var_name, colors[option][index]);
-            localStorage.setItem(var_name, colors[option][index]);
-        })
-    }
+    const buttons = [...document.querySelectorAll("." + option)];
+    buttons.forEach(button => {
+        button.onclick = (e) => {
+            e.preventDefault();
+            color_var_names.forEach((var_name, index) => {
+                root.style.setProperty(var_name, colors[option][index]);
+                localStorage.setItem(var_name, colors[option][index]);
+            })
+        }
+    })
 })
 
 const getRandomColor = () => {
@@ -281,14 +426,17 @@ const getRandomColor = () => {
     return color;
 }
 
-document.getElementById("random").onclick = (e) => {
-    e.preventDefault();
-    color_var_names.forEach((var_name) => {
-        var color = getRandomColor();
-        root.style.setProperty(var_name, color);
-        localStorage.setItem(var_name, color);
-    })
-}
+const random_buttons = [...document.querySelectorAll(".random")];
+random_buttons.forEach(button => {
+    button.onclick = (e) => {
+        e.preventDefault();
+        color_var_names.forEach((var_name) => {
+            var color = getRandomColor();
+            root.style.setProperty(var_name, color);
+            localStorage.setItem(var_name, color);
+        })
+    }
+})
 
 /* 
 ============================================================
@@ -353,5 +501,13 @@ if (/portfolio/.test(window.location.pathname)) {
         e.preventDefault();
         hideOverlay();
     }
+}
 
+if (/pong/.test(window.location.pathname) && isTouchDevice()) {
+    console.log("fail");
+    document.querySelector(".pong-container").innerHTML = `
+    <p class="page_content caption">
+            You're on a touchsceen device so this won't work :(
+    </p>
+    `
 }

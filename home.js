@@ -346,7 +346,6 @@ Theme buttons
 
 const color_var_names = ['--bg-color', '--text-color'];
 const root = document.documentElement;
-const options = ['default', 'dark', 'darker', 'earthy'];
 
 // [background color, text color]
 const colors = {
@@ -355,6 +354,7 @@ const colors = {
     "darker": ["#000000", "#ffffff"],
     "earthy": ["#A0A083", "#EAE0CC"],
 }
+const options = Object.keys(colors);
 var saved_colors = [];
 color_var_names.forEach((var_name, index) => {
     saved_colors[index] = localStorage.getItem(var_name) ?

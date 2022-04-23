@@ -39,17 +39,18 @@ class Ball {
     countingDown() {
         this.waiting = true;
         this.countdown = 3;
+        var self = this;
         setTimeout(() => {
-            pong_ball.countdown = 2;
+            self.countdown = 2;
         }, 1000);
         setTimeout(() => {
-            pong_ball.countdown = 1;
+            self.countdown = 1;
         }, 2000);
         setTimeout(() => {
-            pong_ball.countdown = "Go!";
+            self.countdown = "Go!";
         }, 3000);
         setTimeout(() => {
-            pong_ball.waiting = false;
+            self.waiting = false;
         }, 4000);
     }
 

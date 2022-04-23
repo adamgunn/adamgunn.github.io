@@ -216,6 +216,7 @@ if (/home/.test(window.location.pathname)) {
     }
 
     const unique_letter_ids = ["D", "M", "G", "U"];
+    const repeated_letters = ["A", "N"];
     const all_letter_ids = ["A1", "D", "A2", "M", "G", "U", "N1", "N2", "PUNC"];
 
     var letter_indexes = {
@@ -230,116 +231,78 @@ if (/home/.test(window.location.pathname)) {
         "PUNC": 0
     }
 
-    const all_new_letters = () => {
+    const new_single_repeated_letter = (letter_id) => {
+        if (letter_id.length !== 2 || (letter_id[1] !== "1" && letter_id[1] !== "2")) {
+            console.error("Incorrect usage! Invalid passed value:", letter_id);
+            return;
+        }
+        const opp_letter_id = letter_id[0] + (letter_id[1] === "1" ? "2" : "1");
+        const ltr_elt = document.querySelector(`#${letter_id}`);
+        const old_index = letter_indexes[letter_id];
+        do {
+            letter_indexes[letter_id] = Math.floor(Math.random() * NUM_PICS[letter_id.slice(0, -1)]);
+        } while (letter_indexes[letter_id] === letter_indexes[opp_letter_id] ||
+                 letter_indexes[letter_id] === old_index);
+        // console.log(letter_indexes);
+        ltr_elt.src = LETTER_LOCATION(letter_id.slice(0, -1), letter_indexes[letter_id]);
+    }
 
+    const all_new_letters = () => {
         unique_letter_ids.forEach((id) => {
             const ltr = document.querySelector("#" + id);
             letter_indexes[id] = Math.floor(Math.random() * NUM_PICS[id]);
             ltr.src = LETTER_LOCATION(id, letter_indexes[id]);
 
         })
-
-        const a1 = document.querySelector("#A1");
-        letter_indexes["A1"] = Math.floor(Math.random() * NUM_PICS["A"]);
-        a1.src = LETTER_LOCATION("A", letter_indexes["A1"]);
-        const a2 = document.querySelector("#A2");
-        letter_indexes["A2"] = Math.floor(Math.random() * NUM_PICS["A"]);
-        while (letter_indexes["A1"] == letter_indexes["A2"]) {
-            letter_indexes["A2"] = Math.floor(Math.random() * NUM_PICS["A"]);
-        }
-        a2.src = LETTER_LOCATION("A", letter_indexes["A2"]);
-
-        const n1 = document.querySelector("#N1");
-        letter_indexes["N1"] = Math.floor(Math.random() * NUM_PICS["N"]);
-        n1.src = LETTER_LOCATION("N", letter_indexes["N1"]);
-        const n2 = document.querySelector("#N2");
-        letter_indexes["N2"] = Math.floor(Math.random() * NUM_PICS["N"]);
-        while (letter_indexes["N1"] == letter_indexes["N2"]) {
-            letter_indexes["N2"] = Math.floor(Math.random() * NUM_PICS["N"]);
-        }
-        n2.src = LETTER_LOCATION("N", letter_indexes["N2"]);
-
+        repeated_letters.forEach(letter => {
+            new_single_repeated_letter(letter + "1");
+            new_single_repeated_letter(letter + "2");
+        })
         const punc = document.querySelector("#PUNC");
         letter_indexes["PUNC"] = Math.floor(Math.random() * NUM_PICS["PUNC"]);
         punc.src = `../images/magazine/punctuation/${letter_indexes["PUNC"]}.png`;
     }
 
-    const new_single_letter = () => {
-        const NUM_SPOTS = 9;
-        const changing_char = Math.floor(Math.random() * NUM_SPOTS);
-        switch (changing_char) {
-            case 0: {
-                const A1 = document.getElementById("A1");
-                const old_index = letter_indexes["A1"];
-                letter_indexes["A1"] = Math.floor(Math.random() * NUM_PICS["A"]);
-                while (letter_indexes["A1"] == letter_indexes["A2"] ||
-                    letter_indexes["A1"] == old_index) {
-                    letter_indexes["A1"] = Math.floor(Math.random() * NUM_PICS["A"]);
-                }
-                A1.src = LETTER_LOCATION("A", letter_indexes["A1"]);
+    const new_single_letter = (index) => {
+        switch (index) {
+            case 0:
+                new_single_repeated_letter("A1");
                 break;
-            }
-
-            case 2: {
-                const A2 = document.getElementById("A2");
-                const old_index = letter_indexes["A2"];
-                letter_indexes["A2"] = Math.floor(Math.random() * NUM_PICS["A"]);
-                while (letter_indexes["A1"] == letter_indexes["A2"] ||
-                    letter_indexes["A2"] == old_index) {
-                    letter_indexes["A2"] = Math.floor(Math.random() * NUM_PICS["A"]);
-                }
-                A2.src = LETTER_LOCATION("A", letter_indexes["A2"]);
+            case 2:
+                new_single_repeated_letter("A2");
                 break;
-            }
-            case 6: {
-                const N1 = document.getElementById("N1");
-                const old_index = letter_indexes["N1"];
-                letter_indexes["N1"] = Math.floor(Math.random() * NUM_PICS["N"]);
-                while (letter_indexes["N1"] == letter_indexes["N2"] ||
-                    letter_indexes["N1"] == old_index) {
-                    letter_indexes["N1"] = Math.floor(Math.random() * NUM_PICS["N"]);
-                }
-                N1.src = LETTER_LOCATION("N", letter_indexes["N1"]);
+            case 6:
+                new_single_repeated_letter("N1");
                 break;
-            }
-
-            case 7: {
-                const N2 = document.getElementById("N2");
-                const old_index = letter_indexes["N2"];
-                letter_indexes["N2"] = Math.floor(Math.random() * NUM_PICS["N"]);
-                while (letter_indexes["N1"] == letter_indexes["N2"] ||
-                    letter_indexes["N2"] == old_index) {
-                    letter_indexes["N2"] = Math.floor(Math.random() * NUM_PICS["N"]);
-                }
-                N2.src = LETTER_LOCATION("N", letter_indexes["N2"]);
+            case 7:
+                new_single_repeated_letter("N2");
                 break;
-            }
             case 8: {
                 const PUNC = document.getElementById("PUNC");
                 const old_index = letter_indexes["PUNC"];
-                letter_indexes["PUNC"] = Math.floor(Math.random() * NUM_PICS["PUNC"]);
-                while (letter_indexes["PUNC"] == old_index) {
+                do {
                     letter_indexes["PUNC"] = Math.floor(Math.random() * NUM_PICS["PUNC"]);
-                }
+                } while (letter_indexes["PUNC"] == old_index);
                 PUNC.src = `../images/magazine/punctuation/${letter_indexes["PUNC"]}.png`;
                 break;
             }
             default:
-                const char = all_letter_ids[changing_char];
+                const char = all_letter_ids[index];
                 const ltr = document.getElementById(char);
                 const old_index = letter_indexes[char];
-                letter_indexes[char] = Math.floor(Math.random() * NUM_PICS[char]);
-                while (letter_indexes[char] == old_index) {
+                do {
                     letter_indexes[char] = Math.floor(Math.random() * NUM_PICS[char]);
-                }
+                } while (letter_indexes[char] == old_index);
                 ltr.src = LETTER_LOCATION(char, letter_indexes[char]);
                 break;
         }
     }
 
     all_new_letters();
+    const NUM_SPOTS = 9;
     var interval = setInterval(() => {
-        new_single_letter();
+        const changing_char = Math.floor(Math.random() * NUM_SPOTS);
+        new_single_letter(changing_char);
     }, 1000);
 }
 

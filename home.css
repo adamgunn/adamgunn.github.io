@@ -177,6 +177,7 @@ body {
 
 .magazine {
     object-fit: contain;
+    display: inline-block;
 }
 
 .magazine:not(#PUNC) {
@@ -189,9 +190,9 @@ body {
     height: var(--magazine-punc-width);
 }
 
-#A1 {
+/* #A1 {
     padding-left: calc(var(--magazine-punc-width) / 2);
-}
+} */
 
 #about_link {
     text-decoration: none;
@@ -267,6 +268,10 @@ main {
     text-decoration: none;
 }
 
+#about_wrapper .page_content {
+    line-height: 1.2rem;
+}
+
 #about_wrapper {
     text-align: center;
     perspective: 20rem;
@@ -280,6 +285,13 @@ main {
     transform: translate(-50%, -50%);
     top: 50%;
     left: 50%;
+}
+
+#magazine_wrapper, #about_link {
+    min-width: calc(calc(4 * var(--magazine-letter-width)) + var(--magazine-punc-width));
+    display: block;
+    font-size: 0px;
+    text-align: center;
 }
 
 #contact_links_ul {
@@ -497,6 +509,15 @@ pre {
     transition: all 0.5s;
 }
 
+#resume_embed {
+    display: block;
+    width: 100%;
+    height: auto;
+    aspect-ratio: 8.5 / 11;
+    max-height: 80vh;
+    border: none;
+}
+
 @media screen and (max-width: 40rem) {
     :root {
         --magazine-letter-width: 3rem;
@@ -507,15 +528,15 @@ pre {
     #mobile_header {
         display: flex;
     }
-    .magazine:not(#A1):not(#G):not(#PUNC) {
+    /* .magazine:not(#A1):not(#G):not(#PUNC) {
         display: none;
-    }
+    } */
     #A1 {
         padding: 0;
     }
-    #magazine_wrapper br {
+    /* #magazine_wrapper br {
         display: none;
-    }
+    } */
     #mobile_links_wrapper {
         display: none;
     }
@@ -524,5 +545,20 @@ pre {
     }
     #about_wrapper .page_title { 
         font-size: 25vw;
+    }
+    #resume_embed {
+        margin-left: -3rem;
+        width: 100vw;
+        height: 100%;
+        aspect-ratio: auto;
+        max-height: none;
+    }
+    #resume_wrapper {
+        margin-bottom: 0;
+        height: 100%;
+        margin-right: 0;
+    }
+    html, body {
+        height: 100%;
     }
 }

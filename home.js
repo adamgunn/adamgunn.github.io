@@ -114,10 +114,22 @@ const MOBILE_LINKS_HTML = `
         </li>
     </ul>
 `
+const body = document.querySelector('body');
 
-document.getElementById("header").innerHTML = HEADER_HTML;
-document.getElementById("mobile_header").innerHTML = MOBILE_HEADER_HTML;
-document.getElementById("mobile_links_wrapper").innerHTML = MOBILE_LINKS_HTML;
+const create_mobile_links_wrapper = document.createElement("div");
+create_mobile_links_wrapper.id = "mobile_links_wrapper";
+create_mobile_links_wrapper.innerHTML = MOBILE_LINKS_HTML;
+body.insertBefore(create_mobile_links_wrapper, body.firstChild);
+
+const create_mobile_header = document.createElement("header");
+create_mobile_header.id = "mobile_header";
+create_mobile_header.innerHTML = MOBILE_HEADER_HTML;
+body.insertBefore(create_mobile_header, body.firstChild);
+
+const create_header = document.createElement("header");
+create_header.id = "header";
+create_header.innerHTML = HEADER_HTML;
+body.insertBefore(create_header, body.firstChild);
 
 /* 
 ============================================================

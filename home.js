@@ -467,7 +467,6 @@ if (/portfolio/.test(window.location.pathname)) {
         item.style.backgroundImage = `url('${location(filename)}')`;
         item.id = filename;
         item.onclick = (e) => {
-            e.preventDefault();
             showOverlay(filename);
         }
         grid.appendChild(item);

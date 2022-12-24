@@ -366,7 +366,7 @@ main {
     gap: 0.25rem;
 }
 
-#portfolio_wrapper, #pong_wrapper, #resume_wrapper {
+#portfolio_wrapper, #pong_wrapper, #resume_wrapper, #blog_wrapper {
     margin: 0 3rem 3rem;
     box-sizing: border-box;
 }
@@ -516,6 +516,27 @@ pre {
     aspect-ratio: 8.5 / 11;
     max-height: 80vh;
     border: none;
+}
+
+.blog_post_wrapper {
+    background-color: var(--bg-color);
+    margin: 2rem 0;
+    padding: 0 0 2rem;
+    border-bottom: 1px solid var(--text-color);
+}
+
+.blog_post_wrapper:last-child {
+    border-bottom: none;
+    padding: 0;
+}
+
+.blog_post_body, .blog_post_created {
+    font-family: lust-text, sans-serif, color-emoji;
+}
+
+.blog_post_title, .blog_post_body, .blog_post_created {
+    color: var(--text-color);
+    transition: all 0.5s;
 }
 
 @media screen and (max-width: 40rem) {

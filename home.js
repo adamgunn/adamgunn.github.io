@@ -7,16 +7,19 @@ Header HTML injection
 const HEADER_HTML = `
     <ul id="header_ul_left" class="header_ul">
         <li class="header_item">
-            <a class="header_link" href="../home">Home</a>
+            <a class="header_link" href="/home">Home</a>
         </li>
         <li class="header_item">
-            <a class="header_link" href="../about">About</a>
+            <a class="header_link" href="/about">About</a>
         </li>
         <li class="header_item">
-            <a class="header_link" href="../portfolio">Portfolio</a>
+            <a class="header_link" href="/blog">Blog</a>
         </li>
         <li class="header_item">
-            <a class="header_link" href="../resume">Resum&eacute;</a>
+            <a class="header_link" href="/portfolio">Portfolio</a>
+        </li>
+        <li class="header_item">
+            <a class="header_link" href="/resume">Resum&eacute;</a>
         </li>
     </ul>
     <ul id="header_ul_right" class="header_ul">
@@ -70,16 +73,19 @@ const MOBILE_LINKS_HTML = `
         </svg>
     <ul class="mobile_links_ul" id="mobile_main">
         <li class="header_item">
-            <a class="header_link" href="../home">Home</a>
+            <a class="header_link" href="/home">Home</a>
         </li>
         <li class="header_item">
-            <a class="header_link" href="../about">About</a>
+            <a class="header_link" href="/about">About</a>
         </li>
         <li class="header_item">
-            <a class="header_link" href="../portfolio">Portfolio</a>
+            <a class="header_link" href="/blog">Blog</a>
         </li>
         <li class="header_item">
-            <a class="header_link" href="../resume">Resum&eacute;</a>
+            <a class="header_link" href="/portfolio">Portfolio</a>
+        </li>
+        <li class="header_item">
+            <a class="header_link" href="/resume">Resum&eacute;</a>
         </li>
         <li class="header_item dropdown_title" id="games_button">
             Games

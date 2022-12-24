@@ -523,6 +523,7 @@ pre {
     margin: 2rem 0;
     padding: 0 0 2rem;
     border-bottom: 1px solid var(--text-color);
+    transition: all 0.5s;
 }
 
 .blog_post_wrapper:last-child {
